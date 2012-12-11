@@ -29,6 +29,7 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     addressable (2.3.2)
+    ansi (1.4.3)
     arel (3.0.2)
     builder (3.0.4)
     capybara (2.0.1)
@@ -109,6 +110,8 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
+    turn (0.9.6)
+      ansi
     tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
@@ -127,4 +130,5 @@ DEPENDENCIES
   mysql2
   rails (= 3.2.3)
   sass-rails (~> 3.2.3)
+  turn
   uglifier (>= 1.0.3)

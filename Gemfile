@@ -20,6 +20,7 @@ group :assets do
 end
 
 group :test do
+  gem 'turn'
   gem 'database_cleaner'
   gem 'capybara', '~> 2.0'
 end
