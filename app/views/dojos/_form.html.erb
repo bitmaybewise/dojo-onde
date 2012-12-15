@@ -1,0 +1,9 @@
+<%= form_for(@dojo) do |f| %>
+  <div class="field">
+    <%= f.label :local %><br />
+    <%= f.text_field :local %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Salvar' %>
+  </div>
+<% end %>

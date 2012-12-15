@@ -1,7 +1,7 @@
 Dojoaonde::Application.routes.draw do
-  get "dojos/new"
-
   root :to => 'home#index'
+
+  resources :dojos
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
