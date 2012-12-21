@@ -1,0 +1,13 @@
+<h2>Dojos cadastrados</h2>
+
+<table>
+  <tr>
+    <th>Local</th>
+  </tr>
+
+  <% @dojos.each do |dojo| %>
+    <tr>
+      <td><%= dojo.local %></td>
+    </tr>
+  <% end %>
+</table>

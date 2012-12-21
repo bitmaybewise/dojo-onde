@@ -13,4 +13,8 @@ class DojosController < ApplicationController
   def show
     @dojo = Dojo.find(params[:id])
   end
+
+  def index
+    @dojos = Dojo.all
+  end
 end
