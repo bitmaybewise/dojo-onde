@@ -15,4 +15,12 @@ class HomeTest < ActionDispatch::IntegrationTest
       assert has_content? 'Novo dojo'
     end
   end
+
+  test 'should show dojos list' do
+    FactoryGirl.create(:dojo)
+    visit root_url
+    within('ul#dojos li:first') do
+      assert has_content? 'Faculdade XPTO'
+    end
+  end
 end

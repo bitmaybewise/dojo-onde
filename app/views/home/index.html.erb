@@ -4,3 +4,11 @@
     <li><%= link_to 'Novo dojo', '/dojos/new' %></li>
   </ul>
 </nav>
+
+<section>
+  <ul id="dojos">
+    <% @dojos.each do |dojo| %>
+      <li><%= dojo.local %></li>
+    <% end %>
+  </ul>
+</section>
