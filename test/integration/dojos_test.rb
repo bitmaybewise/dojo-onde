@@ -32,11 +32,8 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should list dojos' do
-    visit root_url
-    click_link('Novo dojo')
-    fill_in('Local', with: 'Faculdade XPTO')
-    click_button('Salvar')
-    click_link('Voltar')
+    FactoryGirl.create(:dojo)
+    visit '/dojos'
     within('table tr td') do
       assert has_content? 'Faculdade XPTO'
     end
