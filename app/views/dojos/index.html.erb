@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Local</th>
+    <th></th>
   </tr>
 
   <% @dojos.each do |dojo| %>
     <tr>
       <td><%= dojo.local %></td>
+      <td><%= link_to 'Editar', edit_dojo_path(dojo)  %></td>
     </tr>
   <% end %>
 </table>

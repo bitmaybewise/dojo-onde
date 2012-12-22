@@ -17,4 +17,16 @@ class DojosController < ApplicationController
   def index
     @dojos = Dojo.all
   end
+
+  def edit
+    @dojo = Dojo.find(params[:id])
+  end
+
+  def update
+    @dojo = Dojo.find(params[:id])
+
+    if @dojo.update_attributes(params[:dojo])
+      redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
+    end
+  end
 end
