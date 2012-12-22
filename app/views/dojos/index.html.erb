@@ -10,6 +10,7 @@
     <tr>
       <td><%= dojo.local %></td>
       <td><%= link_to 'Editar', edit_dojo_path(dojo)  %></td>
+      <td><%= link_to 'Excluir', dojo, confirm: 'Tem certeza que deseja excluir?', method: :delete  %></td>
     </tr>
   <% end %>
 </table>

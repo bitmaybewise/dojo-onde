@@ -29,4 +29,10 @@ class DojosController < ApplicationController
       redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
     end
   end
+
+  def destroy
+    @dojo = Dojo.find(params[:id])
+    @dojo.destroy
+    redirect_to dojos_url
+  end
 end

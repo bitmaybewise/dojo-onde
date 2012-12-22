@@ -48,4 +48,12 @@ class DojosTest < ActionDispatch::IntegrationTest
       assert has_content? 'Faculdade XPTO'
     end
   end
+
+  test 'should delete dojo' do
+    visit '/dojos'
+    click_link('Excluir')
+    within('table tr') do
+      assert has_no_content? 'Faculdade XPTO'
+    end
+  end
 end
