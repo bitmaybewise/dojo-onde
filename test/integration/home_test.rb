@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
+
   test 'should navigate to homepage' do
     visit root_url
     within('h1') do
@@ -17,10 +18,14 @@ class HomeTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show dojos list' do
-    FactoryGirl.create(:dojo)
+    10.times { FactoryGirl.create(:dojo) }
     visit root_url
     within('ul#dojos li:first') do
-      assert has_content? 'Faculdade XPTO'
+      assert has_content? 'Faculdade1'
+    end
+    within('ul#dojos li:last') do
+      assert has_content? 'Faculdade10'
     end
   end
+
 end

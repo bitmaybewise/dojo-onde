@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :dojo do
-    local 'Faculdade XPTO'
+    sequence(:local){|i| "Faculdade#{i}"}
   end
 end

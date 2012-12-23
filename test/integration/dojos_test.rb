@@ -2,17 +2,16 @@ require 'test_helper'
 
 class DojosTest < ActionDispatch::IntegrationTest
   def setup
-    FactoryGirl.create(:dojo)
+    FactoryGirl.create(:dojo, local: 'Faculdade')
   end
 
   test 'should insert dojo' do
-    local_name = 'Faculdade XYZ'
     visit root_url
     click_link('Novo dojo')
-    fill_in('Local', with: local_name)
+    fill_in('Local', with: 'Novo local')
     click_button('Salvar')
     within('h2') do
-      assert has_content? local_name
+      assert has_content? 'Novo local'
     end
   end
 
@@ -43,9 +42,13 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should list dojos' do
+    10.times { FactoryGirl.create(:dojo) }
     visit '/dojos'
-    within('table tr td:first') do
-      assert has_content? 'Faculdade XPTO'
+    within('tbody tr:first') do
+      assert has_content? 'Faculdade'
+    end
+    within('tbody tr:last') do
+      assert has_content? 'Faculdade10'
     end
   end
 
@@ -53,7 +56,7 @@ class DojosTest < ActionDispatch::IntegrationTest
     visit '/dojos'
     click_link('Excluir')
     within('table tr') do
-      assert has_no_content? 'Faculdade XPTO'
+      assert has_no_content? 'Faculdade'
     end
   end
 end
