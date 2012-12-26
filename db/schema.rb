@@ -15,8 +15,13 @@ ActiveRecord::Schema.define(:version => 20121215141211) do
 
   create_table "dojos", :force => true do |t|
     t.string   "local"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.date     "day"
+    t.integer  "limit_people"
+    t.text     "info"
+    t.string   "city"
+    t.string   "gmaps_link"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
 end
