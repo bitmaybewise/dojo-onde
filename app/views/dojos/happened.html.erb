@@ -5,7 +5,6 @@
     <tr>
       <th>Local</th>
       <th></th>
-      <th></th>
     </tr>
   </thead>
 
@@ -13,8 +12,7 @@
     <% @dojos.each do |dojo| %>
       <tr>
         <td><%= dojo.local %></td>
-        <td><%= link_to 'Editar', edit_dojo_path(dojo)  %></td>
-        <td><%= link_to 'Excluir', dojo, confirm: 'Tem certeza que deseja excluir?', method: :delete  %></td>
+        <td><%= link_to 'Detalhes', dojo_path(dojo.id)  %></td>
       </tr>
     <% end %>
   </tbody>

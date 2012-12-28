@@ -15,7 +15,7 @@ class DojosController < ApplicationController
   end
 
   def index
-    @dojos = Dojo.all
+    @dojos = Dojo.where("day >= ? ", Date.today).order("day DESC")
   end
 
   def happened

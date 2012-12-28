@@ -44,22 +44,27 @@ class DojosTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should show list of dojos' do
+  test 'should show list of dojos that not happened with the recent first' do
+    @dojos.delete_if {|dojo| dojo.day < Date.today }
+
     visit '/dojos'
     within('tbody tr:first') do
-      assert has_content? @first.local
+      assert has_content?(@dojos.last.local), "First should have recent date"
     end
     within('tbody tr:last') do
-      assert has_content? @dojos.last.local
+      assert has_content?(@dojos.first.local), "Last should have older date"
     end
   end
 
-  test 'should show list of dojos that happened with the most recent first' do
+  test 'should show list of dojos that happened with the recent first' do
     @dojos.delete_if { |dojo| dojo.day >= Date.today }
 
     visit '/dojos/aconteceram'
     within('table tbody tr:first') do
-      assert has_content?(@dojos.last.local), "First should have most recent date"
+      assert has_content?(@dojos.last.local), "First should have recent date"
+    end
+    within('table tbody tr:last') do
+      assert has_content?(@dojos.first.local), "First should have older date"
     end
   end
 
