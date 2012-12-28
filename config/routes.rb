@@ -1,6 +1,7 @@
 Dojoaonde::Application.routes.draw do
   root :to => 'home#index'
 
+  match 'dojos/aconteceram' => 'dojos#happened'
   resources :dojos
 
   # The priority is based upon order of creation:

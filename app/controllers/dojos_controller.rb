@@ -18,6 +18,10 @@ class DojosController < ApplicationController
     @dojos = Dojo.all
   end
 
+  def happened
+    @dojos = Dojo.where("day < ? ", Date.today).order("day DESC")
+  end
+
   def edit
     @dojo = Dojo.find(params[:id])
   end

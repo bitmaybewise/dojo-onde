@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :dojo do
-    sequence(:local, 1) { |i| "Faculdade#{i}" }
-    sequence(:day) { |i| Time.now - 5.days + (1.day * i) }
-    city 'Atlantida'
+    sequence(:local) { |i| "Faculdade#{i}" }
+    day   Date.today
+    city  'Atlantida'
   end
 end

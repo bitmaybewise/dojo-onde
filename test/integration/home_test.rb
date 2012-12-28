@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
@@ -6,6 +7,17 @@ class HomeTest < ActionDispatch::IntegrationTest
     visit root_url
     within('h1') do
       assert has_content?('Dojo, aonde?'), 'Should be homepage'
+    end
+  end
+
+  test 'should navigate to page of dojos that happened' do
+    dojos = FactoryGirl.create_list(:dojo, 10)
+    dojos.delete_if { |dojo| dojo.day > Date.today }
+
+    visit root_url
+    click_link('Já aconteceu!')
+    within('h2') do
+      assert has_content?('Dojos que já aconteceram!'), 'Should be dojos that happened page'
     end
   end
 
