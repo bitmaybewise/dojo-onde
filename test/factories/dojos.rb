@@ -5,5 +5,7 @@ FactoryGirl.define do
     sequence(:local) { |i| "Faculdade#{i}" }
     day   Date.today
     city  'Atlantida'
+
+    to_create { |i| i.save(validate: false) }
   end
 end

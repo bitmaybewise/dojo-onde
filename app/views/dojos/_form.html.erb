@@ -1,16 +1,29 @@
 <%= form_for(@dojo) do |f| %>
+  <% if @dojo.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @dojo.errors.messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :local %><br />
     <%= f.text_field :local %>
   </div>
+
   <div class="field">
     <label for="dojo_day">Dia</label><br />
     <%= f.text_field :day %>
   </div>
+
   <div class="field">
     <label for="dojo_city">Cidade</label><br />
     <%= f.text_field :city %>
   </div>
+
   <div class="actions">
     <%= f.submit 'Salvar' %>
   </div>

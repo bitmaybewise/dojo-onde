@@ -7,6 +7,8 @@ class DojosController < ApplicationController
     @dojo = Dojo.new(params[:dojo])
     if @dojo.save
       redirect_to @dojo, notice: 'Dojo cadastrado com sucesso.'
+    else
+      render action: :new
     end
   end
 
