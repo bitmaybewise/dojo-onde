@@ -22,8 +22,23 @@
   </div>
 
   <div class="field">
+    <label for="dojo_limit_people">Limite de participantes</label><br />
+    <%= f.text_field :limit_people %>
+  </div>
+
+  <div class="field">
+    <label for="dojo_address">Endereço</label><br />
+    <%= f.text_field :address %>
+  </div>
+
+  <div class="field">
     <label for="dojo_city">Cidade</label><br />
     <%= f.text_field :city %>
+  </div>
+
+  <div class="field">
+    <label for="dojo_info">Outras informações</label><br />
+    <%= f.text_area :info %>
   </div>
 
   <div class="actions">

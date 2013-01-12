@@ -1,11 +1,12 @@
 # encoding: UTF-8
 
 class Dojo < ActiveRecord::Base
-  attr_accessible :local, :day, :limit_people, :info, :city, :gmaps_link
+  attr_accessible :local, :day, :limit_people, :address, :city, :info, :gmaps_link
 
-  validates :local, :presence => { message: "local é obrigatório" }
-  validates :day,   :presence => { message: "dia é obrigatório" }
-  validates :city,  :presence => { message: "cidade é obrigatória" }
+  validates :local,   :presence => { message: "local é obrigatório" }
+  validates :address, :presence => { message: "endereço é obrigatório" }
+  validates :city,    :presence => { message: "cidade é obrigatória" }
+  validates :day,     :presence => { message: "dia é obrigatório" }
   validate  :day_cannot_be_in_the_past
 
   private

@@ -6,7 +6,7 @@ class DojosTest < ActionDispatch::IntegrationTest
     @dojos = []
     (-5..5).each {|n| @dojos << FactoryGirl.create(:dojo, day: Date.today + n) }
     @first      = @dojos.first
-    @valid_dojo = @dojos.last
+    @valid_dojo = FactoryGirl.build(:dojo)
   end
 
   def teardown
@@ -16,16 +16,9 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should insert dojo' do
-    local = "Um lugar qualquer"
-
-    visit root_url
-    click_link('Novo dojo')
-    fill_in('Local', with: local)
-    fill_in('Dia', with: Date.today)
-    fill_in('Cidade', with: 'Atlantida')
-    click_button('Salvar')
+    insert @valid_dojo
     within('h2') do
-      assert has_content? local
+      assert has_content?("Dojo #{@valid_dojo.local}"), "Should show '#{@valid_dojo.local}' on title"
     end
   end
 
@@ -94,6 +87,11 @@ class DojosTest < ActionDispatch::IntegrationTest
     assert_invalid @valid_dojo, "local é obrigatório"
   end
 
+  test 'should be invalid without a address' do
+    @valid_dojo.address = nil
+    assert_invalid @valid_dojo, "endereço é obrigatório"
+  end
+
   test 'should be invalid without a city' do
     @valid_dojo.city = nil
     assert_invalid @valid_dojo, "cidade é obrigatória"
@@ -110,13 +108,20 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   private
-  def assert_invalid(dojo, msg)
+  def insert(dojo)
     visit root_url
-    click_link('Novo dojo')
-    fill_in('Local', with: dojo.local)
-    fill_in('Dia', with: dojo.day)
-    fill_in('Cidade', with: dojo.city)
-    click_button('Salvar')
+    click_link 'Novo dojo'
+    fill_in 'Local',    with: dojo.local
+    fill_in 'Dia',      with: dojo.day
+    fill_in 'Endereço', with: dojo.address
+    fill_in 'Cidade',   with: dojo.city
+    fill_in 'Limite de participantes', with: dojo.limit_people
+    fill_in 'Outras informações', with: dojo.info
+    click_button 'Salvar'
+  end
+
+  def assert_invalid(dojo, msg)
+    insert dojo
     within('div#error_explanation') do
       assert has_content?(msg), "Should show #{msg}"
     end

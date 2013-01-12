@@ -2,7 +2,6 @@
 require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
-
   test 'should navigate to homepage' do
     visit root_url
     within('h1') do
@@ -49,5 +48,4 @@ class HomeTest < ActionDispatch::IntegrationTest
       assert has_content?("Dojos cadastrados"), "Should show list page"
     end
   end
-
 end

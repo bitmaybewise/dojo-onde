@@ -17,8 +17,9 @@ ActiveRecord::Schema.define(:version => 20121215141211) do
     t.string   "local"
     t.date     "day"
     t.integer  "limit_people"
-    t.text     "info"
+    t.string   "address"
     t.string   "city"
+    t.text     "info"
     t.string   "gmaps_link"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
