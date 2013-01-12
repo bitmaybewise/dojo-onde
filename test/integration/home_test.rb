@@ -42,4 +42,12 @@ class HomeTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'should navigate to dojos page' do
+    visit root_url
+    click_link("Exibir todos")
+    within("h2") do
+      assert has_content?("Dojos cadastrados"), "Should show list page"
+    end
+  end
+
 end

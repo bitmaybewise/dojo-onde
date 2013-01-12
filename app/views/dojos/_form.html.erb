@@ -2,8 +2,10 @@
   <% if @dojo.errors.any? %>
     <div id="error_explanation">
       <ul>
-      <% @dojo.errors.messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% @dojo.errors.messages.each_value do |messages| %>
+        <% messages.each do |value| %>
+        <li><%= value %></li>
+        <% end %>
       <% end %>
       </ul>
     </div>
