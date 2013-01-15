@@ -8,10 +8,18 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body class="container">
 
-  <h1><%= link_to "Dojo, aonde?", root_path %></h1>
-  <%= yield %>
+    <div class="row">
+      <div class="span12">
+        <h1><%= link_to "Dojo, aonde?", root_path %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <%= yield %>
+      </div>
+    </div>
 
 </body>
 </html>
