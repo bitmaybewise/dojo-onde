@@ -17,28 +17,28 @@
   </div>
 
   <div class="field">
-    <label for="dojo_day">Dia</label><br />
+    <%= label_tag(:dojo_day, "Dia") %><br />
     <%= f.text_field :day %>
   </div>
 
   <div class="field">
-    <label for="dojo_limit_people">Limite de participantes</label><br />
+    <%= label_tag(:dojo_limit_people, "Limite de participantes") %><br />
     <%= f.text_field :limit_people %>
   </div>
 
   <div class="field">
-    <label for="dojo_address">Endereço</label><br />
+    <%= label_tag(:dojo_address, "Endereço") %><br />
     <%= f.text_field :address %>
   </div>
 
   <div class="field">
-    <label for="dojo_city">Cidade</label><br />
+    <%= label_tag(:dojo_city, "Cidade") %><br />
     <%= f.text_field :city %>
   </div>
 
   <div class="field">
-    <label for="dojo_info">Outras informações</label><br />
-    <%= f.text_area :info %>
+    <%= label_tag(:dojo_info, "Outras informações") %><br />
+    <%= f.text_area :info, size: "34x10" %>
   </div>
 
   <div class="actions">

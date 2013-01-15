@@ -41,7 +41,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should show list of dojos that not happened with the recent first' do
     @dojos.delete_if {|dojo| dojo.day < Date.today }
 
-    visit '/dojos'
+    visit dojos_url
     within('tbody tr:first') do
       assert has_content?(@dojos.last.local), "First should have recent date"
     end
@@ -65,7 +65,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should edit dojo' do
     local = 'lugar secreto'
 
-    visit '/dojos'
+    visit dojos_url
     within("table tbody tr:first") { click_link('Editar') }
     fill_in('Local', with: local)
     click_button('Salvar')
@@ -75,7 +75,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should delete dojo' do
-    visit '/dojos'
+    visit dojos_url
     within('table tbody tr:first') { click_link('Excluir') }
     within('table tbody tr:first') do
       assert has_no_content? @first.local
@@ -105,6 +105,17 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should be invalid with a previous day' do
     @valid_dojo.day = Date.today - 7
     assert_invalid @valid_dojo, "dias anteriores não são permitidos"
+  end
+
+  test 'should show dojo' do
+    dojo = FactoryGirl.create :dojo
+    visit dojo_path(dojo)
+    assert page.has_content?("Local: #{dojo.local}"), "Should show local"
+    assert page.has_content?("Dia: #{dojo.day}"), "Should show day"
+    assert page.has_content?("Limite de participantes: #{dojo.limit_people}"), "Should show limit people"
+    assert page.has_content?("Endereço: #{dojo.address}"), "Should show address"
+    assert page.has_content?("Cidade: #{dojo.city}"), "Should show city"
+    assert page.has_content?("Informações: #{dojo.info}"), "Should show info"
   end
 
   private
