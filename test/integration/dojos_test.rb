@@ -5,37 +5,29 @@ class DojosTest < ActionDispatch::IntegrationTest
   def setup
     @dojos = []
     (-5..5).each {|n| @dojos << FactoryGirl.create(:dojo, day: Date.today + n) }
-    @first      = @dojos.first
     @valid_dojo = FactoryGirl.build(:dojo)
   end
 
   def teardown
-    @first = nil
     @dojos = nil
     @valid_dojo = nil
   end
 
   test 'should insert dojo' do
     insert @valid_dojo
-    within('h2') do
-      assert has_content?("Dojo #{@valid_dojo.local}"), "Should show '#{@valid_dojo.local}' on title"
-    end
+    assert find('h2').has_content?("Dojo #{@valid_dojo.local}"), "Should save with success"
   end
 
   test 'should go to list page from edit page' do
-    visit "/dojos/#{@first.id}"
+    visit "/dojos/#{@dojos.first.id}"
     click_link('Voltar')
-    within('h2') do
-      assert has_content? 'Dojos cadastrados'
-    end
+    assert find('h2').has_content?('Dojos cadastrados'), "Should go to list page"
   end
 
   test 'should back to homepage' do
     visit '/dojos/new'
     click_link('Cancelar')
-    within('h1') do
-      assert has_content? 'Dojo, aonde?'
-    end
+    assert find('h1').has_content?('Dojo, aonde?'), "Should back to homepage"
   end
 
   test 'should show list of dojos that not happened with the recent first' do
@@ -64,21 +56,18 @@ class DojosTest < ActionDispatch::IntegrationTest
 
   test 'should edit dojo' do
     local = 'lugar secreto'
-
     visit dojos_url
     within("table tbody tr:first") { click_link('Editar') }
     fill_in('Local', with: local)
     click_button('Salvar')
-    within('h2') do
-      assert has_content? "Dojo #{local}"
-    end
+    assert find('h2').has_content?("Dojo #{local}"), "Should edit and save with success"
   end
 
   test 'should delete dojo' do
     visit dojos_url
     within('table tbody tr:first') { click_link('Excluir') }
     within('table tbody tr:first') do
-      assert has_no_content? @first.local
+      assert has_no_content? @dojos.first.local
     end
   end
 
@@ -110,12 +99,13 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should show dojo' do
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)
+    assert find('h2').has_content?("Dojo #{dojo.local}"), "Should show title"
     assert page.has_content?("Local: #{dojo.local}"), "Should show local"
     assert page.has_content?("Dia: #{dojo.day}"), "Should show day"
     assert page.has_content?("Limite de participantes: #{dojo.limit_people}"), "Should show limit people"
     assert page.has_content?("Endereço: #{dojo.address}"), "Should show address"
     assert page.has_content?("Cidade: #{dojo.city}"), "Should show city"
-    assert page.has_content?("Informações: #{dojo.info}"), "Should show info"
+    assert page.has_content?("Outras informações: #{dojo.info}"), "Should show info"
   end
 
   private
