@@ -3,14 +3,12 @@ require 'test_helper'
 
 class DojosTest < ActionDispatch::IntegrationTest
   def setup
-    @dojos = []
+    @dojos, @valid_dojo = [], FactoryGirl.build(:dojo)
     (-5..5).each {|n| @dojos << FactoryGirl.create(:dojo, day: Date.today + n) }
-    @valid_dojo = FactoryGirl.build(:dojo)
   end
 
   def teardown
-    @dojos = nil
-    @valid_dojo = nil
+    @dojos, @valid_dojo = nil, nil
   end
 
   test 'should insert dojo' do

@@ -1,7 +1,10 @@
 Dojoaonde::Application.routes.draw do
   root :to => 'home#index'
+  get "login"  => 'sessions#new'
+  get "logout" => 'sessions#destroy'
+  resource :sessions
 
-  match 'dojos/aconteceram' => 'dojos#happened'
+  get 'dojos/aconteceram' => 'dojos#happened'
   resources :dojos
 
   # The priority is based upon order of creation:

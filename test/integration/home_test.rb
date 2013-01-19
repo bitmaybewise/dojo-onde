@@ -35,4 +35,10 @@ class HomeTest < ActionDispatch::IntegrationTest
     click_link("Exibir todos")
     assert find("h2").has_content?("Dojos cadastrados"), "Should show list page"
   end
+
+  test 'should go to login page' do
+    visit root_url
+    click_link("Acesse")
+    assert find("h2").has_content?("Login"), "Should be login page"
+  end
 end

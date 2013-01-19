@@ -1,0 +1,22 @@
+<h2>Login</h2>
+
+<% if flash[:alert] %>
+  <div class="alert"><%= flash[:alert] %></div>
+<% end %>
+
+<%= form_tag(sessions_path, method: "post") do %>
+  <div class="field">
+    <%= label_tag :email, "E-mail" %>
+    <%= text_field_tag :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, "Senha" %>
+    <%= password_field_tag :password %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Acessar" %>
+    <%= link_to "Voltar", root_path %>
+  </div>
+<% end %>
