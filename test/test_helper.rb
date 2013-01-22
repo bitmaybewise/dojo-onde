@@ -14,6 +14,25 @@ class ActionDispatch::IntegrationTest
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end
+
+  private
+  def login(user)
+    visit login_path
+    fill_in 'E-mail', with: user.email
+    fill_in 'Senha',  with: user.password
+    click_on 'Acessar'
+  end
+
+  def logout
+    click_on 'Sair'
+  end
+
+  protected
+  def with(user)
+    login user
+    yield
+    logout
+  end
 end
 
 class ActiveSupport::TestCase

@@ -1,4 +1,6 @@
 class DojosController < ApplicationController
+  before_filter :require_login, only: [:new, :edit, :destroy]
+
   def new
     @dojo = Dojo.new
   end
@@ -39,6 +41,6 @@ class DojosController < ApplicationController
   def destroy
     @dojo = Dojo.find(params[:id])
     @dojo.destroy
-    redirect_to dojos_url
+    redirect_to dojos_path
   end
 end

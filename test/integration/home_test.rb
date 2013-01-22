@@ -2,13 +2,17 @@
 require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
-  test 'should navigate to homepage' do
-    visit root_url
+  def setup
+    @user = FactoryGirl.create :user
+  end
+
+  test 'should visit homepage' do
+    visit root_path
     assert find('h1').has_content?('Dojo, aonde?'), 'Should be homepage'
     assert_equal current_path, root_path, "Current path should be equal root path"
   end
 
-  test 'should navigate to page of dojos that happened' do
+  test 'should visit page of dojos that happened' do
     dojos = FactoryGirl.create_list(:dojo, 10)
     dojos.delete_if { |dojo| dojo.day > Date.today }
     visit root_url
@@ -24,21 +28,34 @@ class HomeTest < ActionDispatch::IntegrationTest
     assert find('ul#dojos li:last').has_content?(dojos.last.local)
   end
 
-  test 'should navigate to new dojo page' do
-    visit root_url
+  test 'should visit new dojo page' do
+    login(@user)
+    visit root_path
     click_link('Novo dojo')
     assert find('h2').has_content?('Novo dojo'), 'Should be new dojo page'
   end
 
-  test 'should navigate to dojos page' do
-    visit root_url
+  test 'should visit dojos page' do
+    visit root_path
     click_link("Exibir todos")
     assert find("h2").has_content?("Dojos cadastrados"), "Should show list page"
   end
 
-  test 'should go to login page' do
-    visit root_url
+  test 'should visit login page' do
+    visit root_path
     click_link("Acesse")
     assert find("h2").has_content?("Login"), "Should be login page"
   end
+
+  test 'should login' do
+    login @user
+    assert page.has_content?("Bem vindo #{@user.name}")
+  end
+
+  test 'should logout' do
+    login @user
+    logout
+    assert page.has_no_content?("Bem vindo #{@user.name}")
+  end
+
 end

@@ -3,69 +3,93 @@ require 'test_helper'
 
 class DojosTest < ActionDispatch::IntegrationTest
   def setup
+    @user = FactoryGirl.create(:user)
     @dojos, @valid_dojo = [], FactoryGirl.build(:dojo)
     (-5..5).each {|n| @dojos << FactoryGirl.create(:dojo, day: Date.today + n) }
   end
 
   def teardown
-    @dojos, @valid_dojo = nil, nil
+    @dojos, @valid_dojo, @user = nil, nil, nil
   end
 
-  test 'should insert dojo' do
-    insert @valid_dojo
-    assert find('h2').has_content?("Dojo #{@valid_dojo.local}"), "Should save with success"
+  test 'should require login to insert' do
+    visit new_dojo_path
+    assert_equal new_sessions_path, current_path
+    assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
-  test 'should go to list page from edit page' do
+  test 'should insert' do
+    with @user do
+      insert @valid_dojo
+      assert find('h2').has_content?("Dojo #{@valid_dojo.local}"), "Should save with success"
+    end
+  end
+
+  test 'should visit dojos page from edit page' do
     visit "/dojos/#{@dojos.first.id}"
     click_link('Voltar')
     assert find('h2').has_content?('Dojos cadastrados'), "Should go to list page"
   end
 
   test 'should back to homepage' do
-    visit '/dojos/new'
-    click_link('Cancelar')
-    assert find('h1').has_content?('Dojo, aonde?'), "Should back to homepage"
+    with @user do
+      visit new_dojo_path
+      click_link('Cancelar')
+      assert find('h1').has_content?('Dojo, aonde?'), "Should back to homepage"
+    end
   end
 
   test 'should show list of dojos that not happened with the recent first' do
     @dojos.delete_if {|dojo| dojo.day < Date.today }
 
-    visit dojos_url
-    within('tbody tr:first') do
-      assert has_content?(@dojos.last.local), "First should have recent date"
-    end
-    within('tbody tr:last') do
-      assert has_content?(@dojos.first.local), "Last should have older date"
-    end
+    visit dojos_path
+    assert find('tbody tr:first').has_content?(@dojos.last.local),
+      "First should have recent date"
+    assert find('tbody tr:last').has_content?(@dojos.first.local),
+      "Last should have older date"
   end
 
   test 'should show list of dojos that happened with the recent first' do
     @dojos.delete_if { |dojo| dojo.day >= Date.today }
 
-    visit '/dojos/aconteceram'
-    within('table tbody tr:first') do
-      assert has_content?(@dojos.last.local), "First should have recent date"
-    end
-    within('table tbody tr:last') do
-      assert has_content?(@dojos.first.local), "First should have older date"
+    visit dojos_happened_path
+    assert find('table tbody tr:first').has_content?(@dojos.last.local),
+      "First should have recent date"
+    assert find('table tbody tr:last').has_content?(@dojos.first.local),
+      "First should have older date"
+  end
+
+  test 'should require login to edit' do
+    visit dojos_path
+    find('table tbody tr:first').click_on('Editar')
+    assert_equal new_sessions_path, current_path
+    assert find('h2').has_content?('Login'), 'Should be login page'
+  end
+
+  test 'should edit' do
+    with @user do
+      new_local = 'lugar secreto'
+      visit dojos_path
+      find('table tbody tr:first').click_on('Editar')
+      fill_in('Local', with: new_local)
+      click_button('Salvar')
+      assert find('h2').has_content?("Dojo #{new_local}"),
+        'Should edit and save with success'
     end
   end
 
-  test 'should edit dojo' do
-    local = 'lugar secreto'
-    visit dojos_url
-    within("table tbody tr:first") { click_link('Editar') }
-    fill_in('Local', with: local)
-    click_button('Salvar')
-    assert find('h2').has_content?("Dojo #{local}"), "Should edit and save with success"
+  test 'should require login to delete' do
+    visit dojos_path
+    find('table tbody tr:first').click_on('Excluir')
+    assert_equal new_sessions_path, current_path
+    assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
-  test 'should delete dojo' do
-    visit dojos_url
-    within('table tbody tr:first') { click_link('Excluir') }
-    within('table tbody tr:first') do
-      assert has_no_content? @dojos.first.local
+  test 'should delete' do
+    with @user do
+      visit dojos_path
+      find('table tbody tr:first').click_on('Excluir')
+      assert find('table tbody tr:first').has_no_content?(@dojos.first.local)
     end
   end
 
@@ -108,8 +132,7 @@ class DojosTest < ActionDispatch::IntegrationTest
 
   private
   def insert(dojo)
-    visit root_url
-    click_link 'Novo dojo'
+    visit new_dojo_path
     fill_in 'Local',    with: dojo.local
     fill_in 'Dia',      with: dojo.day
     fill_in 'Endereço', with: dojo.address
@@ -120,9 +143,9 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   def assert_invalid(dojo, msg)
-    insert dojo
-    within('div#error_explanation') do
-      assert has_content?(msg), "Should show #{msg}"
+    with @user do
+      insert dojo
+      assert find('div#error_explanation').has_content?(msg), "Should show #{msg}"
     end
   end
 end
