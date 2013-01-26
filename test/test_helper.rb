@@ -15,7 +15,7 @@ class ActionDispatch::IntegrationTest
     Capybara.use_default_driver
   end
 
-  private
+  protected
   def login(user)
     visit login_path
     fill_in 'E-mail', with: user.email
@@ -27,7 +27,6 @@ class ActionDispatch::IntegrationTest
     click_on 'Sair'
   end
 
-  protected
   def with(user)
     login user
     yield

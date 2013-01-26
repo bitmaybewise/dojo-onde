@@ -6,6 +6,11 @@ class HomeTest < ActionDispatch::IntegrationTest
     @user = FactoryGirl.create :user
   end
 
+  def teardown
+    super
+    @user = nil
+  end
+
   test 'should visit homepage' do
     visit root_path
     assert find('h1').has_content?('Dojo, aonde?'), 'Should be homepage'
@@ -56,6 +61,12 @@ class HomeTest < ActionDispatch::IntegrationTest
     login @user
     logout
     assert page.has_no_content?("Bem vindo #{@user.name}")
+  end
+
+  test 'should visit signup page' do
+    visit root_path
+    click_on 'Registre-se'
+    assert find('h2').has_content?('Registrar-se'), 'Should be signup page'
   end
 
 end

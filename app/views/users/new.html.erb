@@ -1,0 +1,23 @@
+<h2>Registrar-se</h2>
+
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= label_tag(:user_name, "Nome") %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag(:user_email, "E-mail") %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= label_tag(:user_password, "Senha") %><br />
+    <%= f.text_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Salvar' %>
+    <%= link_to 'Cancelar', root_path %>
+  </div>
+<% end %>

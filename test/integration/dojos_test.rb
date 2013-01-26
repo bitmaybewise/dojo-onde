@@ -9,6 +9,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   def teardown
+    super
     @dojos, @valid_dojo, @user = nil, nil, nil
   end
 
