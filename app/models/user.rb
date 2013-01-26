@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password
+  has_secure_password
+  attr_accessible :email, :name, :password, :password_confirmation
 
   def self.login(email, password)
-    find_by_email_and_password(email, password)
+    User.find_by_email(email).authenticate(password)
   end
 end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'test_helper'
 
 class UsersTest < ActionDispatch::IntegrationTest
@@ -13,6 +14,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     fill_in "Nome",   with: user.name
     fill_in "E-mail", with: user.email
     fill_in "Senha",  with: user.password
+    fill_in "Confirmação de senha", with: user.password_confirmation
     click_on "Salvar"
     assert page.has_content?("Bem vindo #{user.name}"), "Should create and login"
   end
