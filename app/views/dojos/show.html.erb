@@ -1,28 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Dojo <%= @dojo.local %></h2>
-<p>
-  <b>Local:</b>
-  <%= @dojo.local %>
-</p>
-<p>
-  <b>Dia:</b>
-  <%= @dojo.day %>
-</p>
-<p>
-  <b>Limite de participantes:</b>
-  <%= @dojo.limit_people %>
-</p>
-<p>
-  <b>Endereço:</b>
-  <%= @dojo.address %>
-</p>
-<p>
-  <b>Cidade:</b>
-  <%= @dojo.city %>
-</p>
-<p>
-  <b>Outras informações:</b><br />
-  <%= @dojo.info %>
-</p>
-<%= link_to 'Voltar', dojos_path %>
+<h2 class="page-header">Dojo <%= @dojo.local %></h2>
+
+<dl class="dl-horizontal">
+  <dt><strong>Local:</strong></dt>
+  <dd><%= @dojo.local %></dd>
+
+  <dt><strong>Dia:</strong></dt>
+  <dd><%= @dojo.day %></dd>
+
+  <dt><strong>Limite de participantes:</strong></dt>
+  <dd><%= @dojo.limit_people %></dd>
+
+  <dt><strong>Endereço:</strong></dt>
+  <dd><%= @dojo.address %></dd>
+
+  <dt><strong>Cidade:</strong></dt>
+  <dd><%= @dojo.city %></dd>
+
+  <dt><strong>Outras informações:</strong></dt>
+  <dd><%= @dojo.info %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to 'Voltar', dojos_path, class: "btn" %>
+  <%= link_to 'Editar', edit_dojo_path(@dojo), class: "btn" %>
+</div>

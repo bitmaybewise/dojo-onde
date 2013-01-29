@@ -1,4 +1,4 @@
-<%= form_for(@dojo) do |f| %>
+<%= form_for @dojo, html: { class: "form-horizontal" } do |f| %>
   <% if @dojo.errors.any? %>
     <div id="error_explanation">
       <ul>
@@ -11,38 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :local %><br />
-    <%= f.text_field :local %>
+  <div class="control-group">
+    <%= f.label :local, class: "control-label" %>
+    <p class="controls"><%= f.text_field :local, class: "text_field" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:dojo_day, "Dia") %><br />
-    <%= f.text_field :day %>
+  <div class="control-group">
+    <%= label_tag(:dojo_day, "Dia", class: "control-label" ) %>
+    <p class="controls"><%= f.text_field :day, class: "text_field" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:dojo_limit_people, "Limite de participantes") %><br />
-    <%= f.text_field :limit_people %>
+  <div class="control-group">
+    <%= label_tag(:dojo_limit_people, "Limite de participantes", class: "control-label" ) %>
+    <p class="controls"><%= f.text_field :limit_people, class: "number_field" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:dojo_address, "Endereço") %><br />
-    <%= f.text_field :address %>
+  <div class="control-group">
+    <%= label_tag(:dojo_address, "Endereço", class: "control-label" ) %>
+    <p class="controls"><%= f.text_field :address, class: "text_field" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:dojo_city, "Cidade") %><br />
-    <%= f.text_field :city %>
+  <div class="control-group">
+    <%= label_tag(:dojo_city, "Cidade", class: "control-label") %>
+    <p class="controls"><%= f.text_field :city, class: "text_field" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:dojo_info, "Outras informações") %><br />
-    <%= f.text_area :info, size: "34x10" %>
+  <div class="control-group">
+    <%= label_tag(:dojo_info, "Outras informações", class: "control-label") %>
+    <p class="controls"><%= f.text_area :info, size: "34x10", class: "text_area" %></p>
   </div>
 
-  <div class="actions">
-    <%= f.submit 'Salvar' %>
-    <%= link_to 'Cancelar', root_path %>
-  </div>
+  <p class="form-actions">
+    <%= f.submit 'Salvar', class: "btn btn-primary" %>
+    <%= link_to 'Cancelar', root_path, class: "btn" %>
+  </p>
 <% end %>

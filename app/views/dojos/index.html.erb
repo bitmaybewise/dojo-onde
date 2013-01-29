@@ -1,6 +1,6 @@
-<h2>Dojos cadastrados</h2>
+<h2 class="page-header">Dojos cadastrados</h2>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Local</th>
@@ -13,9 +13,17 @@
     <% @dojos.each do |dojo| %>
       <tr>
         <td><%= dojo.local %></td>
-        <td><%= link_to 'Editar', edit_dojo_path(dojo)  %></td>
-        <td><%= link_to 'Excluir', dojo, confirm: 'Tem certeza que deseja excluir?', method: :delete  %></td>
+        <td>
+          <%= link_to 'Editar', edit_dojo_path(dojo), class: "btn btn-mini"  %>
+        </td>
+        <td>
+          <%= link_to 'Excluir', dojo,
+            confirm: 'Tem certeza que deseja excluir?', method: :delete,
+            class: "btn btn-mini btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "Novo", new_dojo_path, class: "btn" %>
