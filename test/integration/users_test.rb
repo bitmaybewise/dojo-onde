@@ -29,6 +29,11 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_invalid user, "e-mail inválido"
   end
 
+  test "should require a unique email" do
+    user = FactoryGirl.create(:user)
+    assert_invalid user, "e-mail já registrado"
+  end
+
   test "should require password" do
     user = FactoryGirl.build(:user, password: nil)
     assert_invalid user, "senha é obrigatória"

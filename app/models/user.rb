@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name,  message: "nome é obrigatório"
   validates :email, presence: { message: "e-mail é obrigatório" },
-    format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/, message: "e-mail inválido" }
+    format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/, message: "e-mail inválido" },
+    uniqueness: { message: "e-mail já registrado" }
   validates :password, presence: { message: "senha é obrigatória" },
     length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" }
   validates_presence_of :password_confirmation, message: "confirme sua senha"
