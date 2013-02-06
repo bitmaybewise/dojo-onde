@@ -29,8 +29,8 @@ class HomeTest < ActionDispatch::IntegrationTest
     dojos = FactoryGirl.create_list(:dojo, 10)
     dojos.delete_if { |dojo| dojo.day < Date.today }
     visit root_url
-    assert find('ul#dojos li:first').has_content?(dojos.first.local)
-    assert find('ul#dojos li:last').has_content?(dojos.last.local)
+    assert find('ul#dojos li:first').has_content?(dojos.first.local.name)
+    assert find('ul#dojos li:last').has_content?(dojos.last.local.name)
   end
 
   test 'should visit new dojo page' do

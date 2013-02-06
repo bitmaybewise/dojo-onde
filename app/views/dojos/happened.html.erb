@@ -11,7 +11,7 @@
   <tbody>
     <% @dojos.each do |dojo| %>
       <tr>
-        <td><%= dojo.local %></td>
+        <td><%= dojo.local.name %></td>
         <td><%= link_to 'Detalhes', dojo_path(dojo.id)  %></td>
       </tr>
     <% end %>

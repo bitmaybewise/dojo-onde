@@ -3,6 +3,7 @@ class DojosController < ApplicationController
 
   def new
     @dojo = Dojo.new
+    @dojo.build_local
   end
 
   def create
@@ -32,7 +33,6 @@ class DojosController < ApplicationController
 
   def update
     @dojo = Dojo.find(params[:id])
-
     if @dojo.update_attributes(params[:dojo])
       redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
     end

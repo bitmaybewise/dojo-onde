@@ -12,11 +12,6 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :local, class: "control-label" %>
-    <p class="controls"><%= f.text_field :local, class: "text_field" %></p>
-  </div>
-
-  <div class="control-group">
     <%= label_tag(:dojo_day, "Dia", class: "control-label" ) %>
     <p class="controls"><%= f.text_field :day, class: "text_field" %></p>
   </div>
@@ -26,15 +21,23 @@
     <p class="controls"><%= f.text_field :limit_people, class: "number_field" %></p>
   </div>
 
-  <div class="control-group">
-    <%= label_tag(:dojo_address, "Endereço", class: "control-label" ) %>
-    <p class="controls"><%= f.text_field :address, class: "text_field" %></p>
-  </div>
+  <%= f.fields_for :local, @dojo.local  do |lc| %>
+    <%= lc.hidden_field :id %>
+    <div class="control-group">
+      <%= label_tag(:dojo_local_attributes_name, "Local", class: "control-label") %>
+      <p class="controls"><%= lc.text_field :name, class: "text_field" %></p>
+    </div>
 
-  <div class="control-group">
-    <%= label_tag(:dojo_city, "Cidade", class: "control-label") %>
-    <p class="controls"><%= f.text_field :city, class: "text_field" %></p>
-  </div>
+    <div class="control-group">
+      <%= label_tag(:dojo_local_attributes_address, "Endereço", class: "control-label" ) %>
+      <p class="controls"><%= lc.text_field :address, class: "text_field" %></p>
+    </div>
+
+    <div class="control-group">
+      <%= label_tag(:dojo_local_attributes_city, "Cidade", class: "control-label") %>
+      <p class="controls"><%= lc.text_field :city, class: "text_field" %></p>
+    </div>
+  <% end %>
 
   <div class="control-group">
     <%= label_tag(:dojo_info, "Outras informações", class: "control-label") %>

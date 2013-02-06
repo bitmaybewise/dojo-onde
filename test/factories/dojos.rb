@@ -3,13 +3,12 @@
 
 FactoryGirl.define do
   factory :dojo do
-    sequence(:local) { |i| "Local#{i}" }
     day Date.today
     limit_people 15
-    address 'Fundo do mar, s/n'
-    city 'Atlantida'
     info 'Sem comentários'
 
+    after(:create)  {|dojo| FactoryGirl.create(:local, dojo: dojo) }
+    after(:build)  {|dojo| dojo.local = FactoryGirl.build(:local, dojo: dojo) }
     to_create { |i| i.save(validate: false) }
   end
 end

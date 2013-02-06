@@ -13,7 +13,7 @@
   <h2>Próximos coding dojos</h2>
   <ul id="dojos">
     <% @dojos.each do |dojo| %>
-      <li><%= dojo.local %></li>
+      <li><%= dojo.local.name %></li>
     <% end %>
   </ul>
   <%= link_to "Exibir todos", dojos_path %>

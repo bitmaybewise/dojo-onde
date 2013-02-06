@@ -12,7 +12,7 @@
   <tbody>
     <% @dojos.each do |dojo| %>
       <tr>
-        <td><%= dojo.local %></td>
+        <td><%= dojo.local.name %></td>
         <td>
           <%= link_to 'Editar', edit_dojo_path(dojo), class: "btn btn-mini"  %>
         </td>

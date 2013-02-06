@@ -22,7 +22,8 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should insert' do
     with @user do
       insert @valid_dojo
-      assert find('h2').has_content?("Dojo #{@valid_dojo.local}"), "Should save with success"
+      assert find('h2').has_content?("Dojo #{@valid_dojo.local.name}"),
+        "Should save with success"
     end
   end
 
@@ -40,13 +41,13 @@ class DojosTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should show list of dojos that not happened with the recent first' do
+  test 'should show list of dojos that not happened with recent first' do
     @dojos.delete_if {|dojo| dojo.day < Date.today }
 
     visit dojos_path
-    assert find('tbody tr:first').has_content?(@dojos.last.local),
+    assert find('tbody tr:first').has_content?(@dojos.last.local.name),
       "First should have recent date"
-    assert find('tbody tr:last').has_content?(@dojos.first.local),
+    assert find('tbody tr:last').has_content?(@dojos.first.local.name),
       "Last should have older date"
   end
 
@@ -54,9 +55,9 @@ class DojosTest < ActionDispatch::IntegrationTest
     @dojos.delete_if { |dojo| dojo.day >= Date.today }
 
     visit dojos_happened_path
-    assert find('table tbody tr:first').has_content?(@dojos.last.local),
+    assert find('table tbody tr:first').has_content?(@dojos.last.local.name),
       "First should have recent date"
-    assert find('table tbody tr:last').has_content?(@dojos.first.local),
+    assert find('table tbody tr:last').has_content?(@dojos.first.local.name),
       "First should have older date"
   end
 
@@ -69,7 +70,7 @@ class DojosTest < ActionDispatch::IntegrationTest
 
   test 'should edit' do
     with @user do
-      new_local = 'lugar secreto'
+      new_local = 'Lugar secreto'
       visit dojos_path
       find('table tbody tr:first').click_on('Editar')
       fill_in('Local', with: new_local)
@@ -95,17 +96,17 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should be invalid without a local' do
-    @valid_dojo.local = nil
+    @valid_dojo.local.name = nil
     assert_invalid @valid_dojo, "local é obrigatório"
   end
 
   test 'should be invalid without a address' do
-    @valid_dojo.address = nil
+    @valid_dojo.local.address = nil
     assert_invalid @valid_dojo, "endereço é obrigatório"
   end
 
   test 'should be invalid without a city' do
-    @valid_dojo.city = nil
+    @valid_dojo.local.city = nil
     assert_invalid @valid_dojo, "cidade é obrigatória"
   end
 
@@ -122,24 +123,24 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should show dojo' do
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)
-    assert find('h2').has_content?("Dojo #{dojo.local}"), "Should show title"
-    assert page.has_content?("Local: #{dojo.local}"), "Should show local"
+    assert find('h2').has_content?("Dojo #{dojo.local.name}"), "Should show title"
+    assert page.has_content?("Local: #{dojo.local.name}"), "Should show local"
     assert page.has_content?("Dia: #{dojo.day}"), "Should show day"
     assert page.has_content?("Limite de participantes: #{dojo.limit_people}"), "Should show limit people"
-    assert page.has_content?("Endereço: #{dojo.address}"), "Should show address"
-    assert page.has_content?("Cidade: #{dojo.city}"), "Should show city"
+    assert page.has_content?("Endereço: #{dojo.local.address}"), "Should show address"
+    assert page.has_content?("Cidade: #{dojo.local.city}"), "Should show city"
     assert page.has_content?("Outras informações: #{dojo.info}"), "Should show info"
   end
 
   private
   def insert(dojo)
     visit new_dojo_path
-    fill_in 'Local',    with: dojo.local
-    fill_in 'Dia',      with: dojo.day
-    fill_in 'Endereço', with: dojo.address
-    fill_in 'Cidade',   with: dojo.city
+    fill_in 'Dia', with: dojo.day
     fill_in 'Limite de participantes', with: dojo.limit_people
     fill_in 'Outras informações', with: dojo.info
+    fill_in 'Local', with: dojo.local.name
+    fill_in 'Endereço', with: dojo.local.address
+    fill_in 'Cidade', with: dojo.local.city
     click_button 'Salvar'
   end
 

@@ -11,19 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119145041) do
+ActiveRecord::Schema.define(:version => 20130202125157) do
 
   create_table "dojos", :force => true do |t|
-    t.string   "local"
     t.date     "day"
     t.integer  "limit_people"
-    t.string   "address"
-    t.string   "city"
     t.text     "info"
     t.string   "gmaps_link"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
+
+  create_table "locals", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "dojo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "locals", ["dojo_id"], :name => "index_locals_on_dojo_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
