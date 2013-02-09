@@ -8,10 +8,22 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_equal current_path, root_path, "Should be homepage"
   end
 
-  test "should create user" do
+  test "should insert" do
     user = FactoryGirl.build :user
     insert user
     assert page.has_content?("Bem vindo #{user.name}"), "Should create and login"
+  end
+
+  test "should edit" do
+    user = FactoryGirl.create :user
+    new_name = "#{user.name} alterado"
+    visit root_path
+    with user do
+      click_on "#{user.name}"
+      fill_in "Nome", with: new_name
+      click_on "Salvar"
+      assert_equal current_path, root_path
+    end
   end
 
   test "should require name" do

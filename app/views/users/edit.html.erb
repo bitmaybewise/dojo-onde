@@ -1,0 +1,27 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @user.errors.messages.each_value do |messages| %>
+        <% messages.each do |value| %>
+        <li><%= value %></li>
+        <% end %>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= label_tag(:user_name, "Nome") %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= label_tag(:user_email, "E-mail") %><br />
+    <%= f.text_field :email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Salvar' %>
+    <%= link_to 'Cancelar', root_path %>
+  </div>
+<% end %>

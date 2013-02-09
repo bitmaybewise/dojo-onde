@@ -27,7 +27,7 @@
     <div id="welcome" class="span3">
       <br />
       <% if current_user %>
-        Bem vindo <%= current_user.name %>!<br />
+        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>!<br />
         <%= link_to "Sair", logout_path %>
       <% else %>
         <%= link_to "Acesse", login_path %>

@@ -9,8 +9,10 @@ class User < ActiveRecord::Base
     format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/, message: "e-mail inválido" },
     uniqueness: { message: "e-mail já registrado" }
   validates :password, presence: { message: "senha é obrigatória" },
-    length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" }
-  validates_presence_of :password_confirmation, message: "confirme sua senha"
+    length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" },
+    on: :create
+  validates_presence_of :password_confirmation, message: "confirme sua senha",
+    on: :create
   validate :password_confirmation_should_be_equal_password
 
   def self.login(email, password)
