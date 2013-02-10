@@ -81,11 +81,26 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should require login to delete' do
+<<<<<<< HEAD
     skip "refactoring after"
     #visit dojos_path
     #find('table tbody tr:first').click_on('Excluir')
     #assert_equal login_path, current_path
     #assert find('h2').has_content?('Login'), 'Should be login page'
+=======
+    visit dojos_path
+    find('table tbody tr:first').click_on('Excluir')
+    assert_equal login_path, current_path
+    assert find('h2').has_content?('Login'), 'Should be login page'
+  end
+
+  test 'should delete' do
+    with @user do
+      visit dojos_path
+      find('table tbody tr:first').click_on('Excluir')
+      assert find('table tbody tr:first').has_no_content?(@dojos.first.local)
+    end
+>>>>>>> usuarios somente acessam suas informaçoes
   end
 
   test 'should be invalid without a local' do
