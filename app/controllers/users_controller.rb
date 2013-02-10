@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_login, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -15,7 +17,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    user_id = params[:id]
+    @user = if user_id == current_user.id
+              User.find(user_id)
+            else
+              User.find(current_user.id)
+            end
   end
 
   def update

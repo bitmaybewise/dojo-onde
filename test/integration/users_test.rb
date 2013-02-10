@@ -26,6 +26,22 @@ class UsersTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should be logged to edit" do
+    user = FactoryGirl.create :user
+    visit edit_user_path(user)
+    assert_equal login_path, current_path, "Should be login page"
+  end
+
+  test "should not edit info of other user" do
+    user1 = FactoryGirl.create(:user, email: "fulano@dojoaonde.com.br")
+    user2 = FactoryGirl.create(:user, email: "cicrano@dojoaonde.com.br")
+    with user1 do
+      visit edit_user_path(user2)
+      user_email = find("#user_email").value
+      assert_equal user1.email, user_email, "Should load page with logged user"
+    end
+  end
+
   test "should require name" do
     user = FactoryGirl.build(:user, name: nil)
     assert_invalid user, "nome é obrigatório"

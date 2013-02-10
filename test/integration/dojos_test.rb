@@ -15,7 +15,7 @@ class DojosTest < ActionDispatch::IntegrationTest
 
   test 'should require login to insert' do
     visit new_dojo_path
-    assert_equal new_sessions_path, current_path
+    assert_equal login_path, current_path
     assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
@@ -64,7 +64,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should require login to edit' do
     visit dojos_path
     find('table tbody tr:first').click_on('Editar')
-    assert_equal new_sessions_path, current_path
+    assert_equal login_path, current_path
     assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
@@ -83,7 +83,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should require login to delete' do
     visit dojos_path
     find('table tbody tr:first').click_on('Excluir')
-    assert_equal new_sessions_path, current_path
+    assert_equal login_path, current_path
     assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
