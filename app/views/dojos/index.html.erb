@@ -1,9 +1,11 @@
-<h2 class="page-header">Dojos cadastrados</h2>
-
 <table class="table table-striped">
+  <caption><h2>Dojos cadastrados</h2></caption>
+
   <thead>
     <tr>
       <th>Local</th>
+      <th>Dia</th>
+      <th>Limite de Pessoas</th>
       <th></th>
       <th></th>
     </tr>
@@ -13,9 +15,9 @@
     <% @dojos.each do |dojo| %>
       <tr>
         <td><%= dojo.local.name %></td>
-        <td>
-          <%= link_to 'Editar', edit_dojo_path(dojo), class: "btn btn-mini"  %>
-        </td>
+        <td><%= dojo.day %></td>
+        <td><%= dojo.limit_people %></td>
+        <td><%= link_to 'Editar', edit_dojo_path(dojo), class:"btn btn-mini" %></td>
         <td>
           <%= link_to 'Excluir', dojo,
             confirm: 'Tem certeza que deseja excluir?', method: :delete,

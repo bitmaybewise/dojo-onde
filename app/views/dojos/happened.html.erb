@@ -1,9 +1,11 @@
-<h2>Dojos que já aconteceram!</h2>
+<table class="table table-striped">
+  <caption><h2>Dojos que já aconteceram!</h2></caption>
 
-<table>
   <thead>
     <tr>
       <th>Local</th>
+      <th>Dia</th>
+      <th>Limite de Pessoas</th>
       <th></th>
     </tr>
   </thead>
@@ -12,6 +14,8 @@
     <% @dojos.each do |dojo| %>
       <tr>
         <td><%= dojo.local.name %></td>
+        <td><%= dojo.day %></td>
+        <td><%= dojo.limit_people %></td>
         <td><%= link_to 'Detalhes', dojo_path(dojo.id)  %></td>
       </tr>
     <% end %>
