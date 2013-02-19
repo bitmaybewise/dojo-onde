@@ -14,7 +14,7 @@
   <ul id="dojos" class="unstyled well well-small">
     <% @dojos.each do |dojo| %>
       <li>
-        <%= link_to "#{dojo.day} - #{dojo.local.name}", dojo_path(dojo) %>
+        <%= link_to "#{dojo.day} - #{dojo.local.name} - #{dojo.local.city}", dojo_path(dojo) %>
       </li>
     <% end %>
   </ul>

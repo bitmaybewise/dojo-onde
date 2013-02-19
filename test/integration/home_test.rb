@@ -44,7 +44,7 @@ class HomeTest < ActionDispatch::IntegrationTest
   test 'should visit dojos page' do
     visit root_path
     click_link("Exibir todos")
-    assert find("h2").has_content?("Dojos cadastrados"), "Should show list page"
+    assert find("h2").has_content?("Próximos dojos"), "Should show list page"
   end
 
   test 'should visit login page' do

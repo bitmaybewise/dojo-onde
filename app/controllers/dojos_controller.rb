@@ -21,11 +21,11 @@ class DojosController < ApplicationController
   end
 
   def index
-    @dojos = Dojo.where("day >= ? ", Date.today).order("day DESC")
+    @dojos = Dojo.not_happened
   end
 
   def happened
-    @dojos = Dojo.where("day < ? ", Date.today).order("day DESC")
+    @dojos = Dojo.happened
   end
 
   def edit

@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @dojos = Dojo.where("day >= ? ", Date.today).order("day ASC")
+    @dojos = Dojo.not_happened
   end
 end
