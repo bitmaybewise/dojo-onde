@@ -1,4 +1,5 @@
 class DojosController < ApplicationController
+  before_filter :requested_url
   before_filter :require_login, only: [:new, :edit, :destroy]
 
   def new

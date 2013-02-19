@@ -34,10 +34,11 @@ class HomeTest < ActionDispatch::IntegrationTest
   end
 
   test 'should visit new dojo page' do
-    login(@user)
-    visit root_path
-    click_link('Novo dojo')
-    assert find('h2').has_content?('Novo dojo'), 'Should be new dojo page'
+    with @user do
+      visit root_path
+      click_link('Novo dojo')
+      assert find('h2').has_content?('Novo dojo'), 'Should be new dojo page'
+    end
   end
 
   test 'should visit dojos page' do
@@ -67,6 +68,16 @@ class HomeTest < ActionDispatch::IntegrationTest
     visit root_path
     click_on 'Registre-se'
     assert find('h2').has_content?('Registrar-se'), 'Should be signup page'
+  end
+
+  test 'should go to new dojo page after login' do
+    visit root_path
+    click_on 'Novo dojo'
+    fill_in 'E-mail', with: @user.email
+    fill_in 'Senha',  with: @user.password
+    click_on 'Acessar'
+    assert_equal new_dojo_path, current_path, 'Should be new dojo page'
+    logout
   end
 
 end
