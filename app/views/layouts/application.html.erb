@@ -18,16 +18,17 @@
 <body class="container">
 
   <div class="row">
-    <div class="span6">
+    <div class="span6 top-left">
       <header>
         <h1><%= link_to "Dojo, aonde?", root_path %></h1>
       </header>
     </div>
 
-    <div id="welcome" class="span3">
+    <div id="welcome" class="span3 top-right">
       <br />
       <% if current_user %>
-        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>!<br />
+        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>,
+        <br />
         <%= link_to "Sair", logout_path %>
       <% else %>
         <%= link_to "Acesse", login_path %>
@@ -47,7 +48,9 @@
     <div class="span10">
       <footer>
         <hr />
-        <p class="centered">Desenvolvido e mantido por <a href="http://herculesdev.com.br/" target="_blank">HerculesDev</a></p>
+        <p>
+          Desenvolvido e mantido por <a href="http://herculesdev.com.br/" target="_blank">HerculesDev</a>
+        </p>
       </footer>
     </div>
   </div>

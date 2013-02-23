@@ -11,12 +11,19 @@
 
 <section class="span5">
   <h2>Próximos coding dojos</h2>
-  <ul id="dojos" class="unstyled well well-small">
-    <% @dojos.each do |dojo| %>
-      <li>
-        <%= link_to "#{dojo.day} - #{dojo.local.name} - #{dojo.local.city}", dojo_path(dojo) %>
-      </li>
-    <% end %>
-  </ul>
-  <%= link_to "Exibir todos", dojos_path, class: "btn" %>
+
+  <% if @dojos.any? %>
+    <ul id="dojos" class="unstyled well well-small">
+      <% @dojos.each do |dojo| %>
+        <li>
+          <%= link_to "#{dojo.day} - #{dojo.local.name} - #{dojo.local.city}", dojo_path(dojo) %>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to "Exibir todos", dojos_path, class: "btn btn-block" %>
+  <% else %>
+    <p class="lead">
+      Que pena, não tem nenhum coding dojo acontecendo. :-(
+    </p>
+  <% end %>
 </section>

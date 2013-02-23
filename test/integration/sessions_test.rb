@@ -13,7 +13,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
 
   test 'should login' do
     login @user
-    assert find("div#welcome").has_content?("Bem vindo #{@user.name}!")
+    assert find("div#welcome").has_content?("Bem vindo #{@user.name}")
   end
 
   test 'should back to homepage' do

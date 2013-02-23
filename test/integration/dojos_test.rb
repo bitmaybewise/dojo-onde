@@ -61,14 +61,6 @@ class DojosTest < ActionDispatch::IntegrationTest
       "First should have older date"
   end
 
-  test 'should require login to edit' do
-    skip "refactoring after"
-    #visit dojos_path
-    #find('table tbody tr:first').click_on('Editar')
-    #assert_equal login_path, current_path
-    #assert find('h2').has_content?('Login'), 'Should be login page'
-  end
-
   test 'should edit' do
     dojo = FactoryGirl.create(:dojo)
     with @user do
@@ -78,14 +70,6 @@ class DojosTest < ActionDispatch::IntegrationTest
       click_button('Salvar')
       assert find('h2').has_content?("Dojo #{new_local}"),'Should edit and save with success'
     end
-  end
-
-  test 'should require login to delete' do
-    skip "refactoring after"
-    #visit dojos_path
-    #find('table tbody tr:first').click_on('Excluir')
-    #assert_equal login_path, current_path
-    #assert find('h2').has_content?('Login'), 'Should be login page'
   end
 
   test 'should be invalid without a local' do

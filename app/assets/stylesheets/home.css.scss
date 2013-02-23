@@ -6,10 +6,19 @@ body {
   max-width: 960px;
 }
 
-footer {
+footer, h2 {
   text-align: center;
 }
 
-#welcome {
+section {
+  p { text-align: center; }
+  li { padding: 10px; }
+}
+
+.top-left {
+  text-align: left;
+}
+
+.top-right {
   text-align: right;
 }
