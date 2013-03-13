@@ -13,18 +13,19 @@
   <![endif]-->
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body class="container">
 
   <div class="row">
-    <div class="span6 top-left">
+    <div class="span6 pull-left">
       <header>
         <h1><%= link_to "Dojo, aonde?", root_path %></h1>
       </header>
     </div>
 
-    <div id="welcome" class="span3 top-right">
+    <div id="welcome" class="span3 pull-right">
       <br />
       <% if current_user %>
         Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>,
@@ -54,10 +55,6 @@
       </footer>
     </div>
   </div>
-
-  <!-- Javascripts
-  =============================================== -->
-  <%= javascript_include_tag "application" %>
 
 </body>
 </html>

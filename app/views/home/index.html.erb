@@ -3,6 +3,7 @@
     <nav>
       <ul class="nav">
         <li><%= link_to 'Novo dojo', new_dojo_path %></li>
+        <li class="divider-vertical"></li>
         <li><%= link_to 'Já aconteceu!', '/dojos/aconteceram' %></li>
       </ul>
     </nav>
@@ -20,7 +21,7 @@
         </li>
       <% end %>
     </ul>
-    <%= link_to "Exibir todos", dojos_path, class: "btn btn-block" %>
+    <%= link_to "Exibir todos", dojos_path, class: "btn btn-primary btn-large btn-block" %>
   <% else %>
     <p class="lead">
       Que pena, não tem nenhum coding dojo acontecendo. :-(
