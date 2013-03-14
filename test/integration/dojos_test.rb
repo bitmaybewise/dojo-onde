@@ -22,8 +22,7 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should insert' do
     with @user do
       insert @valid_dojo
-      assert find('h2').has_content?("Dojo #{@valid_dojo.local.name}"),
-        "Should save with success"
+      assert find('h2').has_content?(@valid_dojo.local), "Should save with success"
     end
   end
 
@@ -45,20 +44,20 @@ class DojosTest < ActionDispatch::IntegrationTest
     @dojos.delete_if {|dojo| dojo.day < Date.today }
 
     visit dojos_path
-    assert find('tbody tr:first').has_content?(@dojos.last.local.name),
-      "First should have recent date"
-    assert find('tbody tr:last').has_content?(@dojos.first.local.name),
-      "Last should have older date"
+    assert find('tbody tr:first')
+          .has_content?(@dojos.last.local), "First should have recent date"
+    assert find('tbody tr:last')
+          .has_content?(@dojos.first.local), "Last should have older date"
   end
 
   test 'should show list of dojos that happened with the recent first' do
     @dojos.delete_if { |dojo| dojo.day >= Date.today }
 
     visit dojos_happened_path
-    assert find('table tbody tr:first').has_content?(@dojos.last.local.name),
-      "First should have recent date"
-    assert find('table tbody tr:last').has_content?(@dojos.first.local.name),
-      "First should have older date"
+    assert find('table tbody tr:first')
+          .has_content?(@dojos.last.local), "First should have recent date"
+    assert find('table tbody tr:last')
+          .has_content?(@dojos.first.local), "First should have older date"
   end
 
   test 'should edit' do
@@ -68,23 +67,13 @@ class DojosTest < ActionDispatch::IntegrationTest
       visit edit_dojo_path(dojo)
       fill_in('Local', with: new_local)
       click_button('Salvar')
-      assert find('h2').has_content?("Dojo #{new_local}"),'Should edit and save with success'
+      assert find('h2').has_content?(new_local),'Should edit and save with success'
     end
   end
 
   test 'should be invalid without a local' do
-    @valid_dojo.local.name = nil
+    @valid_dojo.local = nil
     assert_invalid @valid_dojo, "local é obrigatório"
-  end
-
-  test 'should be invalid without a address' do
-    @valid_dojo.local.address = nil
-    assert_invalid @valid_dojo, "endereço é obrigatório"
-  end
-
-  test 'should be invalid without a city' do
-    @valid_dojo.local.city = nil
-    assert_invalid @valid_dojo, "cidade é obrigatória"
   end
 
   test 'should be invalid without a day' do
@@ -100,12 +89,10 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should show dojo' do
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)
-    assert find('h2').has_content?("Dojo #{dojo.local.name}"), "Should show title"
-    assert page.has_content?("Local: #{dojo.local.name}"), "Should show local"
+    assert find('h2').has_content?("Dojo #{dojo.local}"), "Should show title"
+    assert page.has_content?("Local: #{dojo.local}"), "Should show local"
     assert page.has_content?("Dia: #{dojo.day}"), "Should show day"
     assert page.has_content?("Limite de participantes: #{dojo.limit_people}"), "Should show limit people"
-    assert page.has_content?("Endereço: #{dojo.local.address}"), "Should show address"
-    assert page.has_content?("Cidade: #{dojo.local.city}"), "Should show city"
     assert page.has_content?("Outras informações: #{dojo.info}"), "Should show info"
   end
 
@@ -115,9 +102,7 @@ class DojosTest < ActionDispatch::IntegrationTest
     fill_in 'Dia', with: dojo.day
     fill_in 'Limite de participantes', with: dojo.limit_people
     fill_in 'Outras informações', with: dojo.info
-    fill_in 'Local', with: dojo.local.name
-    fill_in 'Endereço', with: dojo.local.address
-    fill_in 'Cidade', with: dojo.local.city
+    fill_in 'Local', with: dojo.local
     click_button 'Salvar'
   end
 

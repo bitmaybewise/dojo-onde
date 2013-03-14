@@ -1,10 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h2 class="page-header">Dojo <%= @dojo.local.name %></h2>
+<h2 class="page-header">Dojo <%= @dojo.local %></h2>
 
 <dl class="dl-horizontal">
   <dt><strong>Local:</strong></dt>
-  <dd><%= @dojo.local.name %></dd>
+  <dd><%= @dojo.local %></dd>
+  <dd><%= @dojo.gmaps_link %></dd>
 
   <dt><strong>Dia:</strong></dt>
   <dd><%= @dojo.day %></dd>
@@ -12,14 +13,9 @@
   <dt><strong>Limite de participantes:</strong></dt>
   <dd><%= @dojo.limit_people %></dd>
 
-  <dt><strong>Endereço:</strong></dt>
-  <dd><%= @dojo.local.address %></dd>
-
-  <dt><strong>Cidade:</strong></dt>
-  <dd><%= @dojo.local.city %></dd>
-
   <dt><strong>Outras informações:</strong></dt>
   <dd><%= @dojo.info %></dd>
+
 </dl>
 
 <div class="form-actions">

@@ -5,9 +5,8 @@
 
   <thead>
     <tr>
-      <th>Local</th>
-      <th>Cidade</th>
       <th>Dia</th>
+      <th>Local</th>
       <th>Limite de Pessoas</th>
       <th></th>
     </tr>
@@ -16,9 +15,8 @@
   <tbody>
     <% @dojos.each do |dojo| %>
       <tr>
-        <td><%= dojo.local.name %></td>
-        <td><%= dojo.local.city %></td>
         <td><%= dojo.day %></td>
+        <td><%= dojo.local %></td>
         <td><%= dojo.limit_people %></td>
         <td><%= link_to "Detalhes",dojo_path(dojo) %></td>
       </tr>

@@ -4,7 +4,6 @@ class DojosController < ApplicationController
 
   def new
     @dojo = Dojo.new
-    @dojo.build_local
   end
 
   def create

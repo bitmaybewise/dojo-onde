@@ -2,6 +2,7 @@ class CreateDojos < ActiveRecord::Migration
   def change
     create_table :dojos do |t|
       t.date    :day
+      t.string  :local
       t.integer :limit_people
       t.text    :info
       t.string  :gmaps_link

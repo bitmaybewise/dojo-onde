@@ -1,11 +1,10 @@
 # encoding: UTF-8
 
 class Dojo < ActiveRecord::Base
-  has_one :local, dependent: :destroy
-  accepts_nested_attributes_for :local
-  attr_accessible :local_attributes, :day, :limit_people, :info, :gmaps_link
+  attr_accessible :day, :local, :limit_people, :info, :gmaps_link
 
-  validates :day, :presence => { message: "dia é obrigatório" }
+  validates :day,   :presence => { message: "dia é obrigatório" }
+  validates :local, :presence => { message: "local é obrigatório" }
   validate  :day_cannot_be_in_the_past
 
   def self.happened
