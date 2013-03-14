@@ -2,22 +2,32 @@
 
 <h2 class="page-header">Dojo <%= @dojo.local %></h2>
 
-<dl class="dl-horizontal">
-  <dt><strong>Local:</strong></dt>
-  <dd><%= @dojo.local %></dd>
-  <dd><%= @dojo.gmaps_link %></dd>
+<div class="row">
+  <div class="span3">
+    <p>
+    <strong>Local:</strong><br />
+    <%= @dojo.local %>
+    </p>
 
-  <dt><strong>Dia:</strong></dt>
-  <dd><%= @dojo.day %></dd>
+    <p>
+    <strong>Dia:</strong><br />
+    <%= @dojo.day %>
+    </p>
 
-  <dt><strong>Limite de participantes:</strong></dt>
-  <dd><%= @dojo.limit_people %></dd>
+    <p>
+    <strong>Limite de participantes:</strong><br />
+    <%= @dojo.limit_people %>
+    </p>
 
-  <dt><strong>Outras informações:</strong></dt>
-  <dd><%= @dojo.info %></dd>
+    <p>
+    <strong>Outras informações:</strong><br />
+    <%= @dojo.info %>
+    </p>
+  </div>
 
-</dl>
-
-<div class="form-actions">
-  <%= link_to 'Voltar', dojos_path, class: "btn" %>
+  <iframe class="span7" height="350" frameborder="0" 
+    marginheight="0" marginwidth="0" src="<%= @dojo.gmaps_link.html_safe %>&output=embed">
+  </iframe>
 </div>
+
+<%= link_to 'Voltar', dojos_path, class: "btn" %>

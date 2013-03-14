@@ -10,14 +10,14 @@
   </div>
 </div>
 
-<section class="span5">
+<section class="span5 well well-small">
   <h2>Próximos coding dojos</h2>
 
   <% if @dojos.any? %>
-    <ul id="dojos" class="unstyled well well-small">
+    <ul id="dojos" class="unstyled">
       <% @dojos.each do |dojo| %>
         <li>
-          <%= link_to "#{dojo.day} em #{dojo.local.capitalize}", dojo_path(dojo) %>
+          <%= link_to dojo, dojo_path(dojo) %>
         </li>
       <% end %>
     </ul>

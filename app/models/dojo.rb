@@ -15,6 +15,14 @@ class Dojo < ActiveRecord::Base
     where("day >= ? ", Date.today).order("day ASC")
   end
 
+  def local=(value)
+    write_attribute(:local, value.capitalize)
+  end
+
+  def to_s
+    "#{day.day}/#{day.month}/#{day.year} em #{local.capitalize}"
+  end
+
   private
   def day_cannot_be_in_the_past
     if !day.blank? and day < Date.today
