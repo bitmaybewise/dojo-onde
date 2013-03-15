@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 class Dojo < ActiveRecord::Base
-  attr_accessible :day, :local, :limit_people, :info, :gmaps_link
+  attr_accessible :day, :local, :info, :gmaps_link
 
   validates :day,   :presence => { message: "dia é obrigatório" }
   validates :local, :presence => { message: "local é obrigatório" }
@@ -16,7 +16,8 @@ class Dojo < ActiveRecord::Base
   end
 
   def local=(value)
-    write_attribute(:local, value.capitalize)
+    value = value.capitalize unless value.nil?
+    write_attribute(:local, value)
   end
 
   def to_s

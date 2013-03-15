@@ -3,10 +3,10 @@
 
 FactoryGirl.define do
   factory :dojo do
-    day Date.today
-    local "Faculdade X"
-    limit_people 15
-    info "Sem comentários"
+    day         Date.today
+    local       "Faculdade X"
+    info        "Sem comentários"
+    gmaps_link  "http://google.com/maps"
 
     to_create { |i| i.save(validate: false) }
   end

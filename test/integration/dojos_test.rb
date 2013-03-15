@@ -67,7 +67,8 @@ class DojosTest < ActionDispatch::IntegrationTest
       visit edit_dojo_path(dojo)
       fill_in('Local', with: new_local)
       click_button('Salvar')
-      assert find('h2').has_content?(new_local),'Should edit and save with success'
+      assert find('h2')
+            .has_content?(new_local),'Should edit and save with success'
     end
   end
 
@@ -89,10 +90,9 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should show dojo' do
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)
-    assert find('h2').has_content?("Dojo #{dojo.local}"), "Should show title"
+    assert find('h2').has_content?(dojo.local), "Should show title"
     assert page.has_content?("Local: #{dojo.local}"), "Should show local"
     assert page.has_content?("Dia: #{dojo.day}"), "Should show day"
-    assert page.has_content?("Limite de participantes: #{dojo.limit_people}"), "Should show limit people"
     assert page.has_content?("Outras informações: #{dojo.info}"), "Should show info"
   end
 
@@ -100,16 +100,17 @@ class DojosTest < ActionDispatch::IntegrationTest
   def insert(dojo)
     visit new_dojo_path
     fill_in 'Dia', with: dojo.day
-    fill_in 'Limite de participantes', with: dojo.limit_people
-    fill_in 'Outras informações', with: dojo.info
     fill_in 'Local', with: dojo.local
+    fill_in 'Outras informações', with: dojo.info
+    fill_in 'Link do Google Maps', with: dojo.gmaps_link
     click_button 'Salvar'
   end
 
   def assert_invalid(dojo, msg)
     with @user do
       insert dojo
-      assert find('div#error_explanation').has_content?(msg), "Should show #{msg}"
+      assert find('div#error_explanation')
+            .has_content?(msg), "Should show #{msg}"
     end
   end
 end
