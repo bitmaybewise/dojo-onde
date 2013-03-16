@@ -26,11 +26,24 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:id]) 
     if @user.update_attributes(params[:user])
       redirect_to root_path
     else
       render :edit
+    end
+  end
+
+  def password
+    @user = User.new(params[:user])
+  end
+
+  def change_password
+    @user = User.find(current_user.id)
+    if @user.update_attributes(params[:user])
+      redirect_to edit_user_path(@user), notice: "Senha alterada com sucesso!"
+    else
+      render :password
     end
   end
 end

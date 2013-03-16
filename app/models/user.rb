@@ -8,21 +8,25 @@ class User < ActiveRecord::Base
   validates :email, presence: { message: "e-mail é obrigatório" },
     format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/, message: "e-mail inválido" },
     uniqueness: { message: "e-mail já registrado" }
-  validates :password, presence: { message: "senha é obrigatória" },
-    length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" },
-    on: :create
-  validates_presence_of :password_confirmation, message: "confirme sua senha",
-    on: :create
-  validate :password_confirmation_should_be_equal_password
+
+  with_options unless: :skip_password? do |user|
+    user.validates :password, presence: { message: "senha é obrigatória" },
+      length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" },
+      confirmation: { message: "confirmação não bate" }
+    user.validates :password_confirmation, presence: { message: "confirmação é obrigatória" }
+  end
+
+  def name=(value)
+    value = value.capitalize unless value.nil?
+    write_attribute(:name, value)
+  end
 
   def self.login(email, password)
     find_by_email(email).try(:authenticate, password)
   end
 
   private
-  def password_confirmation_should_be_equal_password
-    if password_confirmation != password
-      errors.add(:password_confirmation, "valor de confirmação difere da senha")
-    end
+  def skip_password?
+     self.id.present? && (self.name.present? && self.email.present?) && self.password.nil?
   end
 end

@@ -1,4 +1,7 @@
 <h2>Meus dados</h2>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
 
 <%= form_for(@user) do |f| %>
   <% if @user.errors.any? %>
@@ -12,6 +15,9 @@
       </ul>
     </div>
   <% end %>
+
+  <%= f.hidden_field :id %>
+
   <div class="field">
     <%= label_tag(:user_name, "Nome") %><br />
     <%= f.text_field :name %>
@@ -20,6 +26,10 @@
   <div class="field">
     <%= label_tag(:user_email, "E-mail") %><br />
     <%= f.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= link_to "Trocar senha", password_path %><br />
   </div>
 
   <div class="actions">

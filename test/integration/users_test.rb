@@ -2,6 +2,14 @@
 require 'test_helper'
 
 class UsersTest < ActionDispatch::IntegrationTest
+  def setup
+    @user = FactoryGirl.create(:user)
+  end
+  def teardown
+    super
+    @user = nil
+  end
+
   test "should back to homepage" do
     visit new_user_path
     click_on "Cancelar"
@@ -9,32 +17,42 @@ class UsersTest < ActionDispatch::IntegrationTest
   end
 
   test "should insert" do
-    user = FactoryGirl.build :user
+    user = FactoryGirl.build(:user, email: "teste@dojoaonde.com")
     insert user
     assert page.has_content?("Bem vindo #{user.name}"), "Should create and login"
   end
 
   test "should edit" do
-    user = FactoryGirl.create :user
-    new_name = "#{user.name} alterado"
+    new_name = "#{@user.name} alterado"
     visit root_path
-    with user do
-      click_on "#{user.name}"
+    with @user do
+      click_on "#{@user.name}"
       fill_in "Nome", with: new_name
       click_on "Salvar"
-      assert_equal current_path, root_path
+      assert_equal root_path, current_path
+    end
+  end
+
+  test "should change password" do
+    new_password = "abc123"
+    with @user do
+      visit edit_user_path(@user)
+      click_on("Trocar senha")
+      fill_in("Senha nova", with: new_password)
+      fill_in("Confirmação de senha", with: new_password)
+      click_on("Salvar")
+      assert page.has_content?("Senha alterada com sucesso")
     end
   end
 
   test "should be logged to edit" do
-    user = FactoryGirl.create :user
-    visit edit_user_path(user)
+    visit edit_user_path(@user)
     assert_equal login_path, current_path, "Should be login page"
   end
 
   test "should not edit info of other user" do
-    user1 = FactoryGirl.create(:user, email: "fulano@dojoaonde.com.br")
-    user2 = FactoryGirl.create(:user, email: "cicrano@dojoaonde.com.br")
+    user1 = FactoryGirl.create(:user, email: "teste1@dojoaonde.com.br")
+    user2 = FactoryGirl.create(:user, email: "teste2@dojoaonde.com.br")
     with user1 do
       visit edit_user_path(user2)
       user_email = find("#user_email").value
@@ -58,8 +76,7 @@ class UsersTest < ActionDispatch::IntegrationTest
   end
 
   test "should require a unique email" do
-    user = FactoryGirl.create(:user)
-    assert_invalid user, "e-mail já registrado"
+    assert_invalid @user, "e-mail já registrado"
   end
 
   test "should require password" do
@@ -72,21 +89,16 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_invalid user, "senha deve ter no mínimo 6 caracteres"
   end
 
-  test "should require password confirmation" do
-    user = FactoryGirl.build(:user, password_confirmation: nil)
-    assert_invalid user, "confirme sua senha"
-  end
-
-  test "should be password confirmation equal password" do
+  test "should be required password confirmation" do
     user = FactoryGirl.build(:user, password_confirmation: "iéié")
-    assert_invalid user, "valor de confirmação difere da senha"
+    assert_invalid user, "confirmação não bate"
   end
 
   private
   def assert_invalid(user, msg="")
     insert user
-    assert find("div#error_explanation").has_content?(msg),
-      "Should show \"#{msg}\""
+    assert find("div#error_explanation")
+          .has_content?(msg), "Should show \"#{msg}\""
   end
 
   def insert(user)

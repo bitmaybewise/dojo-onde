@@ -5,6 +5,8 @@ Dojoaonde::Application.routes.draw do
   resource :sessions
 
   get "signup" => "users#new", :as => :signup
+  get "users/password" => "users#password", :as => :password
+  put "users/change_password" => "users#change_password", :as => :change_password
   resources :users
 
   match "dojos/aconteceram" => "dojos#happened", :as => :dojos_happened
