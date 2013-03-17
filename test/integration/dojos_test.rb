@@ -87,6 +87,11 @@ class DojosTest < ActionDispatch::IntegrationTest
     assert_invalid @valid_dojo, "dias anteriores não são permitidos"
   end
 
+  test 'should require google maps link' do
+    @valid_dojo.gmaps_link = nil
+    assert_invalid @valid_dojo, "link do google maps é obrigatório"
+  end
+
   test 'should show dojo' do
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)

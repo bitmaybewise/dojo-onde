@@ -3,9 +3,10 @@
 class Dojo < ActiveRecord::Base
   attr_accessible :day, :local, :info, :gmaps_link
 
-  validates :day,   :presence => { message: "dia é obrigatório" }
-  validates :local, :presence => { message: "local é obrigatório" }
+  validates :day,   presence: { message: "dia é obrigatório" }
+  validates :local, presence: { message: "local é obrigatório" }
   validate  :day_cannot_be_in_the_past
+  validates :gmaps_link, presence: { message: "link do google maps é obrigatório"}
 
   def self.happened
     where("day < ? ", Date.today).order("day DESC")
