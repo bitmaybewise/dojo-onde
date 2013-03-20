@@ -1,22 +1,19 @@
 <h2>Login</h2>
 
-<% if flash[:alert] %>
-  <div class="alert"><%= flash[:alert] %></div>
-<% end %>
+<%= form_tag(sessions_path, method: "post", class: "form-horizontal") do %>
 
-<%= form_tag(sessions_path, method: "post") do %>
-  <div class="field">
-    <%= label_tag :email, "E-mail" %>
-    <%= text_field_tag :email %>
+  <div class="control-group">
+    <%= label_tag(:email, "E-mail", class: "control-label") %>
+    <p class="controls"><%= text_field_tag :email, nil, class: "input-xxlarge" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag :password, "Senha" %>
-    <%= password_field_tag :password %>
+  <div class="control-group">
+    <%= label_tag(:password, "Senha", class: "control-label") %>
+    <p class="controls"><%= password_field_tag :password, nil, class: "input-xlarge" %></p>
   </div>
 
-  <div class="actions">
-    <%= submit_tag "Acessar" %>
-    <%= link_to "Voltar", root_path %>
+  <div class="form-actions">
+    <%= submit_tag "Acessar", class: "btn btn-primary btn-large" %>
+    <%= link_to "Voltar", root_path, class: "btn btn-inverse btn-large" %>
   </div>
 <% end %>
