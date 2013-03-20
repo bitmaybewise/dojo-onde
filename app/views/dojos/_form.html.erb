@@ -1,6 +1,6 @@
 <%= form_for @dojo, html: { class: "form-horizontal" } do |f| %>
   <% if @dojo.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <ul>
       <% @dojo.errors.messages.each_value do |messages| %>
         <% messages.each do |value| %>
@@ -32,7 +32,7 @@
   </div>
 
   <p class="form-actions">
-    <%= f.submit 'Salvar', class: "btn btn-primary" %>
-    <%= link_to 'Cancelar', root_path, class: "btn" %>
+    <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
+    <%= link_to 'Cancelar', root_path, class: "btn btn-inverse btn-large" %>
   </p>
 <% end %>

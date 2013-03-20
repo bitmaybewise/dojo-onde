@@ -16,11 +16,6 @@ class User < ActiveRecord::Base
     user.validates :password_confirmation, presence: { message: "confirmação é obrigatória" }
   end
 
-  def name=(value)
-    value = value.capitalize unless value.nil?
-    write_attribute(:name, value)
-  end
-
   def self.login(email, password)
     find_by_email(email).try(:authenticate, password)
   end

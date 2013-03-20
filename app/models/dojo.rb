@@ -17,12 +17,12 @@ class Dojo < ActiveRecord::Base
   end
 
   def local=(value)
-    value = value.capitalize unless value.nil?
+    value.capitalize! unless value.nil?
     write_attribute(:local, value)
   end
 
   def to_s
-    "#{day.day}/#{day.month}/#{day.year} em #{local.capitalize}"
+    "#{day.day}/#{day.month}/#{day.year} #{day.hour}:#{day.min}h - #{local.capitalize}"
   end
 
   private

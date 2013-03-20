@@ -1,22 +1,14 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+  <p class="alert alert-success"><%= flash[:notice] %></p>
+<% end %>
 
-<h2 class="page-header">Dojo <%= @dojo.local %></h2>
+<h2><%= @dojo %></h2>
 
 <div class="row">
   <div class="span3">
     <p>
-    <strong>Local:</strong><br />
-    <%= @dojo.local %>
-    </p>
-
-    <p>
-    <strong>Dia:</strong><br />
-    <%= @dojo.day %>
-    </p>
-
-    <p>
     <strong>Outras informações:</strong><br />
-    <%= @dojo.info %>
+    <%= @dojo.info.gsub(/\n/,"<br />").html_safe %>
     </p>
   </div>
 
@@ -25,4 +17,4 @@
   </iframe>
 </div>
 
-<%= link_to 'Voltar', dojos_path, class: "btn" %>
+<%= link_to 'Voltar', dojos_path, class: "btn btn-large" %>

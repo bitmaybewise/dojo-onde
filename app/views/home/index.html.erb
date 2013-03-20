@@ -2,7 +2,7 @@
   <h2>Próximos coding dojos</h2>
 
   <% if @dojos.any? %>
-    <ul id="dojos" class="unstyled">
+    <ul id="dojos">
       <% @dojos.each do |dojo| %>
         <li>
           <%= link_to dojo, dojo_path(dojo) %>
