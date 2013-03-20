@@ -11,4 +11,5 @@
  *= require_self
  *= require main
  *= require jquery-ui-bootstrap
-*/
+ *= require jquery-ui-timepicker
+ */

@@ -30,7 +30,6 @@
     </div>
 
     <div id="welcome" class="span3 pull-right">
-      <br />
       <% if current_user %>
         Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>,
         <br />

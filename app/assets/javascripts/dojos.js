@@ -23,7 +23,16 @@ $(function(){
     };
   $.datepicker.setDefaults($.datepicker.regional['pt']);
 
-  $("#dojo_day").datepicker({
+  $.timepicker.regional['pt'] = {
+    currentText: "Agora",
+    closeText: "Fechar",
+    timeText: "Horário",
+    hourText: "Hora",
+    minuteText: "Minuto"
+  };
+  $.timepicker.setDefaults($.timepicker.regional['pt']);
+
+  $("#dojo_day").datetimepicker({
     dateFormat: "dd/mm/yy",
     inline: true
   });

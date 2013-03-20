@@ -13,3 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-bootstrap
+//= require jquery-ui-timepicker
