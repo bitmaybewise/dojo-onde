@@ -1,10 +1,6 @@
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-
-<%= form_for(@user) do |f| %>
+<%= form_for @user, html: { class: "form-horizontal" } do |f| %>
   <% if @user.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-error">
       <ul>
       <% @user.errors.messages.each_value do |messages| %>
         <% messages.each do |value| %>
@@ -14,28 +10,29 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-    <%= label_tag(:user_name, "Nome") %><br />
-    <%= f.text_field :name %>
+
+  <div class="control-group">
+    <%= label_tag(:user_name, "Nome", class: "control-label") %>
+    <p class="controls"><%= f.text_field :name, class: "input-xxlarge" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:user_email, "E-mail") %><br />
-    <%= f.text_field :email %>
+  <div class="control-group">
+    <%= label_tag(:user_email, "E-mail", class: "control-label") %>
+    <p class="controls"><%= f.text_field :email, class: "input-xxlarge" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:user_password, "Senha") %><br />
-    <%= f.password_field :password %>
+  <div class="control-group">
+    <%= label_tag(:user_password, "Senha", class: "control-label") %>
+    <p class="controls"><%= f.password_field :password, class: "input-xlarge" %></p>
   </div>
 
-  <div class="field">
-    <%= label_tag(:user_password_confirmation, "Confirmação de senha") %><br />
-    <%= f.password_field :password_confirmation %>
+  <div class="control-group">
+    <%= label_tag(:user_password_confirmation, "Confirmação de Senha", class: "control-label") %>
+    <p class="controls"><%= f.password_field :password_confirmation, class: "input-xlarge" %></p>
   </div>
 
-  <div class="actions">
-    <%= f.submit 'Salvar' %>
-    <%= link_to 'Cancelar', root_path %>
+  <div class="form-actions">
+    <%= f.submit 'Salvar', class: "btn btn-primary btn-large" %>
+    <%= link_to 'Cancelar', root_path, class: "btn btn-inverse btn-large" %>
   </div>
 <% end %>
