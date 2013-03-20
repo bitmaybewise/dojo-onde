@@ -13,7 +13,11 @@
   <![endif]-->
 
   <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "metro-bootstrap", :media => "all" %>
+  <%= stylesheet_link_tag    params[:controller] %>
+
   <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag params[:controller] %>
   <%= csrf_meta_tags %>
 </head>
 <body class="container">
@@ -36,6 +40,18 @@
         ou
         <%= link_to "Registre-se", signup_path %>
       <% end %>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <div class="navbar-inner">
+      <nav>
+      <ul class="nav">
+        <li><%= link_to 'Novo dojo', new_dojo_path %></li>
+        <li class="divider-vertical"></li>
+        <li><%= link_to 'Já aconteceu!', '/dojos/aconteceram' %></li>
+      </ul>
+      </nav>
     </div>
   </div>
 

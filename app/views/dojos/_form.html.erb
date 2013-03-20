@@ -13,22 +13,22 @@
 
   <div class="control-group">
     <%= label_tag :dojo_day, "Dia", class: "control-label" %>
-    <p class="controls"><%= f.text_field :day %></p>
+    <p class="controls"><%= f.text_field :day, class: "input-small" %></p>
   </div>
 
   <div class="control-group">
     <%= label_tag :dojo_local, "Local", class: "control-label" %>
-    <p class="controls"><%= f.text_field :local %></p>
+    <p class="controls"><%= f.text_field :local, class: "input-xxlarge" %></p>
   </div>
 
   <div class="control-group">
     <%= label_tag :dojo_gmaps_link, "Link do Google Maps", class: "control-label" %>
-    <p class="controls"><%= f.text_field :gmaps_link %></p>
+    <p class="controls"><%= f.text_field :gmaps_link, class: "input-xxlarge" %></p>
   </div>
 
   <div class="control-group">
     <%= label_tag(:dojo_info, "Outras informações", class: "control-label") %>
-    <p class="controls"><%= f.text_area :info, size: "34x10", class: "text_area" %></p>
+    <p class="controls"><%= f.text_area :info, size: "x5", class: "text_area input-xxlarge" %></p>
   </div>
 
   <p class="form-actions">
