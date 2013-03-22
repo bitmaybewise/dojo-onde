@@ -22,7 +22,7 @@ class Dojo < ActiveRecord::Base
   end
 
   def to_s
-    "#{day.day}/#{day.month}/#{day.year} #{day.hour}:#{day.min}h - #{local.capitalize}"
+    "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local.capitalize}"
   end
 
   private

@@ -45,11 +45,12 @@
   <div class="navbar">
     <div class="navbar-inner">
       <nav>
-      <ul class="nav">
-        <li><%= link_to 'Novo dojo', new_dojo_path %></li>
-        <li class="divider-vertical"></li>
-        <li><%= link_to 'Já aconteceu', '/dojos/aconteceram' %></li>
-      </ul>
+        <ul class="nav">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'Novo', new_dojo_path %></li>
+          <li><%= link_to 'Próximos', dojos_path %></li>
+          <li><%= link_to 'Já aconteceram', '/dojos/aconteceram' %></li>
+        </ul>
       </nav>
     </div>
   </div>

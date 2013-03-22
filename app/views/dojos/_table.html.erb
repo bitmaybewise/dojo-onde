@@ -1,0 +1,23 @@
+<table class="table table-condensed">
+  <caption>
+    <h2><%= title %></h2>
+  </caption>
+
+  <thead>
+    <tr>
+      <th>Dia e horário</th>
+      <th>Local</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dojos.each do |dojo| %>
+      <tr>
+        <td><%= dojo.day.strftime("%d-%m-%Y %H:%M\h") %></td>
+        <td><%= dojo.local %></td>
+        <td><%= link_to "Detalhes",dojo_path(dojo) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

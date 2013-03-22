@@ -1,23 +1,2 @@
-<table class="table table-striped">
-  <caption>
-    <h2>Dojos que já aconteceram!</h2>
-  </caption>
-
-  <thead>
-    <tr>
-      <th>Local</th>
-      <th>Dia</th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dojos.each do |dojo| %>
-      <tr>
-        <td><%= dojo.local %></td>
-        <td><%= dojo.day %></td>
-        <td><%= link_to 'Detalhes', dojo_path(dojo.id)  %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "table", collection: @dojos, title: "Dojos que já aconteceram" %>
+<%= link_to "Voltar", root_path, class: "btn btn-large" %>
