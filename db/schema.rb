@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20130119145041) do
     t.string   "local"
     t.text     "info"
     t.text     "gmaps_link"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

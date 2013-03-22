@@ -38,8 +38,8 @@ class UsersTest < ActionDispatch::IntegrationTest
     with @user do
       visit edit_user_path(@user)
       click_on("Trocar senha")
-      fill_in("Senha nova", with: new_password)
-      fill_in("Confirmação de senha", with: new_password)
+      fill_in("Senha Nova", with: new_password)
+      fill_in("Confirmação de Senha", with: new_password)
       click_on("Salvar")
       assert page.has_content?("Senha alterada com sucesso")
     end
@@ -97,16 +97,15 @@ class UsersTest < ActionDispatch::IntegrationTest
   private
   def assert_invalid(user, msg="")
     insert user
-    assert find("div#error_explanation")
-          .has_content?(msg), "Should show \"#{msg}\""
+    assert find("div.alert").has_content?(msg), "Should show '#{msg}'"
   end
 
   def insert(user)
     visit new_user_path
     fill_in "Nome",   with: user.name
     fill_in "E-mail", with: user.email
-    fill_in "Senha",  with: user.password
-    fill_in "Confirmação de senha", with: user.password_confirmation
+    fill_in "user_password",  with: user.password
+    fill_in "Confirmação de Senha", with: user.password_confirmation
     click_on "Salvar"
   end
 end

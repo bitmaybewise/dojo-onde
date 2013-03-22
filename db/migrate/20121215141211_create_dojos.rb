@@ -5,6 +5,7 @@ class CreateDojos < ActiveRecord::Migration
       t.string    :local
       t.text      :info
       t.text      :gmaps_link
+      t.belongs_to :user
 
       t.timestamps
     end

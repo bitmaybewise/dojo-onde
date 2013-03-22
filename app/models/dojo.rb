@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 class Dojo < ActiveRecord::Base
+  belongs_to :user
   attr_accessible :day, :local, :info, :gmaps_link
 
   validates :day,   presence: { message: "dia é obrigatório" }

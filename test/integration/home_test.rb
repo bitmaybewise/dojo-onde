@@ -3,7 +3,8 @@ require 'test_helper'
 
 class HomeTest < ActionDispatch::IntegrationTest
   def setup
-    @user = FactoryGirl.create :user
+    @user = FactoryGirl.create(:user)
+    20.times { FactoryGirl.create(:dojo) }
   end
 
   def teardown
@@ -18,38 +19,24 @@ class HomeTest < ActionDispatch::IntegrationTest
   end
 
   test 'should visit page of dojos that happened' do
-    dojos = FactoryGirl.create_list(:dojo, 10)
-    dojos.delete_if { |dojo| dojo.day > Date.today }
     visit root_url
-    click_link('Já aconteceu!')
-    assert find('h2').has_content?('Dojos que já aconteceram!'), 'Should be dojos that happened page'
+    click_link('Já aconteceram')
+    assert find('h2').has_content?('Dojos que já aconteceram'), 'Should be dojos that happened page'
   end
-
-=begin
-  test 'should show dojos list' do
-    dojos = FactoryGirl.create_list(:dojo, 10)
-    dojos.delete_if { |dojo| dojo.day < Date.today }
-    visit root_url
-    assert find('ul#dojos li:first').has_content?(dojos.first.local.name)
-    assert find('ul#dojos li:last').has_content?(dojos.last.local.name)
-  end
-=end
 
   test 'should visit new dojo page' do
     with @user do
       visit root_path
-      click_on('Novo dojo')
+      click_on('Novo')
       assert find('h2').has_content?('Novo dojo'), 'Should be new dojo page'
     end
   end
 
-=begin
   test 'should visit dojos page' do
     visit root_path
     click_on("Exibir todos")
     assert find("h2").has_content?("Próximos dojos"), "Should show list page"
   end
-=end
 
   test 'should visit login page' do
     visit root_path
@@ -76,7 +63,7 @@ class HomeTest < ActionDispatch::IntegrationTest
 
   test 'should go to new dojo page after login' do
     visit root_path
-    click_on 'Novo dojo'
+    click_on 'Novo'
     fill_in 'E-mail', with: @user.email
     fill_in 'Senha',  with: @user.password
     click_on 'Acessar'

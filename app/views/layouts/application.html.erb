@@ -57,6 +57,13 @@
 
   <div class="row">
     <div class="span10">
+
+      <% if flash[:notice] %>
+        <p class="alert alert-info"><%= notice %></p>
+      <% elsif flash[:alert] %>
+        <p class="alert alert-error"><%= alert %></p>
+      <% end %>
+
       <%= yield %>
     </div>
   </div>
