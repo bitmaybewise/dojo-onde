@@ -2,7 +2,7 @@
 
 class Dojo < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :day, :local, :info, :gmaps_link
+  attr_accessible :day, :local, :info, :gmaps_link, :user, :user_id
 
   validates :day,   presence: { message: "dia é obrigatório" }
   validates :local, presence: { message: "local é obrigatório" }

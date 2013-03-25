@@ -7,7 +7,8 @@ FactoryGirl.define do
     local       "Faculdade X"
     info        "Sem comentários"
     gmaps_link  "http://google.com/maps"
-
+    user
+    
     to_create { |i| i.save(validate: false) }
   end
 end

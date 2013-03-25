@@ -96,6 +96,7 @@ class DojosTest < ActionDispatch::IntegrationTest
     dojo = FactoryGirl.create :dojo
     visit dojo_path(dojo)
     assert find('h2').has_content?(dojo), "Should show title with local and day"
+    assert page.has_content?(dojo.user.name), "Should show user name"
     assert page.has_content?(dojo.info), "Should show info"
   end
 

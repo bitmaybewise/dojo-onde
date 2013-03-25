@@ -1,9 +1,9 @@
 # encoding: UTF-8
 
 class User < ActiveRecord::Base
-  has_many :dojos
   has_secure_password
   attr_accessible :email, :name, :password, :password_confirmation
+  has_many :dojos
 
   validates_presence_of :name,  message: "nome é obrigatório"
   validates :email, presence: { message: "e-mail é obrigatório" },

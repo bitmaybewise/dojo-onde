@@ -6,5 +6,7 @@ FactoryGirl.define do
     email "fulano@dojoaonde.com.br"
     password "123456"
     password_confirmation  "123456"
+
+    to_create { |i| i.save(validate: false) }
   end
 end
