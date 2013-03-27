@@ -94,6 +94,26 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_invalid user, "confirmação não bate"
   end
 
+  test "should edit my dojo" do
+    FactoryGirl.create(:dojo, user: @user)
+    with @user do
+      visit edit_user_path(@user)
+      find("table tbody tr:first").click_on("Editar")
+      fill_in("Local", with: "iéié")
+      click_on("Salvar")
+      assert find("p.alert").has_content?("Dojo alterado com sucesso.")
+    end
+  end
+
+  test "should remove my dojo" do
+    FactoryGirl.create(:dojo, user: @user)
+    with @user do
+      visit edit_user_path(@user)
+      find("table tbody tr:first").click_on("Excluir")
+      assert find("p.alert").has_content?("Dojo excluído com sucesso.")
+    end
+  end
+
   private
   def assert_invalid(user, msg="")
     insert user

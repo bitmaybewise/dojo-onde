@@ -26,12 +26,6 @@ class DojosTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should visit dojos page from edit page' do
-    visit "/dojos/#{@dojos.first.id}"
-    click_link('Voltar')
-    assert_equal dojos_path, current_path, "Should go to list page"
-  end
-
   test 'should back to homepage' do
     with @user do
       visit new_dojo_path
@@ -67,8 +61,7 @@ class DojosTest < ActionDispatch::IntegrationTest
       visit edit_dojo_path(dojo)
       fill_in('Local', with: new_local)
       click_button('Salvar')
-      assert find('h2')
-            .has_content?(new_local),'Should edit and save with success'
+      assert find('h2').has_content?(new_local),'Should edit with success'
     end
   end
 

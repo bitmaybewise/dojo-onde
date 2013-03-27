@@ -2,7 +2,7 @@
 
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :email, :name, :password, :password_confirmation
+  attr_accessible :email, :name, :password, :password_confirmation, :dojos
   has_many :dojos
 
   validates_presence_of :name,  message: "nome é obrigatório"

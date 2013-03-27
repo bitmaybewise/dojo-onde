@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class DojosController < ApplicationController
   before_filter :requested_url
   before_filter :require_login, only: [:new, :edit, :destroy]
@@ -41,6 +43,6 @@ class DojosController < ApplicationController
   def destroy
     @dojo = Dojo.find(params[:id])
     @dojo.destroy
-    redirect_to dojos_path
+    redirect_to :back, notice: "Dojo excluído com sucesso."
   end
 end

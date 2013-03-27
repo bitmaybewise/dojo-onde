@@ -1,38 +1,57 @@
-<h2>Meus dados</h2>
+<div class="span4">
+  <h2>Meus dados</h2>
 
-<%= form_for @user, html: { class: "form-horizontal" } do |f| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-error">
-      <ul>
-      <% @user.errors.messages.each_value do |messages| %>
-        <% messages.each do |value| %>
-        <li><%= value %></li>
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-error">
+        <ul>
+          <% @user.errors.messages.each_value do |messages| %>
+            <% messages.each do |value| %>
+              <li><%= value %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= f.hidden_field :id %>
+
+    <%= label_tag(:user_name, "Nome", class: "control-label") %>
+    <p class="controls"><%= f.text_field :name %></p>
+
+    <%= label_tag(:user_email, "E-mail", class: "control-label") %>
+    <p class="controls"><%= f.text_field :email %></p>
+
+    <p class="controls">
+    <%= link_to "Trocar senha", password_path, class: "label" %>
+    </p>
+
+    <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
+    <%= link_to "Cancelar", root_path, class: "btn btn-inverse btn-large" %>
+  <% end %>
+</div>
+
+<div class="span5">
+  <h2>Meus dojos</h2>
+  <% if @user.dojos.any? %>
+    <table class="table table-condensed">
+      <tbody>
+        <% @user.dojos.each do |dojo| %>
+          <tr>
+            <td><%= dojo %></td>
+            <td><%= link_to "Editar", edit_dojo_path(dojo), class: "label" %></td>
+            <td><%= link_to "Excluir", dojo_path(dojo), 
+                    confirm: "Deseja realmente excluir?", 
+                    method: :delete,
+                    class: "label label-important" %></td>
+          </tr>
         <% end %>
-      <% end %>
-      </ul>
-    </div>
+      </tbody>
+    </table>
+
+  <% else %>
+    <p class="well">Você não tem dojos cadastrados :-(</p>
   <% end %>
 
-  <%= f.hidden_field :id %>
-
-  <div class="control-group">
-    <%= label_tag(:user_name, "Nome", class: "control-label") %>
-    <p class="controls"><%= f.text_field :name, class: "input-xxlarge" %></p>
-  </div>
-
-  <div class="control-group">
-    <%= label_tag(:user_email, "E-mail", class: "control-label") %>
-    <p class="controls"><%= f.text_field :email, class: "input-xxlarge" %></p>
-  </div>
-
-  <div class="control-group">
-    <p class="controls">
-      <%= link_to "Trocar senha", password_path, class: "label" %>
-    </p>
-  </div>
-
-  <div class="form-actions">
-    <%= f.submit 'Salvar', class: "btn btn-primary btn-large" %>
-    <%= link_to 'Cancelar', root_path, class: "btn btn-inverse btn-large" %>
-  </div>
-<% end %>
+  <%= link_to "Novo dojo", new_dojo_path, class: "btn btn-primary" %>
+</div>
