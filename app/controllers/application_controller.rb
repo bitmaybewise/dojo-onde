@@ -8,10 +8,6 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  def requested_url
-    session[:requested_path] = request.fullpath
-  end
-
   def require_login
     redirect_to login_path unless session[:user_id] || controller_name == "sessions"
   end

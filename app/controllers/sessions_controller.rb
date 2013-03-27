@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
     user = User.login(email, password)
     if user
       session[:user_id] = user.id
-      redirect_to session[:requested_path] || root_path
+      redirect_to root_path
     else
-      redirect_to new_sessions_path, alert: "E-mail ou senha inválida!"
+      redirect_to new_sessions_path, alert: "Dados inválidos!"
     end
   end
 

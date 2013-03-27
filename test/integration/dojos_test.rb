@@ -61,7 +61,7 @@ class DojosTest < ActionDispatch::IntegrationTest
       visit edit_dojo_path(dojo)
       fill_in('Local', with: new_local)
       click_button('Salvar')
-      assert find('h2').has_content?(new_local),'Should edit with success'
+      assert find('p.alert').has_content?("Dojo alterado com sucesso."),'Should edit with success'
     end
   end
 

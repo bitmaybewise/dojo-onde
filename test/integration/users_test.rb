@@ -24,12 +24,12 @@ class UsersTest < ActionDispatch::IntegrationTest
 
   test "should edit" do
     new_name = "#{@user.name} alterado"
-    visit root_path
     with @user do
+      visit edit_user_path(@user)
       click_on "#{@user.name}"
       fill_in "Nome", with: new_name
       click_on "Salvar"
-      assert_equal root_path, current_path
+      assert find("p.alert").has_content?("Usuário alterado com sucesso.")
     end
   end
 

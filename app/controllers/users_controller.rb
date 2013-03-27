@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class UsersController < ApplicationController
   before_filter :require_login, only: [:edit, :update]
 
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id]) 
     if @user.update_attributes(params[:user])
-      redirect_to root_path
+      redirect_to edit_user_path(@user), notice: "Usuário alterado com sucesso."
     else
       render :edit
     end

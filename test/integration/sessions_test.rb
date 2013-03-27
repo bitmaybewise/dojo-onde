@@ -25,7 +25,9 @@ class SessionsTest < ActionDispatch::IntegrationTest
   test 'should login fail with invalid user' do
     user = FactoryGirl.build(:user, email: 'malandro@ieie.com')
     login user
-    assert find(".alert").has_content?("E-mail ou senha inválida!"), "E-mail and password should be valid"
+    assert find(".alert")
+          .has_content?("Dados inválidos!"), 
+          "E-mail and password should be valid"
   end
 
   test 'should logout' do

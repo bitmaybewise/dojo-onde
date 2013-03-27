@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 class DojosController < ApplicationController
-  before_filter :requested_url
   before_filter :require_login, only: [:new, :edit, :destroy]
 
   def new
@@ -37,6 +36,8 @@ class DojosController < ApplicationController
     @dojo = Dojo.find(params[:id])
     if @dojo.update_attributes(params[:dojo])
       redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
+    else 
+      render "edit"
     end
   end
 
