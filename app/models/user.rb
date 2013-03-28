@@ -5,16 +5,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :name, :password, :password_confirmation, :dojos
   has_many :dojos
 
-  validates_presence_of :name,  message: "nome é obrigatório"
-  validates :email, presence: { message: "e-mail é obrigatório" },
-    format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/, message: "e-mail inválido" },
-    uniqueness: { message: "e-mail já registrado" }
+  validates_presence_of :name
+  validates :email, presence: true, uniqueness: true,
+    format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/ }
 
   with_options unless: :skip_password? do |user|
-    user.validates :password, presence: { message: "senha é obrigatória" },
-      length: { minimum: 6, message: "senha deve ter no mínimo 6 caracteres" },
-      confirmation: { message: "confirmação não bate" }
-    user.validates :password_confirmation, presence: { message: "confirmação é obrigatória" }
+    user.validates :password, length: { minimum: 6 }
+    user.validates_presence_of :password_confirmation
   end
 
   def self.login(email, password)

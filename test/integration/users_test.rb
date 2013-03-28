@@ -62,36 +62,36 @@ class UsersTest < ActionDispatch::IntegrationTest
 
   test "should require name" do
     user = FactoryGirl.build(:user, name: nil)
-    assert_invalid user, "nome é obrigatório"
+    assert_invalid user, "Nome não pode ficar em branco"
   end
 
   test "should require email" do
     user = FactoryGirl.build(:user, email: nil)
-    assert_invalid user, "e-mail é obrigatório"
+    assert_invalid user, "E-mail não pode ficar em branco"
   end
 
   test "should require a valid email" do
     user = FactoryGirl.build(:user, email: "dojoaonde.com")
-    assert_invalid user, "e-mail inválido"
+    assert_invalid user, "E-mail não é válido"
   end
 
   test "should require a unique email" do
-    assert_invalid @user, "e-mail já registrado"
+    assert_invalid @user, "E-mail já está em uso"
   end
 
   test "should require password" do
     user = FactoryGirl.build(:user, password: nil)
-    assert_invalid user, "senha é obrigatória"
+    assert_invalid user, "Senha não pode ficar em branco"
   end
 
   test "should be 6 or more caracters to password" do
     user = FactoryGirl.build(:user, password: "123")
-    assert_invalid user, "senha deve ter no mínimo 6 caracteres"
+    assert_invalid user, "Senha é muito curta (mínimo: 6 caracteres)"
   end
 
   test "should be required password confirmation" do
     user = FactoryGirl.build(:user, password_confirmation: "iéié")
-    assert_invalid user, "confirmação não bate"
+    assert_invalid user, "Senha não está de acordo com a confirmação"
   end
 
   test "should edit my dojo" do

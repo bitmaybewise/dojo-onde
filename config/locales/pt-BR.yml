@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      user: "usuário"
+    attributes:
+      user:
+        name: "Nome"
+        email: "E-mail"
+        password: "Senha"
+        password_digest: "Senha"
+        password_confirmation: "Confirmação"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: "é muito curta (mínimo: %{count} caracteres)"
