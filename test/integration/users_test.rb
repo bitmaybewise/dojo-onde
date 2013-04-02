@@ -50,7 +50,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_equal login_path, current_path, "Should be login page"
   end
 
-  test "should not edit info of other user" do
+  test "shouldn't edit info of other user" do
     user1 = FactoryGirl.create(:user, email: "teste1@dojoaonde.com.br")
     user2 = FactoryGirl.create(:user, email: "teste2@dojoaonde.com.br")
     with user1 do
@@ -94,7 +94,7 @@ class UsersTest < ActionDispatch::IntegrationTest
     assert_invalid user, "Senha não está de acordo com a confirmação"
   end
 
-  test "should edit my dojo" do
+  test "should edit your dojo" do
     FactoryGirl.create(:dojo, user: @user)
     with @user do
       visit edit_user_path(@user)
@@ -102,6 +102,15 @@ class UsersTest < ActionDispatch::IntegrationTest
       fill_in("Local", with: "iéié")
       click_on("Salvar")
       assert find("p.alert").has_content?("Dojo alterado com sucesso.")
+    end
+  end
+
+  test "shouldn't edit dojo that happened" do
+    FactoryGirl.create(:dojo, day: Time.now - 5.days, user: @user)
+    with @user do
+      visit edit_user_path(@user)
+      assert_false find("table tbody tr:first").has_content?("Editar"),
+                   "Should be not show 'Editar' button"
     end
   end
 

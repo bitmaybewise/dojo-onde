@@ -32,6 +32,10 @@ class ActionDispatch::IntegrationTest
     yield
     logout
   end
+
+  def assert_false(value, msg="")
+    assert !value, msg
+  end
 end
 
 class ActiveSupport::TestCase

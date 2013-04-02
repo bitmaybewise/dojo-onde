@@ -3,7 +3,7 @@
 
 FactoryGirl.define do
   factory :dojo do
-    day         Date.today
+    day         Time.now + 1.day
     local       "Faculdade X"
     info        "Sem comentários"
     gmaps_link  "http://google.com/maps"
