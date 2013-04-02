@@ -7,8 +7,6 @@ gem 'dynamic_form'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -22,10 +20,19 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'mysql2'
+end
+
+group :test do
   gem 'turn', require: false
   gem 'database_cleaner'
   gem 'capybara', '~> 2.0'
   gem 'factory_girl_rails'
+end
+
+group :production do
+  gem 'pg'
+  gem 'thin'
 end
 
 gem 'jquery-rails'
