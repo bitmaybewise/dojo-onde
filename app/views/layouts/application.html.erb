@@ -31,7 +31,8 @@
 
     <div id="welcome" class="span3 pull-right">
       <% if current_user %>
-        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>,
+        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>
+        <i class="icon-user"></i>
         <br />
         <%= link_to "Sair", logout_path %>
       <% else %>
@@ -72,9 +73,8 @@
     <div class="span10">
       <footer>
         <hr />
-        <p>
-          Desenvolvido e mantido por <a href="http://herculesdev.com.br/" target="_blank">HerculesDev</a>
-        </p>
+        Desenvolvido e mantido por <a href="http://herculesdev.com.br/" target="_blank">HerculesDev</a>.
+        Gostaria de contribuir? Fique a vontade e faça um fork no <a href="#" target="_blank">Github</a>.
       </footer>
     </div>
   </div>

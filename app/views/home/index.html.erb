@@ -5,14 +5,43 @@
     <ul id="dojos">
       <% @dojos.each do |dojo| %>
         <li>
-          <%= link_to dojo, dojo_path(dojo) %>
+        <%= link_to dojo, dojo_path(dojo) %>
         </li>
       <% end %>
     </ul>
     <%= link_to "Exibir todos", dojos_path, class: "btn btn-primary btn-large btn-block" %>
   <% else %>
     <p class="lead">
-      Que pena, não tem nenhum coding dojo acontecendo. :-(
+    Que pena, não tem nenhum coding dojo para acontecer. :-(
     </p>
   <% end %>
+</section>
+
+<section class="span4">
+  <h3>Sobre o site</h3>
+  <p>
+  Este site tem o intuíto de disseminar coding dojos. Se você gosta 
+  de participar acompanhe o site, divulgue para seus amigos, cadastre 
+  o seus próprios dojos e chame a galera. Vamos fazer mais dojos 
+  acontecerem e mais pessoas participarem.
+  <br/>
+  Gostaria de tirar dúvidas, enviar críticas ou sugestões?
+  Não se acanhe, <a href="mailto:hlmerscher@gmail.com?subject=Dojo" target="_blank">entre em contato</a>
+  <i class="icon-envelope"></i>
+  </p>
+</section>
+
+<section class="<%= @dojos.size > 5 ? "span4" : "span10" %>">
+  <h3>Ainda não sabe o que é um coding dojo? Seus problemas acabaram ;)</h3>
+  <blockquote class="pull-right">
+    “Um Coding Dojo é um encontro onde um grupo de programadores se reúne para 
+    trabalhar em conjunto em um desafio de programação. Eles estão lá para se divertir, 
+    e, através de uma metodologia pragmática, melhorar suas habilidades de programação e 
+    de trabalho em grupo.” 
+    <small>
+      <a href="http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/" target="_blank">
+        http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/
+      </a>
+    </small>
+  </blockquote>
 </section>

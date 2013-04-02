@@ -3,9 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 section {
-  p { text-align: center; }
   li { 
     padding: 5px; 
     font-size: 16px;
   }
+  p.lead, h3 { text-align: center; }
 }
+
+blockquote, p { font-size: 13px; }
