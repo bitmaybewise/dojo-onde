@@ -67,22 +67,22 @@ class DojosTest < ActionDispatch::IntegrationTest
 
   test 'should be invalid without a local' do
     @valid_dojo.local = nil
-    assert_invalid @valid_dojo, "local é obrigatório"
+    assert_invalid @valid_dojo, "Local não pode ficar em branco"
   end
 
   test 'should be invalid without a day' do
     @valid_dojo.day = nil
-    assert_invalid @valid_dojo, "dia é obrigatório"
+    assert_invalid @valid_dojo, "Dia e Horário não pode ficar em branco"
   end
 
   test 'should be invalid with a previous day' do
     @valid_dojo.day = Date.today - 7
-    assert_invalid @valid_dojo, "dias anteriores não são permitidos"
+    assert_invalid @valid_dojo, "Dia e Horário anterior não é permitido"
   end
 
   test 'should require google maps link' do
     @valid_dojo.gmaps_link = nil
-    assert_invalid @valid_dojo, "link do google maps é obrigatório"
+    assert_invalid @valid_dojo, "Link do Google Maps não pode ficar em branco"
   end
 
   test 'should show dojo' do

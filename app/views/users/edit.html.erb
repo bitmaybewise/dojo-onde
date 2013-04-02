@@ -2,25 +2,15 @@
   <h2>Meus dados</h2>
 
   <%= form_for @user do |f| %>
-    <% if @user.errors.any? %>
-      <div class="alert alert-error">
-        <ul>
-          <% @user.errors.messages.each_value do |messages| %>
-            <% messages.each do |value| %>
-              <li><%= value %></li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
     <%= f.hidden_field :id %>
 
-    <%= label_tag(:user_name, "Nome", class: "control-label") %>
+    <%= f.label :name, class: "control-label" %>
     <p class="controls"><%= f.text_field :name %></p>
+    <%= errors_for @user.errors[:name] %>
 
-    <%= label_tag(:user_email, "E-mail", class: "control-label") %>
+    <%= f.label :email, class: "control-label" %>
     <p class="controls"><%= f.text_field :email %></p>
+    <%= errors_for @user.errors[:email] %>
 
     <p class="controls">
     <%= link_to "Trocar senha", password_path, class: "label" %>
@@ -35,6 +25,12 @@
   <h2>Meus dojos</h2>
   <% if @user.dojos.any? %>
     <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Dia e horário - Local</th>
+        </tr>
+      </thead>
+
       <tbody>
         <% @user.dojos.each do |dojo| %>
           <tr>

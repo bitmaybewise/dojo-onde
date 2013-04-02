@@ -2,12 +2,12 @@
 
 class Dojo < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :day, :local, :info, :gmaps_link, :user_id
+  attr_accessible :day, :local, :info, :gmaps_link, :user_id, :user
 
-  validates :day,   presence: { message: "dia é obrigatório" }
-  validates :local, presence: { message: "local é obrigatório" }
+  validates_presence_of :day
+  validates_presence_of :local
+  validates_presence_of :gmaps_link
   validate  :day_cannot_be_in_the_past
-  validates :gmaps_link, presence: { message: "link do google maps é obrigatório"}
 
   def self.happened
     where("day < ? ", Date.today).order("day DESC")
@@ -29,7 +29,7 @@ class Dojo < ActiveRecord::Base
   private
   def day_cannot_be_in_the_past
     if !day.blank? and day < Date.today
-      errors.add(:day, "dias anteriores não são permitidos")
+      errors.add(:day, "anterior não é permitido")
     end
   end
 end

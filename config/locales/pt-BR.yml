@@ -9,6 +9,10 @@ pt-BR:
         password: "Senha"
         password_digest: "Senha"
         password_confirmation: "Confirmação"
+      dojo:
+        day: "Dia e Horário"
+        gmaps_link: "Link do Google Maps"
+        info: "Outras Informações"
     errors:
       models:
         user:

@@ -1,35 +1,33 @@
 <%= form_for @dojo, html: { class: "form-horizontal" } do |f| %>
   <% if @dojo.errors.any? %>
     <div class="alert alert-error">
-      <ul>
-      <% @dojo.errors.messages.each_value do |messages| %>
-        <% messages.each do |value| %>
-        <li><%= value %></li>
-        <% end %>
-      <% end %>
-      </ul>
+      <%= f.error_messages %>
     </div>
   <% end %>
 
   <%= f.hidden_field :user_id, value: current_user.id %>
 
   <div class="control-group">
-    <%= label_tag :dojo_day, "Dia e horário", class: "control-label" %>
-    <p class="controls"><%= f.text_field :day, class: "input-medium" %></p>
+    <%= f.label :day, class: "control-label" %>
+    <p class="controls">
+      <%= f.text_field :day, 
+          value: @dojo.try(:day).try(:strftime,"%d/%m/%Y %H:%M"), 
+          class: "input-medium" %>
+    </p>
   </div>
 
   <div class="control-group">
-    <%= label_tag :dojo_local, "Local", class: "control-label" %>
+    <%= f.label :local, class: "control-label" %>
     <p class="controls"><%= f.text_field :local, class: "input-xxlarge" %></p>
   </div>
 
   <div class="control-group">
-    <%= label_tag :dojo_gmaps_link, "Link do Google Maps", class: "control-label" %>
+    <%= f.label :gmaps_link, class: "control-label" %>
     <p class="controls"><%= f.text_field :gmaps_link, class: "input-xxlarge" %></p>
   </div>
 
   <div class="control-group">
-    <%= label_tag(:dojo_info, "Outras Informações", class: "control-label") %>
+    <%= f.label :info, class: "control-label" %>
     <p class="controls"><%= f.text_area :info, size: "x5", class: "text_area input-xxlarge" %></p>
   </div>
 

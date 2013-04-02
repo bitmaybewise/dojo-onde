@@ -17,7 +17,7 @@ class DojosController < ApplicationController
   end
 
   def show
-    @dojo = Dojo.find(params[:id])
+    @dojo = Dojo.includes(:user).find(params[:id])
   end
 
   def index

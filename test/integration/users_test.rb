@@ -38,8 +38,8 @@ class UsersTest < ActionDispatch::IntegrationTest
     with @user do
       visit edit_user_path(@user)
       click_on("Trocar senha")
-      fill_in("Senha Nova", with: new_password)
-      fill_in("Confirmação de Senha", with: new_password)
+      fill_in("Senha", with: new_password)
+      fill_in("Confirmação", with: new_password)
       click_on("Salvar")
       assert page.has_content?("Senha alterada com sucesso")
     end
