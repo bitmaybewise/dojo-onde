@@ -1,4 +1,4 @@
-Dojoaonde::Application.routes.draw do
+Dojoonde::Application.routes.draw do
   root :to => "home#index"
   get "login"  => "sessions#new", :as => :login
   get "logout" => "sessions#destroy", :as => :logout

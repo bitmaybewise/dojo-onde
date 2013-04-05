@@ -30,7 +30,7 @@ class DojosTest < ActionDispatch::IntegrationTest
     with @user do
       visit new_dojo_path
       click_link('Cancelar')
-      assert find('h1').has_content?('Dojo, aonde?'), "Should back to homepage"
+      assert find('h1').has_content?('Dojo, onde?'), "Should back to homepage"
     end
   end
 

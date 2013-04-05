@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Dojoaonde::Application.load_tasks
+Dojoonde::Application.load_tasks

@@ -14,7 +14,7 @@ class HomeTest < ActionDispatch::IntegrationTest
 
   test 'should visit homepage' do
     visit root_path
-    assert find('h1').has_content?('Dojo, aonde?'), 'Should be homepage'
+    assert find('h1').has_content?('Dojo, onde?'), 'Should be homepage'
     assert_equal current_path, root_path, "Current path should be equal root path"
   end
 

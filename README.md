@@ -1,4 +1,4 @@
-Dojo, aonde?
+Dojo, onde?
 ============
 
 Docs em breve.
