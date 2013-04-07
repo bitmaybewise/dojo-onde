@@ -12,9 +12,17 @@
     </p>
   </div>
 
-  <iframe class="span7" height="350" frameborder="0" 
-          marginheight="0" marginwidth="0" src="<%= @dojo.gmaps_link.html_safe %>&output=embed">
-  </iframe>
+  <div class="span7">
+    <iframe height="350" width="100%" frameborder="0" marginheight="0" marginwidth="0"
+            src="<%= @dojo.gmaps_link.html_safe %>&output=embed">
+    </iframe>
+    <p>
+      <a href="<%= @dojo.gmaps_link.html_safe %>" target="_blank">
+        Caso não consiga visualizar o mapa acima, clique neste
+        link e veja diretamente no Google Maps.
+      </a>
+    </p>
+  </div>
 </div>
 
 <%= link_to 'Voltar', dojos_path, class: "btn btn-large" %>
