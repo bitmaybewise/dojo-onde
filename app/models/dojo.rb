@@ -17,13 +17,8 @@ class Dojo < ActiveRecord::Base
     where("day >= ? ", Date.today).order("day ASC")
   end
 
-  def local=(value)
-    value.capitalize! unless value.nil?
-    write_attribute(:local, value)
-  end
-
   def to_s
-    "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local.capitalize}"
+    "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
   end
 
   private
