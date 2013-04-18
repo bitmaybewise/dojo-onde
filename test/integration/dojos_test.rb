@@ -16,13 +16,13 @@ class DojosTest < ActionDispatch::IntegrationTest
   test 'should require login to insert' do
     visit new_dojo_path
     assert_equal login_path, current_path
-    assert find('h2').has_content?('Login'), 'Should be login page'
+    assert find('h2').has_content?('Login'), 'should be login page'
   end
 
   test 'should insert' do
     with @user do
       insert @valid_dojo
-      assert find('h2').has_content?(@valid_dojo.local), "Should save with success"
+      assert find('h2').has_content?(@valid_dojo), "should save with success"
     end
   end
 
@@ -66,11 +66,20 @@ class DojosTest < ActionDispatch::IntegrationTest
   end
 
   test 'should show dojo' do
-    dojo = FactoryGirl.create :dojo
+    dojo = FactoryGirl.create(:dojo)
     visit dojo_path(dojo)
     assert find('h2').has_content?(dojo), "Should show title with local and day"
     assert page.has_content?(dojo.user.name), "Should show user name"
     assert page.has_content?(dojo.info), "Should show info"
+  end
+
+  test "should create copied" do
+    dojo = FactoryGirl.create(:dojo)
+    with @user do
+      visit edit_dojo_path(dojo)
+      click_on("Copiar")
+      assert find("#dojo_day").has_content?(""), "should be blank"
+    end
   end
 
   private

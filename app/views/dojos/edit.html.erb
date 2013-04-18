@@ -1,2 +1,3 @@
-<h2>Editar dojo</h2>
-<%= render 'form' %>
+<h2>Editar dojo | <%= link_to "Copiar", dojos_copied_path(dojo_id: @dojo.id), class: "btn btn-primary" %></h2>
+
+<%= render "form" %>

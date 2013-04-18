@@ -10,6 +10,7 @@ Dojoonde::Application.routes.draw do
   resources :users
 
   match "dojos/aconteceram" => "dojos#happened", :as => :dojos_happened
+  match "dojos/copiado" => "dojos#copied", :as => :dojos_copied
   resources :dojos
 
   # The priority is based upon order of creation:

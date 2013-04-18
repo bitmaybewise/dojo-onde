@@ -7,7 +7,7 @@ class Dojo < ActiveRecord::Base
   validates_presence_of :day
   validates_presence_of :local
   validates_presence_of :gmaps_link
-  validate  :day_cannot_be_in_the_past
+  validate :day_cannot_be_in_the_past
 
   def self.happened
     where("day < ? ", Date.today).order("day DESC")
@@ -19,6 +19,10 @@ class Dojo < ActiveRecord::Base
 
   def to_s
     "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
+  end
+
+  def clone
+    Dojo.new({ local: @local, info: @info, gmaps_link: @gmaps_link })
   end
 
   private

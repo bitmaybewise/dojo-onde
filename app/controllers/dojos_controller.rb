@@ -16,6 +16,12 @@ class DojosController < ApplicationController
     end
   end
 
+  def copied
+    original = Dojo.find(params[:dojo_id])
+    @dojo = original.clone
+    render :new
+  end
+
   def show
     @dojo = Dojo.includes(:user).find(params[:id])
   end
@@ -37,7 +43,7 @@ class DojosController < ApplicationController
     if @dojo.update_attributes(params[:dojo])
       redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
     else 
-      render "edit"
+      render :edit
     end
   end
 
