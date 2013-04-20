@@ -4,6 +4,8 @@ gem 'rails', '3.2.11'
 gem 'rails-i18n'
 gem 'dynamic_form'
 
+gem 'pg'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -19,10 +21,6 @@ group :assets do
   gem 'yui-compressor'
 end
 
-group :development, :test do
-  gem 'mysql2'
-end
-
 group :test do
   gem 'turn', require: false
   gem 'database_cleaner'
@@ -31,7 +29,6 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
   gem 'thin'
 end
 
