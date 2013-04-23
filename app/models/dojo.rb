@@ -21,10 +21,6 @@ class Dojo < ActiveRecord::Base
     "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
   end
 
-  def clone
-    Dojo.new({ local: @local, info: @info, gmaps_link: @gmaps_link })
-  end
-
   private
   def day_cannot_be_in_the_past
     if !day.blank? and day < Date.today

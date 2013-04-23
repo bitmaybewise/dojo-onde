@@ -18,7 +18,11 @@ class DojosController < ApplicationController
 
   def copied
     original = Dojo.find(params[:dojo_id])
-    @dojo = original.clone
+    @dojo = Dojo.new({ 
+              local: original.local, 
+              info: original.info, 
+              gmaps_link: original.gmaps_link 
+            })
     render :new
   end
 

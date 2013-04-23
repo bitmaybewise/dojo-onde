@@ -17,9 +17,4 @@ class DojoTest < ActiveSupport::TestCase
     assert Dojo.last.day >= Date.today
   end
 
-  test "should ignore id on clone" do
-    original = FactoryGirl.build(:dojo, id: 1)
-    clone    = original.clone
-    assert_equal nil, clone.id, "should not have id"
-  end
 end
