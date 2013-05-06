@@ -34,12 +34,8 @@
       <tbody>
         <% @user.dojos.each do |dojo| %>
           <tr>
-            <td><%= dojo %></td>
-            <% if dojo.day > Time.now %>
-              <td><%= link_to "Editar", edit_dojo_path(dojo), class:"label" %></td>
-            <% else %>
-              <td></td>
-            <% end %>
+            <td><%= link_to dojo, dojo_path(dojo) %></td>
+            <td><%= link_to "Editar", edit_dojo_path(dojo), class:"label" %></td>
             <td><%= link_to "Excluir", dojo_path(dojo), 
                     confirm: "Deseja realmente excluir?", 
                     method: :delete,

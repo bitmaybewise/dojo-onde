@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130119145041) do
+ActiveRecord::Schema.define(:version => 20130505215602) do
 
   create_table "dojos", :force => true do |t|
     t.datetime "day"
@@ -22,6 +22,17 @@ ActiveRecord::Schema.define(:version => 20130119145041) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "retrospectives", :force => true do |t|
+    t.string   "challenge"
+    t.text     "positive_points"
+    t.text     "improvement_points"
+    t.integer  "dojo_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "retrospectives", ["dojo_id"], :name => "index_retrospectives_on_dojo_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

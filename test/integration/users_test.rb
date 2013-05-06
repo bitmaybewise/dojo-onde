@@ -105,15 +105,6 @@ class UsersTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "shouldn't edit dojo that happened" do
-    FactoryGirl.create(:dojo, day: Time.now - 5.days, user: @user)
-    with @user do
-      visit edit_user_path(@user)
-      assert_false find("table tbody tr:first").has_content?("Editar"),
-                   "Should be not show 'Editar' button"
-    end
-  end
-
   test "should remove my dojo" do
     FactoryGirl.create(:dojo, user: @user)
     with @user do

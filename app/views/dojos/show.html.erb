@@ -39,4 +39,8 @@
   </div>
 </div>
 
+<% if @dojo.retrospective && @dojo.retrospective.not_empty? %>
+  <%= render partial: "retrospectives/show", locals: { retrospective: @dojo.retrospective } %>
+<% end %>
+
 <%= link_to 'Voltar', dojos_path, class: "btn btn-large" %>

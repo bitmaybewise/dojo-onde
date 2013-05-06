@@ -1,0 +1,24 @@
+<h2>Retrospectiva: <%= @dojo %></h2>
+
+<%= form_for [@dojo, @retrospective] do |f| %>
+  <div class="control-group span8 offset1">
+    <%= f.label :challenge %>
+    <%= f.text_field :challenge, class: "span7", 
+        placeholder: "URL ou breve descrição do desafio/problema proposto" %>
+  </div>
+
+  <div class="span3 offset1">
+    <%= f.label :positive_points %>
+    <%= f.text_area :positive_points, size: "x10", class: "span3" %>
+  </div>
+
+  <div class="span3 offset1">
+    <%= f.label :improvement_points %>
+    <%= f.text_area :improvement_points, size: "x10", class: "span3" %>
+  </div>
+
+  <div class="span8 offset1">
+    <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
+    <%= link_to "Cancelar", root_path, class: "btn btn-inverse btn-large" %>
+  </div>
+<% end %>

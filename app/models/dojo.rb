@@ -2,6 +2,7 @@
 
 class Dojo < ActiveRecord::Base
   belongs_to :user
+  has_one :retrospective, dependent: :delete
   attr_accessible :day, :local, :info, :gmaps_link, :user_id, :user
 
   validates_presence_of :day

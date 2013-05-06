@@ -2,6 +2,7 @@ pt-BR:
   activerecord:
     models:
       user: "usuário"
+      retrospective: "retrospectiva"
     attributes:
       user:
         name: "Nome"
@@ -13,6 +14,10 @@ pt-BR:
         day: "Dia e Horário"
         gmaps_link: "Link do Google Maps"
         info: "Outras Informações"
+      retrospective:
+        challenge: "Desafio"
+        positive_points: "Pontos Positivos"
+        improvement_points: "Pontos de Melhoria"
     errors:
       models:
         user:

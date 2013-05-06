@@ -11,7 +11,9 @@ Dojoonde::Application.routes.draw do
 
   match "dojos/aconteceram" => "dojos#happened", :as => :dojos_happened
   match "dojos/copiado" => "dojos#copied", :as => :dojos_copied
-  resources :dojos
+  resources :dojos do
+    resources :retrospectives
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

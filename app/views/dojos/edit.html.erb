@@ -1,3 +1,11 @@
-<h2>Editar dojo | <%= link_to "Copiar", dojos_copied_path(dojo_id: @dojo.id), class: "btn btn-primary" %></h2>
+<h2>
+  Editar dojo | 
+  <%= link_to "Copiar", dojos_copied_path(dojo_id: @dojo.id), class: "btn btn-primary" %> |
+  <% if @dojo.retrospective && @dojo.retrospective.not_empty? %>
+    <%= link_to "Editar retrospectiva", edit_dojo_retrospective_path(@dojo), class: "btn btn-success" %>
+  <% else %>
+    <%= link_to "Registrar retrospectiva", new_dojo_retrospective_path(@dojo), class: "btn btn-success" %>
+  <% end %>
+</h2>
 
 <%= render "form" %>

@@ -1,0 +1,22 @@
+<h3>Retrospectiva</h3>
+
+<div class="row">
+  <p class="span10">
+    <strong>Desafio:</strong>
+    <%= retrospective.challenge %>
+  </p>
+</div>
+<div class="row">
+  <div class="span5">
+    <strong class="label label-success span4">Pontos Positivos</strong>
+    <p class="span4">
+    <%= retrospective.positive_points.gsub(/\n/,"<br/>").html_safe %>
+    </p>
+  </div>
+  <div class="span5">
+    <strong class="label label-important span4">Pontos de Melhoria</strong>
+    <p class="span4">
+    <%= retrospective.improvement_points.gsub(/\n/,"<br/>").html_safe %>
+    </p>
+  </div>
+</div>
