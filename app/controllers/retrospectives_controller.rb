@@ -1,4 +1,5 @@
 class RetrospectivesController < ApplicationController
+  before_filter :require_login
   before_filter :find_dojo
 
   def new

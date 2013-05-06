@@ -38,4 +38,11 @@ class RetrospectiveTest < ActionDispatch::IntegrationTest
       assert find("p.alert").has_content?("Retrospectiva atualizada.")
     end
   end
+
+  test "should require login to insert" do
+    dojo = FactoryGirl.create(:dojo)
+    visit new_dojo_retrospective_path(dojo)
+    assert_equal login_path, current_path
+    assert find('h2').has_content?('Login'), 'should be login page'
+  end
 end
