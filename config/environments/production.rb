@@ -52,8 +52,8 @@ Dojoonde::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
   config.assets.precompile += ['metro-bootstrap.css', 
-                               'dojos.css', 'home.css', 'sessions.css', 'users.css',
-                               'dojos.js' , 'home.js' , 'sessions.js' , 'users.js' ]
+                               'dojos.css', 'home.css', 'sessions.css', 'users.css', 'retrospectives.css',
+                               'dojos.js' , 'home.js' , 'sessions.js' , 'users.js',  'retrospectives.js' ]
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
