@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'rails-i18n'
 gem 'dynamic_form'
+gem 'thin'
 
 gem 'pg'
 
@@ -28,8 +29,8 @@ group :test do
   gem 'factory_girl_rails'
 end
 
-group :production do
-  gem 'thin'
+group :development do
+  gem 'foreman'
 end
 
 gem 'jquery-rails'
