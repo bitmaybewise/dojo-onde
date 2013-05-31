@@ -1,7 +1,5 @@
 #Dojo, onde?
 
----
-
 Site com o intuito de ajudar a disseminar coding dojos. Nele podemos registrar nossos coding dojos informando data, hora, local e espalhar para amigos e interessados participarem.
 
 Acesse: <http://dojoonde.herculesdev.com.br>
@@ -44,4 +42,4 @@ Hercules Lemke Merscher, [hlmerscher](https://github.com/hlmerscher/)
 
 ## Contribuidores
 
-Nenhum no momento. Mas contribuições são bem vindas ;)
+João Vítor Rocon Maia, [jvrmaia](https://github.com/jvrmaia)
