@@ -2,6 +2,8 @@ Dojoonde::Application.routes.draw do
   root :to => "home#index"
   get "login"  => "sessions#new", :as => :login
   get "logout" => "sessions#destroy", :as => :logout
+  get "/auth/:provider/callback" => "sessions#social"
+  get "/auth/failure" => "sessions#failure"
   resource :sessions
 
   get "signup" => "users#new", :as => :signup

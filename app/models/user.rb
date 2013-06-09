@@ -1,9 +1,9 @@
 # encoding: UTF-8
-
 class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :email, :name, :password, :password_confirmation, :dojos
   has_many :dojos
+  has_many :authentications, dependent: :destroy
 
   validates_presence_of :name
   validates :email, presence: true, uniqueness: true,
@@ -18,8 +18,15 @@ class User < ActiveRecord::Base
     find_by_email(email).try(:authenticate, password)
   end
 
+  def self.create_from_auth(oauth)
+    user = User.new(name: oauth.name, email: oauth.email)
+    user.authentications.build(uid: oauth.uid, provider: oauth.provider)
+    user.save(validate: false)
+    user
+  end
+
   private
   def skip_password?
-     self.id.present? && (self.name.present? && self.email.present?) && self.password.nil?
+    self.id.present? && (self.name.present? && self.email.present?) && self.password.nil?
   end
 end

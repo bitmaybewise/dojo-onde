@@ -17,5 +17,4 @@
 *.swp
 *.swo
 config/database.yml
-config/initializers/secret_token.rb
 .DS_Store
