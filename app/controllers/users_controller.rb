@@ -25,6 +25,7 @@ class UsersController < ApplicationController
             else
               User.find(current_user.id)
             end
+    @user_providers = @user.providers_by_authentications
   end
 
   def update

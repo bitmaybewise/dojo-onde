@@ -2,7 +2,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :email, :name, :password, :password_confirmation, :dojos
-  has_many :dojos
+  has_many :dojos, dependent: :destroy
   has_many :authentications, dependent: :destroy
 
   validates_presence_of :name
@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     user.authentications.build(uid: oauth.uid, provider: oauth.provider)
     user.save(validate: false)
     user
+  end
+
+  def providers_by_authentications
+    self.authentications.map { |auth| auth.provider }
   end
 
   private

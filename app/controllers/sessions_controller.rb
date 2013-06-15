@@ -17,19 +17,26 @@ class SessionsController < ApplicationController
 
   def social
     oauth = OAuthData.new(request.env["omniauth.auth"])
-    user  = User.find_by_email(oauth.email)
-    auth  = Authentication.find_by_uid_and_provider(oauth.uid, oauth.provider)
-    if user
-      user.authentications.create(uid: oauth.uid, provider: oauth.provider) if not auth
-      session[:user_id] = user.id
+    if current_user
+      current_user.authentications
+                  .create(uid: oauth.uid, provider: oauth.provider)
+      redirect_to edit_user_path(current_user),
+                  notice: "Sua conta do #{oauth.provider} foi vinculada"
     else
-      session[:user_id] = if auth
-                            auth.user.id
-                          else
-                            User.create_from_auth(oauth).id
-                          end
+      user = User.find_by_email(oauth.email)
+      auth = Authentication.find_by_uid_and_provider(oauth.uid, oauth.provider)
+      if user
+        user.authentications.create(uid: oauth.uid, provider: oauth.provider) if not auth
+        session[:user_id] = user.id
+      else
+        session[:user_id] = if auth
+                              auth.user.id
+                            else
+                              User.create_from_auth(oauth).id
+                            end
+      end
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 
   def failure

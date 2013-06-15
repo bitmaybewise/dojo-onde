@@ -1,0 +1,9 @@
+<% if user_providers.include?(provider) %>
+  <a href="#<%= provider %>">
+  <%= image_tag "#{provider}.png" %> conectado
+  </a>
+<% else %>
+  <a href="/auth/<%= provider %>">
+    <%= image_tag "#{provider}.png" %> vincular
+  </a>
+<% end %>

@@ -1,5 +1,4 @@
 # encoding: UTF-8
-
 require 'test_helper'
 
 class SocialAuthTest < ActionDispatch::IntegrationTest
@@ -49,9 +48,28 @@ class SocialAuthTest < ActionDispatch::IntegrationTest
   test "should fail with invalid credentials" do
     OmniAuth.config.mock_auth[:github] = :invalid_credentials
 
-    visit     "/login"
+    visit     login_path 
     click_on  "github"
     assert    page.has_content?("Erro durante autenticação!"), "should show failure message"
+  end
+
+  accounts.each do |account|
+    omniauth = OmniAuth.config.add_mock(account["provider"], account)
+    oauth    = OAuthData.new(omniauth)
+
+    test "should link with #{oauth.provider} from user page" do
+      user = FactoryGirl.create(:user)
+      with user do
+        visit edit_user_path(user)
+        element = "##{oauth.provider}"
+        find(element).click_on("vincular")
+
+        assert_equal edit_user_path(user), current_path,
+          "should back to user page"
+        assert find(element).has_content?("conectado"),
+          "should appear connected account"
+      end
+    end
   end
 
 end

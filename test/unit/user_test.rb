@@ -21,4 +21,16 @@ class UserTest < ActiveSupport::TestCase
     assert_equal oauth.email, user.email
     assert_equal 1, user.authentications.size
   end
+
+  test "providers_by_authentications" do
+    providers       = [:twitter, :github, :facebook]
+    authentications = []
+    providers.each do |p| 
+      authentications << Authentication.new(uid: "123", provider: p)
+    end
+    user = FactoryGirl.create(:user, authentications: authentications)
+
+    assert_equal providers, user.providers_by_authentications, 
+      "should return name of providers"
+  end
 end
