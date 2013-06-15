@@ -1,6 +1,6 @@
 #Dojo, onde?
 
-[![Code Climate](https://codeclimate.com/github/hlmerscher/dojo-onde.png)](https://codeclimate.com/github/hlmerscher/dojo-onde)
+[![Code Climate](https://codeclimate.com/github/hlmerscher/dojo-onde.png)](https://codeclimate.com/github/hlmerscher/dojo-onde) [![Build Status](https://travis-ci.org/hlmerscher/dojo-onde.png)](https://travis-ci.org/hlmerscher/dojo-onde) 
 
 Site com o intuito de ajudar a disseminar coding dojos. Nele podemos registrar nossos coding dojos informando data, hora, local e espalhar para amigos e interessados participarem.
 
@@ -10,28 +10,39 @@ Acesse: <http://dojoonde.herculesdev.com.br>
 
 Execute o bundler para baixar todas as dependências do projeto.
 	
-	$ bundle install
+    $ bundle install
 
 Copie o arquivo de exemplo de configuração de acesso ao banco de dados e configure como desejar. 
 
     $ cp config/database.example config/database.yml
-	$ rake db:create db:migrate
+    $ rake db:create db:migrate
 
-Copie também o token de segurança a partir do arquivo de exemplo.
+Para utilizar o recurso de login com redes sociais defina as seguintes variáveis de ambiente com suas respectivas chaves.
 
-	$ cp config/initializers/secret_token.example config/initializers/secret_token.rb
+  TWITTER_KEY
+  TWITTER_SECRET
+  GITHUB_KEY
+  GITHUB_SECRET
+  FACEBOOK_KEY
+  FACEBOOK_SECRET
 
-Depois destes passos é só executar o servidor.
+Depois destes passos é só executar.
 
-	$ rails s
+    $ rails s
 
 ### Em produção
 
 Antes de expor ao público devemos gerar um novo token de segurança. 
 
-	$ rake secret
+    $ rake secret
 
-Ao executar o comando acima imprimirá no console uma nova chave de segurança. Substitua a chave que se encontra no arquivo secret_token.rb pela nova.
+Ao executar o comando acima exibirá no console uma nova chave de segurança. Defina a variável de ambiente SECRET_TOKEN.
+
+    $ export SECRET_TOKEN="chave_gerada_aqui"
+
+Para usar com Heroku basta executar o seguinte.
+
+    $ heroku config:set SECRET_TOKEN="chave_gerada_aqui"
 
 ## Funcionalidades novas, bug's, etc.
 

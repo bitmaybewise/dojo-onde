@@ -1,0 +1,4 @@
+test: 
+  adapter: postgresql
+  database: dojoonde_test
+  username: postgres
