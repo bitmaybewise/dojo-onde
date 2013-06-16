@@ -19,12 +19,12 @@ Copie o arquivo de exemplo de configuração de acesso ao banco de dados e confi
 
 Para utilizar o recurso de login com redes sociais defina as seguintes variáveis de ambiente com suas respectivas chaves.
 
-  TWITTER_KEY
-  TWITTER_SECRET
-  GITHUB_KEY
-  GITHUB_SECRET
-  FACEBOOK_KEY
-  FACEBOOK_SECRET
+    TWITTER_KEY
+    TWITTER_SECRET
+    GITHUB_KEY
+    GITHUB_SECRET
+    FACEBOOK_KEY
+    FACEBOOK_SECRET
 
 Depois destes passos é só executar.
 

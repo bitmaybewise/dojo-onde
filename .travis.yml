@@ -2,5 +2,7 @@ language: ruby
 rvm:
   - 1.9.3
 before_script:
-  - mv config/database.yml{.travis,}
   - psql -c 'create database dojoonde_test' -U postgres
+script:
+  - mv config/database.yml{.travis,}
+  - RAILS_ENV=test rake db:migrate test
