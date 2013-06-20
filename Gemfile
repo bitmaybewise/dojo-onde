@@ -19,12 +19,12 @@ group :assets do
 end
 
 group :test do
+  gem 'coveralls', require: false
+
   gem 'turn', require: false
   gem 'database_cleaner'
   gem 'capybara', '~> 2.0'
   gem 'factory_girl_rails'
 end
 
-group :development do
-  gem 'foreman'
-end
+gem 'foreman', group: :development

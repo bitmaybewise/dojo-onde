@@ -1,6 +1,6 @@
 #Dojo, onde?
 
-[![Code Climate](https://codeclimate.com/github/hlmerscher/dojo-onde.png)](https://codeclimate.com/github/hlmerscher/dojo-onde) [![Build Status](https://travis-ci.org/hlmerscher/dojo-onde.png)](https://travis-ci.org/hlmerscher/dojo-onde) 
+[![Code Climate](https://codeclimate.com/github/hlmerscher/dojo-onde.png)](https://codeclimate.com/github/hlmerscher/dojo-onde) [![Build Status](https://travis-ci.org/hlmerscher/dojo-onde.png)](https://travis-ci.org/hlmerscher/dojo-onde) [![Coverage Status](https://coveralls.io/repos/hlmerscher/dojo-onde/badge.png)](https://coveralls.io/r/hlmerscher/dojo-onde)
 
 Site com o intuito de ajudar a disseminar coding dojos. Nele podemos registrar nossos coding dojos informando data, hora, local e espalhar para amigos e interessados participarem.
 
