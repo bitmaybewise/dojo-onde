@@ -1,11 +1,11 @@
+require 'coveralls'
+Coveralls.wear!('rails')
+
 ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'capybara/rails'
 require 'turn'
-require 'coveralls'
-
-Coveralls.wear!('rails')
 
 DatabaseCleaner.strategy = :truncation
 
