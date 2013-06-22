@@ -12,6 +12,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
 
+gem 'coveralls', require: false
+
 group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
@@ -19,8 +21,6 @@ group :assets do
 end
 
 group :test do
-  gem 'coveralls', require: false
-
   gem 'turn', require: false
   gem 'database_cleaner'
   gem 'capybara', '~> 2.0'
