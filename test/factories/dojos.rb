@@ -1,6 +1,6 @@
 # encoding: UTF-8
 # Read about factories at https://github.com/thoughtbot/factory_girl
-
+=begin
 FactoryGirl.define do
   factory :dojo do
     day         Time.now + 1.day
@@ -12,3 +12,4 @@ FactoryGirl.define do
     to_create { |i| i.save(validate: false) }
   end
 end
+=end

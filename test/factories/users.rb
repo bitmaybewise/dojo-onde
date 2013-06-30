@@ -1,5 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+=begin
 FactoryGirl.define do
   factory :user do
     name  "Fulano de Tal"
@@ -10,3 +11,4 @@ FactoryGirl.define do
     to_create { |i| i.save(validate: false) }
   end
 end
+=end

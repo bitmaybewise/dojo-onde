@@ -1,5 +1,6 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
+=begin
 FactoryGirl.define do
   factory :retrospective do
     challenge "Fibonacci"
@@ -8,3 +9,4 @@ FactoryGirl.define do
     dojo
   end
 end
+=end
