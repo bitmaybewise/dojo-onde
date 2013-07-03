@@ -4,7 +4,7 @@ describe User do
   it "should login successfully" do
     new_user = FactoryGirl.create(:user)
     user = User.login(new_user.email, new_user.password)
-    expect(user).not_to eql(nil)
+    expect(user).not_to be_nil 
   end
 
   it "should save encrypted password" do
@@ -17,10 +17,9 @@ describe User do
     hash  = { provider: "twitter", uid: "111222", info: info }
     oauth = OAuthData.new(hash)
     user  = User.create_from_auth(oauth)
-
     expect(user.name).to  eql(oauth.name)
     expect(user.email).to eql(oauth.email)
-    user.should have(1).authentication
+    expect(user).to have(1).authentication
   end
 
   it "providers_by_authentications" do
@@ -29,6 +28,6 @@ describe User do
       list << Authentication.new(uid: "123", provider: provider)
     end
     user = FactoryGirl.create(:user, authentications: authentications)
-    user.providers_by_authentications.should == providers
+    expect(user.providers_by_authentications).to eql(providers)
   end
 end

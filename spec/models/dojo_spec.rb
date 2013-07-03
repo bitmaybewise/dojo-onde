@@ -6,14 +6,14 @@ describe Dojo do
   end
 
   it "should find dojos that happened" do
-    Dojo.should have(10).happened
-    Dojo.first.day.should < Date.today
-    Dojo.last.day.should  > Date.today
+    expect(Dojo).to have(10).happened
+    expect(Dojo.first.day).to be < Date.today
+    expect(Dojo.last.day).to  be > Date.today
   end
 
   it "should find dojos that not happened" do
-    Dojo.should have(10).not_happened
-    Dojo.first.day.should <  Date.today
-    Dojo.last.day.should  >= Date.today
+    expect(Dojo).to have(10).not_happened
+    expect(Dojo.first.day).to be < Date.today
+    expect(Dojo.last.day).to  be >= Date.today
   end
 end
