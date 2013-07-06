@@ -5,7 +5,6 @@ feature "homepage" do
   before(:each, with_dojos: true) do
     10.times { FactoryGirl.create(:dojo) }
   end
-  let(:user) { FactoryGirl.create(:user) }
 
   background { visit root_path }
 
@@ -25,11 +24,6 @@ feature "homepage" do
       expect(find "h2").to have_content "Login"
     end
 
-    scenario "should login" do
-      login user
-      expect(page).to have_content "Bem vindo #{user.name}"
-    end
-
     scenario "should visit signup page" do
       click_on "Registre-se"
       expect(find "h2").to have_content "Registrar-se"
@@ -37,16 +31,12 @@ feature "homepage" do
   end
 
   context "with user logged" do
-    background { login user }
+    let(:user) { FactoryGirl.create(:user) }
 
     scenario "should visit new dojo page" do
+      login user
       click_on "Novo"
       expect(find "h2").to have_content "Novo dojo"
-    end
-
-    scenario "should logout" do
-      logout
-      expect(page).not_to have_content "Bem vindo #{user.name}"
     end
   end
 end
