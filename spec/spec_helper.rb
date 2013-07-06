@@ -12,9 +12,29 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+module Helpers 
+  def login(user)
+    visit     login_path
+    fill_in   "E-mail", with: user.email
+    fill_in   "Senha",  with: user.password
+    click_on  "Acessar"
+  end
+
+  def logout
+    click_on "Sair"
+  end
+
+  def with(user)
+    login user
+    yield
+    logout
+  end
+end
+
 RSpec.configure do |config|
   config.mock_with :rspec
   config.include FactoryGirl::Syntax::Methods
+  config.include Helpers
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
