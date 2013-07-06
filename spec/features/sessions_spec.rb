@@ -5,7 +5,7 @@ feature "sessions" do
   scenario "login page should back to homepage" do
     visit new_sessions_path
     click_on "Voltar"
-    expect(root_path).to eql(current_path)
+    expect(current_path).to eql(root_path)
   end
 
   context "with valid user" do
