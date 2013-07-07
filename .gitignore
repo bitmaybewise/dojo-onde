@@ -18,3 +18,4 @@
 *.swo
 config/database.yml
 .DS_Store
+coverage/
