@@ -10,13 +10,8 @@ class Dojo < ActiveRecord::Base
   validates_presence_of :gmaps_link
   validate :day_cannot_be_in_the_past, on: :create
 
-  def self.happened
-    where("day < ? ", Date.today).order("day DESC")
-  end
-
-  def self.not_happened
-    where("day >= ? ", Date.today).order("day ASC")
-  end
+  scope :happened,     -> { where("day <  ? ", Date.today).order("day DESC") }
+  scope :not_happened, -> { where("day >= ? ", Date.today).order("day ASC")  }
 
   def to_s
     "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
