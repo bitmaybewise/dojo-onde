@@ -1,5 +1,8 @@
 ENV["RAILS_ENV"] ||= 'test'
 
+require 'coveralls'
+Coveralls.wear!('rails')
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
@@ -22,12 +25,6 @@ module Helpers
 
   def logout
     click_on "Sair"
-  end
-
-  def with(user)
-    login user
-    yield
-    logout
   end
 end
 
