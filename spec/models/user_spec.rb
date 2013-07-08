@@ -22,7 +22,7 @@ describe User do
     expect(user).to have(1).authentication
   end
 
-  it "providers_by_authentications" do
+  it "should get providers by authentications" do
     providers       = [:twitter, :github, :facebook]
     authentications = providers.inject [] do |list, provider|
       list << Authentication.new(uid: "123", provider: provider)

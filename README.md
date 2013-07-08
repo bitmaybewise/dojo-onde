@@ -46,7 +46,7 @@ Para usar com Heroku basta executar o seguinte.
 
 ## Funcionalidades novas, bug's, etc.
 
-Acho um bug, tem ideia de uma funcionalidade super bacana que gostaria de ver no site ou simplesmente quer acompanhar e comentar a respeito?
+Achou um bug, tem ideia de uma funcionalidade super bacana que gostaria de ver no site ou simplesmente quer acompanhar e comentar a respeito?
 Visite nossa [issue list](https://github.com/hlmerscher/dojo-onde/issues?state=open).
 
 ## Criador e mantenedor
