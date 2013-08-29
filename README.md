@@ -55,4 +55,4 @@ Hercules Lemke Merscher, [hlmerscher](https://github.com/hlmerscher/)
 
 ## Contribuidores
 
-João Vítor Rocon Maia, [jvrmaia](https://github.com/jvrmaia)
+João Víctor Rocon Maia, [jvrmaia](https://github.com/jvrmaia)
