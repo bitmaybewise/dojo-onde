@@ -32,7 +32,6 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    ansi (1.4.3)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
@@ -50,7 +49,6 @@ GEM
       simplecov (>= 0.7)
       thor
     daemons (1.1.9)
-    database_cleaner (1.0.1)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
     dynamic_form (1.1.4)
@@ -176,8 +174,6 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    turn (0.9.6)
-      ansi
     tzinfo (0.3.37)
     uglifier (2.1.1)
       execjs (>= 0.3.0)
@@ -194,7 +190,6 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara (~> 2.0)
   coveralls
-  database_cleaner
   dynamic_form
   factory_girl_rails
   foreman
@@ -208,6 +203,5 @@ DEPENDENCIES
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)
   thin
-  turn
   uglifier (>= 1.0.3)
   yui-compressor

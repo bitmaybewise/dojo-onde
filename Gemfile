@@ -21,8 +21,6 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'turn', require: false
-  gem 'database_cleaner'
   gem 'capybara', '~> 2.0'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 2.0'
