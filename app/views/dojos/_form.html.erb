@@ -10,9 +10,7 @@
   <div class="control-group">
     <%= f.label :day, class: "control-label" %>
     <p class="controls">
-      <%= f.text_field :day, 
-          value: @dojo.try(:day).try(:strftime,"%d/%m/%Y %H:%M"), 
-          class: "input-medium" %>
+      <%= f.text_field :day, value: (l @dojo.day if @dojo.day), class: "input-medium datetime" %>
     </p>
   </div>
 
@@ -35,4 +33,8 @@
     <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
     <%= link_to 'Cancelar', root_path, class: "btn btn-inverse btn-large" %>
   </p>
+<% end %>
+
+<%= content_for :javascript do %>
+  <%= javascript_include_tag 'jquery.datetime' %>
 <% end %>

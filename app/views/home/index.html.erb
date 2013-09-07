@@ -4,16 +4,12 @@
   <% if @dojos.any? %>
     <ul id="dojos">
       <% @dojos.each do |dojo| %>
-        <li>
-        <%= link_to dojo, dojo_path(dojo) %>
-        </li>
+        <li><%= link_to dojo, dojo_path(dojo) %></li>
       <% end %>
     </ul>
     <%= link_to "Exibir todos", dojos_path, class: "btn btn-primary btn-large btn-block" %>
   <% else %>
-    <p class="lead">
-    Que pena, não tem nenhum coding dojo para acontecer. :-(
-    </p>
+    <p class="lead">Que pena, não tem nenhum coding dojo para acontecer. :-(</p>
   <% end %>
 </section>
 
@@ -31,8 +27,9 @@
   </p>
 </section>
 
-<section class="<%= @dojos.size > 5 ? "span4" : "span10" %>">
+<section class="span10">
   <h3>Ainda não sabe o que é um coding dojo? Seus problemas acabaram ;)</h3>
+
   <blockquote class="pull-right">
     “Um Coding Dojo é um encontro onde um grupo de programadores se reúne para 
     trabalhar em conjunto em um desafio de programação. Eles estão lá para se divertir, 

@@ -1,4 +1,7 @@
 pt-BR:
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"
   activerecord:
     models:
       user: "usuário"

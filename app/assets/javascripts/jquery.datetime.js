@@ -1,5 +1,5 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
+//= require jquery-ui-bootstrap
+//= require jquery-ui-timepicker
 
 $(function(){
   $.datepicker.regional['pt'] = {
@@ -8,9 +8,9 @@ $(function(){
         nextText: 'Seguinte',
         currentText: 'Hoje',
         monthNames: ['Janeiro', 'Fevereiro', 'Mar&ccedil;o', 'Abril', 'Maio', 'Junho',
-        'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                     'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun',
-        'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                          'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
         dayNames: ['Domingo', 'Segunda-feira', 'Ter&ccedil;a-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'S&aacute;bado'],
         dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'S&aacute;b'],
         dayNamesMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'S&aacute;b'],
@@ -32,7 +32,7 @@ $(function(){
   };
   $.timepicker.setDefaults($.timepicker.regional['pt']);
 
-  $("#dojo_day").datetimepicker({
+  $(".datetime").datetimepicker({
     dateFormat: "dd/mm/yy",
     inline: true
   });
