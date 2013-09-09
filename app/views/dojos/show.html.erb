@@ -2,9 +2,23 @@
 
 <div class="row">
   <div class="span3">
-    <%= link_to '#', class: "btn btn-info btn-block" do %>
+
+    <div id="participants" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">Participantes</h3>
+      </div>
+      <div class="modal-body">
+        <% @dojo.participants.each do |participant| %>
+          <p><%= participant.user.name %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <%= link_to '#participants', class: "btn btn-info btn-block", role: "button", "data-toggle" => "modal" do %>
       <%= t('dojos.participants', count: @dojo.participants.size) %>
     <% end %>
+
     <%= participate_button(current_user) %>
     <br/>
 
@@ -68,3 +82,7 @@
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 <%= link_to 'Voltar', dojos_path, class: "btn btn-large" %>
+
+<%= content_for :javascript do %>
+  <%= javascript_include_tag 'bootstrap.modal' %>
+<% end %>
