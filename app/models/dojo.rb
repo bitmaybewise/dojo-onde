@@ -3,6 +3,7 @@
 class Dojo < ActiveRecord::Base
   belongs_to :user
   has_one :retrospective, dependent: :delete
+  has_many :participants
 
   attr_accessible :day, :local, :info, :gmaps_link, :user_id, :user
 
@@ -18,10 +19,21 @@ class Dojo < ActiveRecord::Base
     "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
   end
 
-  private
-  def day_cannot_be_in_the_past
-    if !day.blank? && day < Date.today
-      errors.add(:day, "anterior não é permitido")
-    end
+  def save(*)
+    self.participants.build(user_id: user.id) unless self.user.participate?(self)
+    super
   end
+
+  def include_participant!(participant)
+    self.participants.create(user_id: participant.id)
+  end
+
+  def remove_participant!(participant)
+    self.participants.each { |p| p.destroy if p.user == participant }
+  end
+
+  private
+    def day_cannot_be_in_the_past
+      errors.add(:day, "anterior não é permitido") if day.present? && day < Date.today
+    end
 end

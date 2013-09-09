@@ -29,8 +29,14 @@ class User < ActiveRecord::Base
     self.authentications.map { |auth| auth.provider }
   end
 
-  private
-  def skip_password?
-    self.id.present? && (self.name.present? && self.email.present?) && self.password.nil?
+  def participate?(dojo)
+    present = false
+    dojo.participants.each { |participant| present = true if participant.user == self }
+    present
   end
+
+  private
+    def skip_password?
+      self.id.present? && (self.name.present? && self.email.present?) && self.password.nil?
+    end
 end

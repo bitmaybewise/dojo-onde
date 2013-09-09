@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130529042635) do
+ActiveRecord::Schema.define(:version => 20130907232645) do
 
   create_table "authentications", :force => true do |t|
     t.string   "uid"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(:version => 20130529042635) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "participants", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "dojo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "participants", ["dojo_id"], :name => "index_participants_on_dojo_id"
+  add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
 
   create_table "retrospectives", :force => true do |t|
     t.string   "challenge"

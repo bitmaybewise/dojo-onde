@@ -51,6 +51,18 @@ class DojosController < ApplicationController
     end
   end
 
+  def participate
+    @dojo = Dojo.find(params[:dojo_id])
+    @dojo.include_participant!(current_user)
+    redirect_to @dojo, notice: "Incluído na lista de participantes ;)"
+  end
+
+  def quit
+    @dojo = Dojo.find(params[:dojo_id])
+    @dojo.remove_participant!(current_user)
+    redirect_to @dojo, notice: "Que pena que desistiu :("
+  end
+
   def destroy
     @dojo = Dojo.find(params[:id])
     @dojo.destroy

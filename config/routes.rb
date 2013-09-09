@@ -14,6 +14,9 @@ Dojoonde::Application.routes.draw do
   match "dojos/aconteceram" => "dojos#happened", :as => :dojos_happened
   match "dojos/copiado" => "dojos#copied", :as => :dojos_copied
   resources :dojos do
+    put "participar" => "dojos#participate", :as => :participate
+    put "desistir"   => "dojos#quit",        :as => :quit
+
     resources :retrospectives, except: [:index]
   end
 
