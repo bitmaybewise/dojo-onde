@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe User do
-  describe "save" do
+  describe "#save" do
     it "should save encrypted password" do
       user = FactoryGirl.create(:user)
       expect(user.password).not_to eql(user.password_digest)
     end
   end
 
-  describe "login" do
+  describe ".login" do
     it "should login successfully" do
       new_user = FactoryGirl.create(:user)
       user = User.login(new_user.email, new_user.password)
@@ -16,7 +16,7 @@ describe User do
     end
   end
 
-  describe "create_from_auth" do
+  describe "#create_from_auth" do
     it "should create user from oauth hash" do
       info  = { name: "Fulano", email: "fulano@dojoonde.com" }
       hash  = { provider: "twitter", uid: "111222", info: info }
@@ -28,7 +28,7 @@ describe User do
     end
   end
   
-  describe "providers_by_authentications" do
+  describe "#providers_by_authentications" do
     it "should get providers by authentications" do
       providers       = [:twitter, :github, :facebook]
       authentications = providers.inject [] do |list, provider|
@@ -36,6 +36,11 @@ describe User do
       end
       user = FactoryGirl.create(:user, authentications: authentications)
       expect(user.providers_by_authentications).to eql(providers)
+    end
+
+    it "should be empty when has no providers" do
+      user = FactoryGirl.create(:user, authentications: [])
+      expect(user.providers_by_authentications).to be_empty
     end
   end
 

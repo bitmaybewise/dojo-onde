@@ -82,17 +82,17 @@ feature "record of dojos" do
   end
 
   private
-    def insert(dojo)
-      visit new_dojo_path
-      fill_in "Dia",   with: dojo.day
-      fill_in "Local", with: dojo.local
-      fill_in "Link do Google Maps", with: dojo.gmaps_link
-      fill_in "Outras Informações",  with: dojo.info
-      click_button "Salvar"
-    end
-    
-    def should_be_invalid_with(dojo, msg)
-      insert dojo
-      expect(find "div.alert").to have_content msg
-    end
+  def insert(dojo)
+    visit new_dojo_path
+    fill_in "Dia",   with: dojo.day
+    fill_in "Local", with: dojo.local
+    fill_in "Link do Google Maps", with: dojo.gmaps_link
+    fill_in "Outras Informações",  with: dojo.info
+    click_button "Salvar"
+  end
+
+  def should_be_invalid_with(dojo, msg)
+    insert dojo
+    expect(find "div.alert").to have_content msg
+  end
 end

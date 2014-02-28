@@ -7,5 +7,4 @@ class OAuthData
     @name     = hash[:info][:name]
     @email    = hash[:info][:email]
   end
-
 end

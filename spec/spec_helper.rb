@@ -1,5 +1,10 @@
+require 'simplecov'
 require 'coveralls'
-Coveralls.wear!('rails')
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
+  Coveralls::SimpleCov::Formatter,
+  SimpleCov::Formatter::HTMLFormatter
+] 
+SimpleCov.start('rails')
 
 ENV["RAILS_ENV"] ||= 'test'
 
@@ -22,9 +27,6 @@ RSpec.configure do |config|
   config.mock_with :rspec
   config.include FactoryGirl::Syntax::Methods
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
@@ -41,7 +43,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # Cleanup tests
   config.after(:each) do
     Capybara.reset_sessions!
     Capybara.use_default_driver

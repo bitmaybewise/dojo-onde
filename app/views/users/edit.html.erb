@@ -4,8 +4,6 @@
     <h2>Meus dados</h2>
 
     <%= form_for @user do |f| %>
-      <%= f.hidden_field :id %>
-
       <%= f.label :name, class: "control-label" %>
       <p class="controls"><%= f.text_field :name %></p>
       <%= errors_for @user.errors[:name] %>
@@ -25,6 +23,7 @@
 
   <div class="span5">
     <h2>Meus perfis</h2>
+
     <ul id="providers" class="nav nav-tabs nav-stacked">
       <li id="twitter">
         <%= render "social/connect", user_providers: @user_providers, provider: "twitter" %>
@@ -56,10 +55,9 @@
             <tr>
               <td><%= link_to dojo, dojo_path(dojo) %></td>
               <td><%= link_to "Editar", edit_dojo_path(dojo), class:"label" %></td>
-              <td><%= link_to "Excluir", dojo_path(dojo), 
-                confirm: "Deseja realmente excluir?", 
-                method: :delete,
-                class: "label label-important" %></td>
+              <td><%= link_to "Excluir", dojo_path(dojo), method: :delete,
+                      data: { confirm: "Deseja realmente excluir?" }, 
+                      class: "label label-important" %></td>
             </tr>
           <% end %>
         </tbody>

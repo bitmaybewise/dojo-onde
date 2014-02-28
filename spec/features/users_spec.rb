@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'spec_helper'
 
 feature "record of users" do
@@ -44,28 +43,33 @@ feature "record of users" do
     end
 
     context "should be invalid" do
+      let(:user) { FactoryGirl.build(:user) }
+
       scenario "without a name" do
         user.name = nil
         should_be_invalid_with user, "Nome não pode ficar em branco"
       end
 
-      scenario "without a email" do
+      scenario "without an email" do
         user.email = nil
         should_be_invalid_with user, "E-mail não pode ficar em branco"
       end
 
-      scenario "with a invalid email" do
+      scenario "with an invalid email" do
         user.email = "ieie.com"
         should_be_invalid_with user, "E-mail não é válido"
       end
 
-      scenario "with a invalid email" do
+      scenario "with an invalid email" do
+        other = create(:user)
+        user.email = other.email
         should_be_invalid_with user, "E-mail já está em uso"
       end
 
       scenario "without a password" do
+        user = build(:user, password: nil)
         user.password = nil
-        should_be_invalid_with user, "Senha não pode ficar em branco"
+        should_be_invalid_with user, "Senha é muito curta (mínimo: 6 caracteres)"
       end
 
       scenario "with less than 6 caracters to password" do
@@ -74,8 +78,9 @@ feature "record of users" do
       end
 
       scenario "without password confirmation" do
+        user.email = generate(:email)
         user.password_confirmation = nil
-        should_be_invalid_with user, "Senha não está de acordo com a confirmação"
+        should_be_invalid_with user, "Confirmação não confere"
       end
     end
 
@@ -108,7 +113,7 @@ feature "record of users" do
     click_on "Salvar"
   end
 
-  def should_be_invalid_with(dojo, msg)
+  def should_be_invalid_with(user, msg)
     insert user
     expect(find "div.alert").to have_content msg
   end

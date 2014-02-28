@@ -22,6 +22,8 @@ pt-BR:
         positive_points: "Pontos Positivos"
         improvement_points: "Pontos de Melhoria"
     errors:
+      messages:
+        confirmation: "não confere"
       models:
         user:
           attributes:

@@ -9,58 +9,58 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907232645) do
+ActiveRecord::Schema.define(version: 20130907232645) do
 
-  create_table "authentications", :force => true do |t|
+  create_table "authentications", force: true do |t|
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "authentications", ["uid", "provider"], :name => "index_authentications_on_uid_and_provider"
-  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+  add_index "authentications", ["uid", "provider"], name: "index_authentications_on_uid_and_provider"
+  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
 
-  create_table "dojos", :force => true do |t|
+  create_table "dojos", force: true do |t|
     t.datetime "day"
     t.string   "local"
     t.text     "info"
     t.text     "gmaps_link"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "participants", :force => true do |t|
+  create_table "participants", force: true do |t|
     t.integer  "user_id"
     t.integer  "dojo_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "participants", ["dojo_id"], :name => "index_participants_on_dojo_id"
-  add_index "participants", ["user_id"], :name => "index_participants_on_user_id"
+  add_index "participants", ["dojo_id"], name: "index_participants_on_dojo_id"
+  add_index "participants", ["user_id"], name: "index_participants_on_user_id"
 
-  create_table "retrospectives", :force => true do |t|
+  create_table "retrospectives", force: true do |t|
     t.string   "challenge"
     t.text     "positive_points"
     t.text     "improvement_points"
     t.integer  "dojo_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "retrospectives", ["dojo_id"], :name => "index_retrospectives_on_dojo_id"
+  add_index "retrospectives", ["dojo_id"], name: "index_retrospectives_on_dojo_id"
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
