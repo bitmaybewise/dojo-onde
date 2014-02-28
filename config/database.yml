@@ -1,0 +1,13 @@
+defaults: &defaults
+  adapter: sqlite3
+  encoding: utf-8
+
+development:
+  <<: *defaults
+  database: dojoonde_development
+  pool: 5
+  timeout: 5000
+
+test:
+  <<: *defaults
+  database: ":memory:"

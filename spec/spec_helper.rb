@@ -10,6 +10,8 @@ require 'factory_girl_rails'
 require 'capybara/rspec'
 require 'capybara/rails'
 
+load "#{Rails.root.to_s}/db/schema.rb"
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
