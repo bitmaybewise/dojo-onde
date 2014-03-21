@@ -11,13 +11,10 @@ class Dojo < ActiveRecord::Base
   scope :happened,     -> { where("day <  ? ", Date.today).order("day DESC") }
   scope :not_happened, -> { where("day >= ? ", Date.today).order("day ASC")  }
 
+  before_create :add_creator_of_the_dojo_as_a_participant
+
   def to_s
     "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
-  end
-
-  def save(*)
-    self.participants.build(user_id: user.id) unless self.user.participate?(self)
-    super
   end
 
   def include_participant!(participant)
@@ -29,7 +26,13 @@ class Dojo < ActiveRecord::Base
   end
 
   private
-    def day_cannot_be_in_the_past
-      errors.add(:day, "anterior não é permitido") if day.present? && day < Date.today
+  def day_cannot_be_in_the_past
+    errors.add(:day, "anterior não é permitido") if day.present? && day < Date.today
+  end
+
+  def add_creator_of_the_dojo_as_a_participant
+    unless self.user.participate?(self)
+      self.participants.build(user_id: user.id) 
     end
+  end
 end

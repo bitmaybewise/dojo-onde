@@ -1,5 +1,6 @@
 class DojosController < ApplicationController
-  before_filter :require_login, only: [:new, :edit, :destroy, :participate]
+  before_filter :require_login, only: [:new, :create, :edit, :update,
+                                       :destroy, :participate]
   before_action :set_dojo, only: [:edit, :show, :update, :participate, 
                                   :quit, :copied, :destroy]
 
@@ -12,7 +13,7 @@ class DojosController < ApplicationController
     if @dojo.save
       redirect_to @dojo, notice: 'Dojo cadastrado com sucesso.'
     else
-      render action: :new
+      render :new
     end
   end
 

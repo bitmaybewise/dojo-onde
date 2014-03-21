@@ -62,28 +62,6 @@ feature "record of dojos" do
       click_on "Copiar"
       expect(find "#dojo_day").to have_content ""
     end
-
-    context "should be invalid" do
-      scenario "without a local" do
-        dojo.local = nil
-        should_be_invalid_with dojo, "Local não pode ficar em branco"
-      end
-
-      scenario "without a day" do
-        dojo.day = nil
-        should_be_invalid_with dojo, "Dia e Horário não pode ficar em branco"
-      end
-
-      scenario "with a previous day" do
-        dojo.day = Date.today - 7
-        should_be_invalid_with dojo, "Dia e Horário anterior não é permitido"
-      end
-
-      scenario "without a google maps link" do
-        dojo.gmaps_link = nil
-        should_be_invalid_with dojo, "Link do Google Maps não pode ficar em branco"
-      end
-    end
   end
 
   private
@@ -94,10 +72,5 @@ feature "record of dojos" do
     fill_in "Link do Google Maps", with: dojo.gmaps_link
     fill_in "Outras Informações",  with: dojo.info
     click_button "Salvar"
-  end
-
-  def should_be_invalid_with(dojo, msg)
-    insert dojo
-    expect(find "div.alert").to have_content msg
   end
 end
