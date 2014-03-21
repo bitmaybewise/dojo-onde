@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'spec_helper'
 
 feature "record of dojos" do
@@ -14,12 +13,18 @@ feature "record of dojos" do
   context "should require login" do
     scenario "to insert" do
       visit new_dojo_path
-      expect(current_path).to eql(login_path)
+      expect(current_path).to eq login_path
     end
 
     scenario "to edit" do
       visit edit_dojo_path(dojo)
-      expect(current_path).to eql(login_path)
+      expect(current_path).to eq login_path
+    end
+
+    scenario "to participate" do
+      visit dojo_path(dojo)
+      click_on "Eu vou!"
+      expect(current_path).to eq login_path
     end
   end
 

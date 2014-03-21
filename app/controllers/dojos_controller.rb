@@ -1,5 +1,5 @@
 class DojosController < ApplicationController
-  before_filter :require_login, only: [:new, :edit, :destroy]
+  before_filter :require_login, only: [:new, :edit, :destroy, :participate]
   before_action :set_dojo, only: [:edit, :show, :update, :participate, 
                                   :quit, :copied, :destroy]
 
