@@ -35,7 +35,7 @@ module Dojoonde
     # config.i18n.default_locale = :de
     config.i18n.available_locales = ["pt-BR", "en"]
     config.i18n.default_locale = :"pt-BR"
-    I18n.enforce_available_locales = true
+    I18n.enforce_available_locales = false
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
