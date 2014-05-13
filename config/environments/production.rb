@@ -12,9 +12,6 @@ Dojoonde::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = true # default = false
 
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
-
   # Compressor to use
   config.assets.css_compressor = :yui
   config.assets.js_compressor  = :uglifier
