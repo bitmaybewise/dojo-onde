@@ -5,4 +5,4 @@ before_script:
   - psql -c 'create database dojoonde_test' -U postgres
 script:
   - mv config/database.yml{.travis,}
-  - RAILS_ENV=test rake db:migrate spec
+  - RAILS_ENV=test bundle exec rake db:migrate spec

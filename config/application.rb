@@ -55,5 +55,7 @@ module Dojoonde
       g.helper false
       g.assets false
     end
+
+    config.action_view.field_error_proc = ->(html_tag, instance) { html_tag }
   end
 end

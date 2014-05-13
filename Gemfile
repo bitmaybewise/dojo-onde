@@ -19,6 +19,7 @@ gem 'uglifier', '>= 1.0.3'
 gem 'yui-compressor'
 
 group :development, :test do
+  gem 'rspec-rails', '2.14.2'
   gem 'sqlite3'
   gem 'foreman'
 end
@@ -26,7 +27,6 @@ end
 group :test do
   gem 'capybara', '~> 2.0'
   gem 'factory_girl_rails', '~> 4.0'
-  gem 'rspec-rails', '2.14.2'
   gem 'database_cleaner'
 end
 
