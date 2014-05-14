@@ -3,9 +3,7 @@ class Dojo < ActiveRecord::Base
   has_one :retrospective, dependent: :delete
   has_many :participants
 
-  validates_presence_of :day
-  validates_presence_of :local
-  validates_presence_of :gmaps_link
+  validates_presence_of :day, :local, :gmaps_link, :user
   validate :day_cannot_be_in_the_past, on: :create
 
   scope :happened,     -> { where("day <  ? ", Date.today).order("day DESC") }

@@ -10,6 +10,8 @@ class DojosController < ApplicationController
 
   def create
     @dojo = Dojo.new(dojo_params)
+    @dojo.user = current_user
+
     if @dojo.save
       redirect_to @dojo, notice: 'Dojo cadastrado com sucesso.'
     else
@@ -61,7 +63,7 @@ class DojosController < ApplicationController
 
   private
   def dojo_params
-    params.require(:dojo).permit(:day, :local, :gmaps_link, :info, :user_id)
+    params.require(:dojo).permit(:day, :local, :gmaps_link, :info)
   end
 
   def set_dojo
