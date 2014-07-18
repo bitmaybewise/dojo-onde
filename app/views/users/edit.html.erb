@@ -46,18 +46,26 @@
       <table class="table table-condensed">
         <thead>
           <tr>
-            <th>Dia e horário - Local</th>
+            <th>Dia e horário</th>
+            <th>Local</th>
+            <th>Tipo</th>
+            <th></th>
           </tr>
         </thead>
 
         <tbody>
           <% @user.dojos.each do |dojo| %>
             <tr>
-              <td><%= link_to dojo, dojo_path(dojo) %></td>
-              <td><%= link_to "Editar", edit_dojo_path(dojo), class:"label" %></td>
-              <td><%= link_to "Excluir", dojo_path(dojo), method: :delete,
+              <td><%= l dojo.day %></td>
+              <td><%= dojo.local %></td>
+              <td><%= dojo.private? ? "privado" : "público" %></td>
+              <td>
+                <%= link_to "Exibir", dojo_path(dojo), class:"label label-info" %>
+                <%= link_to "Editar", edit_dojo_path(dojo), class:"label" %>
+                <%= link_to "Excluir", dojo_path(dojo), method: :delete,
                       data: { confirm: "Deseja realmente excluir?" }, 
-                      class: "label label-important" %></td>
+                      class: "label label-important" %>
+              </td>
             </tr>
           <% end %>
         </tbody>

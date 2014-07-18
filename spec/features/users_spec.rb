@@ -9,12 +9,12 @@ feature "record of users" do
     expect(page).to have_content "Bem vindo #{user.name}"
   end
 
-  scenario "should be logged to edit" do
+  scenario "should be authenticated to edit" do
     visit edit_user_path(user)
     expect(current_path).to eql(login_path)
   end
 
-  context "with user logged" do
+  context "authenticated" do
     background { login user }
 
     scenario "should be edited" do

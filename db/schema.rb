@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907232645) do
+ActiveRecord::Schema.define(version: 20140718003544) do
 
   create_table "authentications", force: true do |t|
     t.string   "uid"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20130907232645) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "private",    default: false
   end
 
   create_table "participants", force: true do |t|

@@ -29,7 +29,7 @@ class DojosController < ApplicationController
   def show; end
 
   def index
-    @dojos = Dojo.not_happened
+    @dojos = Dojo.not_happened.publishable
   end
 
   def happened
@@ -63,7 +63,7 @@ class DojosController < ApplicationController
 
   private
   def dojo_params
-    params.require(:dojo).permit(:day, :local, :gmaps_link, :info)
+    params.require(:dojo).permit(:day, :local, :gmaps_link, :info, :private)
   end
 
   def set_dojo

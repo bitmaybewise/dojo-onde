@@ -16,7 +16,7 @@
       <tr>
         <td><%= dojo.day.strftime("%d-%m-%Y %H:%M\h") %></td>
         <td><%= dojo.local %></td>
-        <td><%= link_to "Detalhes",dojo_path(dojo) %></td>
+        <td><%= link_to "Detalhes",dojo_path(dojo), class: "badge badge-info" %></td>
       </tr>
     <% end %>
   </tbody>

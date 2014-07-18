@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "record of dojos" do
+feature "dojo" do
   let(:dojo) { FactoryGirl.create(:dojo) }
 
   scenario "should be displayed" do
@@ -10,7 +10,15 @@ feature "record of dojos" do
     expect(page).to      have_content dojo.info
   end
 
-  context "should require login" do
+  scenario "should be listed when public and not happened" do
+    public_dojo  = FactoryGirl.create(:dojo, private: false, local: 'publico')
+    private_dojo = FactoryGirl.create(:dojo, private: true, local: 'privado')
+    visit dojos_path
+    expect(page).to have_content public_dojo.local
+    expect(page).to_not have_content private_dojo.local
+  end
+
+  context "login required" do
     scenario "to insert" do
       visit new_dojo_path
       expect(current_path).to eq login_path
@@ -28,7 +36,7 @@ feature "record of dojos" do
     end
   end
 
-  context "with user logged" do
+  context "authenticated" do
     let(:user) { FactoryGirl.create(:user) }
     background { login user }
 

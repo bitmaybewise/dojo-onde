@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Dojo do
-  context "dojos that/not happen" do
+  context "dojos that/not happened" do
     before do
       (-10..9).each do |n| 
         FactoryGirl.create(:dojo, day: Date.today + n)
@@ -9,15 +9,23 @@ describe Dojo do
     end
 
     describe ".happened" do
-      it "should find dojos that happened" do
+      it "find dojos that happened" do
         expect(Dojo.happened).to have(10).items
       end
     end
 
     describe ".not_happened" do
-      it "should find dojos that not happened" do
+      it "find dojos that not happened" do
         expect(Dojo.not_happened).to have(10).items
       end
+    end
+  end
+
+  describe ".publishable" do
+    it "find dojos that are publishable" do
+      FactoryGirl.create(:dojo, private: true)
+      FactoryGirl.create(:dojo, private: false)
+      expect(Dojo.publishable).to have(1).item
     end
   end
 
@@ -61,6 +69,22 @@ describe Dojo do
       dojo.remove_participant!(malandro)
       dojo.reload
       expect(malandro.participate?(dojo)).to be_false
+    end
+  end
+
+  describe '#to_s' do
+    let(:dojo) { Dojo.new(day: Date.today, local: 'bla') }
+    let(:day_formatted) { Date.today.strftime("%d-%m-%Y %H:%M\h") }
+
+    context 'when publishable' do
+      it { expect(dojo.to_s).to eq "#{day_formatted} - bla" }
+    end
+
+    context 'when private' do
+      before do
+        dojo.private = true
+      end
+      it { expect(dojo.to_s).to eq "[PRIVADO] #{day_formatted} - bla" }
     end
   end
 end

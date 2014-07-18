@@ -27,6 +27,11 @@
     <p class="controls"><%= f.text_area :info, size: "x5", class: "text_area input-xxlarge" %></p>
   </div>
 
+  <div class="control-group">
+    <%= f.label :private, class: "control-label" %>
+    <p class="controls"><%= f.check_box :private %></p>
+  </div>
+
   <p class="form-actions">
     <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
     <%= link_to 'Cancelar', root_path, class: "btn btn-inverse btn-large" %>

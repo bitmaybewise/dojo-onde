@@ -22,18 +22,18 @@
     <%= participate_button(current_user) %>
     <br/>
 
-    <strong>Compartilhar</strong>
-    <br/>
+    <% unless @dojo.private? %>
+      <strong>Compartilhar</strong>
+      <br/>
 
-    <% url = dojo_url(@dojo) %>
-    
-    <!-- Facebook -->
-    <iframe src="//www.facebook.com/plugins/like.php?href=<%= url %>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;localte=pt_BR" 
-      scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:20px;" allowTransparency="true"></iframe>
+      <!-- Facebook -->
+      <iframe src="//www.facebook.com/plugins/like.php?href=<%= dojo_url(@dojo) %>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;localte=pt_BR" 
+        scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:20px;" allowTransparency="true"></iframe>
 
-    <!-- Twitter -->
-    <a href="https://twitter.com/share" class="twitter-share-button" data-text="Dojo, onde? <%=@dojo %> -> <%=url %>" data-via="dojoonde">Tweet</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <!-- Twitter -->
+      <a href="https://twitter.com/share" class="twitter-share-button" data-text="Dojo, onde? <%=@dojo %> -> <%= dojo_url(@dojo) %>" data-via="dojoonde">Tweet</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+    <% end %>
 
     <p>
       <strong>Quem cadastrou?</strong><br />

@@ -6,13 +6,19 @@ class Dojo < ActiveRecord::Base
   validates_presence_of :day, :local, :gmaps_link, :user
   validate :day_cannot_be_in_the_past, on: :create
 
-  scope :happened,     -> { where("day <  ? ", Date.today).order("day DESC") }
-  scope :not_happened, -> { where("day >= ? ", Date.today).order("day ASC")  }
+  scope :happened,      -> { where("day <  ? ", Date.today).order("day DESC") }
+  scope :not_happened,  -> { where("day >= ? ", Date.today).order("day ASC")  }
+  scope :publishable,   -> { where(private: false) }
 
   before_create :add_creator_of_the_dojo_as_a_participant
 
   def to_s
-    "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
+    public_str = "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
+    if self.private?
+      "[PRIVADO] #{public_str}"
+    else
+      public_str
+    end
   end
 
   def include_participant!(participant)
