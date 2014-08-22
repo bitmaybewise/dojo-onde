@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
   validates :email, presence: true, uniqueness: true,
-    format: { with: /[A-Za-z0-9\._-]+@[A-Za-z0-9]+\.[A-Za-z]{2,3}/ }
+    format: { with: /\A[^@]+@[^@]+\z/ }
 
   validates :password, length: { minimum: 6 }, :on => :create
   validates_confirmation_of :password, if: ->(u) { u.password.present? }
