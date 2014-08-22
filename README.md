@@ -4,7 +4,7 @@
 
 Site com o intuito de ajudar a disseminar coding dojos. Nele podemos registrar nossos coding dojos informando data, hora, local e espalhar para amigos e interessados participarem.
 
-Acesse: <http://dojoonde.herculesdev.com.br>
+Acesse: <http://www.dojoonde.com.br>
 
 ## Executando o projeto
 
