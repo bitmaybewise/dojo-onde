@@ -55,7 +55,7 @@ GEM
     dotenv (0.7.0)
     dynamic_form (1.1.4)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.8)
     execjs (1.4.0)
       multi_json (~> 1.0)
     factory_girl (4.2.0)
@@ -211,3 +211,6 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   yui-compressor
+
+BUNDLED WITH
+   1.10.6
