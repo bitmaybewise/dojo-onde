@@ -30,7 +30,7 @@ describe User do
   
   describe "#providers_by_authentications" do
     it "should get providers by authentications" do
-      providers       = [:twitter, :github, :facebook]
+      providers       = [:twitter, :github, :facebook].map(&:to_s)
       authentications = providers.inject [] do |list, provider|
         list << Authentication.new(uid: "123", provider: provider)
       end

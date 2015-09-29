@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.2'
 
-gem 'rails', '4.1.5'
+gem 'rails', '4.2.4'
 gem 'rails-i18n'
 gem 'dynamic_form'
 gem 'jquery-rails'
@@ -25,7 +25,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 2.0'
+  gem 'capybara'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'database_cleaner'
 end
