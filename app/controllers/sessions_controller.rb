@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     email, password = params[:email], params[:password]
@@ -21,14 +20,14 @@ class SessionsController < ApplicationController
       redirect_to edit_user_path(current_user),
                   notice: "Sua conta do #{oauth.provider} foi vinculada"
     else
-      user = User.find_by_email(oauth.email)
+      user = User.find_by_email(oauth.email) if oauth.email.present?
       auth = Authentication.find_by_uid_and_provider(oauth.uid, oauth.provider)
       if user
-        user.authentications.create(uid: oauth.uid, provider: oauth.provider) if not auth
+        user.authentications.create(uid: oauth.uid, provider: oauth.provider) unless auth
         session[:user_id] = user.id
       else
         session[:user_id] = if auth
-                              auth.user.id
+                              auth.user_id
                             else
                               User.create_from_auth(oauth).id
                             end
