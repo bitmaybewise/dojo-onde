@@ -73,8 +73,8 @@ describe Dojo do
   end
 
   describe '#to_s' do
-    let(:dojo) { Dojo.new(day: Date.today, local: 'bla') }
-    let(:day_formatted) { Date.today.strftime("%d-%m-%Y %H:%M\h") }
+    let(:dojo) { Dojo.new(day: Time.zone.now, local: 'bla') }
+    let(:day_formatted) { Time.zone.now.strftime("%d-%m-%Y %H:%M\h") }
 
     context 'when publishable' do
       it { expect(dojo.to_s).to eq "#{day_formatted} - bla" }
