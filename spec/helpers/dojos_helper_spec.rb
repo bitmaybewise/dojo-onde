@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DojosHelper do
+describe DojosHelper, type: :helper do
   describe "participate_button" do
     let(:dojo) { FactoryGirl.create(:dojo) }
 

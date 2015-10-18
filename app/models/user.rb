@@ -16,13 +16,6 @@ class User < ActiveRecord::Base
     find_by_email(email).try(:authenticate, password)
   end
 
-  def self.create_from_auth(oauth)
-    user = new(name: oauth.name, email: oauth.email)
-    user.authentications.build(uid: oauth.uid, provider: oauth.provider)
-    user.save(validate: false)
-    user
-  end
-
   def providers_by_authentications
     authentications.map { |auth| auth.provider }
   end

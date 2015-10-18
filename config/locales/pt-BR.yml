@@ -34,3 +34,6 @@ pt-BR:
     participants:
       one: "1 pessoa marcou presença"
       other: "%{count} pessoas marcaram presença"
+  sessions:
+    social:
+      failure: "Erro durante autenticação!"

@@ -10,13 +10,13 @@ describe Dojo do
 
     describe ".happened" do
       it "find dojos that happened" do
-        expect(Dojo.happened).to have(10).items
+        expect(Dojo.happened.size).to eq 10
       end
     end
 
     describe ".not_happened" do
       it "find dojos that not happened" do
-        expect(Dojo.not_happened).to have(10).items
+        expect(Dojo.not_happened.size).to eq 10
       end
     end
   end
@@ -25,7 +25,7 @@ describe Dojo do
     it "find dojos that are publishable" do
       FactoryGirl.create(:dojo, private: true)
       FactoryGirl.create(:dojo, private: false)
-      expect(Dojo.publishable).to have(1).item
+      expect(Dojo.publishable.size).to eq 1
     end
   end
 
@@ -33,17 +33,17 @@ describe Dojo do
     it "should add user to list of participants" do
       dojo = FactoryGirl.build(:dojo)
       dojo.save
-      expect(dojo.participants).to have(1).item
+      expect(dojo.participants.size).to eq 1
       expect(dojo.participants.first.user).to eq(dojo.user)
     end
 
     it "shouldn't add user when present" do
       user = FactoryGirl.create(:user)
       dojo = FactoryGirl.create(:dojo, user: user)
-      expect(dojo.participants).to have(1).participant
+      expect(dojo.participants.size).to eq 1
       expect(dojo.participants.first.user).to eq(user)
       dojo.save
-      expect(dojo.participants).to have(1).item
+      expect(dojo.participants.size).to eq 1
       expect(dojo.participants.first.user).to eq(user)
     end
   end
@@ -54,7 +54,7 @@ describe Dojo do
       dojo = FactoryGirl.create(:dojo)
 
       dojo.include_participant!(malandro)
-      expect(malandro.participate?(dojo)).to be_true
+      expect(malandro.participate?(dojo)).to be_truthy
     end
   end
 
@@ -64,11 +64,11 @@ describe Dojo do
       dojo = FactoryGirl.create(:dojo)
 
       dojo.include_participant!(malandro)
-      expect(malandro.participate?(dojo)).to be_true
+      expect(malandro.participate?(dojo)).to be_truthy
 
       dojo.remove_participant!(malandro)
       dojo.reload
-      expect(malandro.participate?(dojo)).to be_false
+      expect(malandro.participate?(dojo)).to be_falsey
     end
   end
 

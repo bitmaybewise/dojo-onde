@@ -19,9 +19,10 @@ gem 'uglifier', '>= 1.0.3'
 gem 'yui-compressor'
 
 group :development, :test do
-  gem 'rspec-rails', '2.14.2'
+  gem 'rspec-rails'
   gem 'sqlite3'
   gem 'foreman'
+  gem 'byebug'
 end
 
 group :test do

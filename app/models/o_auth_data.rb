@@ -4,7 +4,7 @@ class OAuthData
   def initialize(hash)
     @uid      = hash[:uid]
     @provider = hash[:provider]
-    @name     = hash[:info][:name]
-    @email    = hash[:info][:email]
+    @name     = hash.fetch(:info, {})[:name]
+    @email    = hash.fetch(:info, {})[:email]
   end
 end

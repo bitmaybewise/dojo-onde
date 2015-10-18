@@ -14,31 +14,13 @@ class SessionsController < ApplicationController
 
   def social
     oauth = OAuthData.new(request.env["omniauth.auth"])
-    if current_user
-      current_user.authentications
-                  .create(uid: oauth.uid, provider: oauth.provider)
-      redirect_to edit_user_path(current_user),
-                  notice: "Sua conta do #{oauth.provider} foi vinculada"
-    else
-      user = User.find_by_email(oauth.email) if oauth.email.present?
-      auth = Authentication.find_by_uid_and_provider(oauth.uid, oauth.provider)
-      if user
-        user.authentications.create(uid: oauth.uid, provider: oauth.provider) unless auth
-        session[:user_id] = user.id
-      else
-        session[:user_id] = if auth
-                              auth.user_id
-                            else
-                              User.create_from_auth(oauth).id
-                            end
-      end
-      redirect_to root_path
-    end
+    user  = Authentication.from_oauth!(oauth, current_user)
+    session[:user_id] = user.id
+    redirect_to edit_user_path(current_user)
   end
 
   def failure
-    flash[:notice] = "Erro durante autenticação!" 
-    redirect_to login_path
+    redirect_to login_path, notice: t('sessions.social.failure')
   end
 
   def destroy

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe User do
+describe User, type: :model do
   describe "#save" do
     it "should save encrypted password" do
       user = FactoryGirl.create(:user)
@@ -16,18 +16,6 @@ describe User do
     end
   end
 
-  describe "#create_from_auth" do
-    it "should create user from oauth hash" do
-      info  = { name: "Fulano", email: "fulano@dojoonde.com" }
-      hash  = { provider: "twitter", uid: "111222", info: info }
-      oauth = OAuthData.new(hash)
-      user  = User.create_from_auth(oauth)
-      expect(user.name).to  eql(oauth.name)
-      expect(user.email).to eql(oauth.email)
-      expect(user).to have(1).authentication
-    end
-  end
-  
   describe "#providers_by_authentications" do
     it "should get providers by authentications" do
       providers       = [:twitter, :github, :facebook].map(&:to_s)
@@ -49,12 +37,12 @@ describe User do
 
     it "should true when user participate of the dojo" do
       dojo = FactoryGirl.create(:dojo, user: user)
-      expect(user.participate?(dojo)).to be_true
+      expect(user.participate?(dojo)).to be_truthy
     end
 
     it "should false when user not participate of the dojo" do
       dojo = FactoryGirl.create(:dojo)
-      expect(user.participate?(dojo)).to be_false
+      expect(user.participate?(dojo)).to be_falsey
     end
   end
 end
