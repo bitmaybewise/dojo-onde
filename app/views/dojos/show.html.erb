@@ -9,9 +9,14 @@
         <h3 id="myModalLabel">Participantes</h3>
       </div>
       <div class="modal-body">
+        <p>
         <% @dojo.participants.each do |participant| %>
-          <p><%= participant.user.name %></p>
+          <div class="media pull-left avatar-box">
+            <%= image_tag gravatar_url(participant.user), title: participant.name, class: 'img-rounded' %></br >
+            <%= participant.name %>
+          </div>
         <% end %>
+        </p>
       </div>
     </div>
 
@@ -27,7 +32,7 @@
       <br/>
 
       <!-- Facebook -->
-      <iframe src="//www.facebook.com/plugins/like.php?href=<%= dojo_url(@dojo) %>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;localte=pt_BR" 
+      <iframe src="//www.facebook.com/plugins/like.php?href=<%= dojo_url(@dojo) %>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=true&amp;font&amp;colorscheme=light&amp;action=like&amp;height=21&amp;localte=pt_BR"
         scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:20px;" allowTransparency="true"></iframe>
 
       <!-- Twitter -->
@@ -39,7 +44,7 @@
       <strong>Quem cadastrou?</strong><br />
       <%= @dojo.user.name %>
     </p>
-    
+
     <p>
       <strong>Outras informações:</strong><br />
       <%= @dojo.info.gsub(/\n/,"<br />").html_safe %>
