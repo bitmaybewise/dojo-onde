@@ -9,10 +9,10 @@ Acesse: <http://www.dojoonde.com.br>
 ## Executando o projeto
 
 Execute o bundler para baixar todas as dependências do projeto.
-	
+
     $ bundle install
 
-Copie o arquivo de exemplo de configuração de acesso ao banco de dados e configure como desejar. 
+Copie o arquivo de exemplo de configuração de acesso ao banco de dados e configure como desejar.
 
     $ cp config/database.example config/database.yml
     $ rake db:create db:migrate
@@ -32,7 +32,7 @@ Depois destes passos é só executar.
 
 ### Em produção
 
-Antes de expor ao público devemos gerar um novo token de segurança. 
+Antes de expor ao público devemos gerar um novo token de segurança.
 
     $ rake secret
 
@@ -56,3 +56,4 @@ Hercules Lemke Merscher, [hlmerscher](https://github.com/hlmerscher/)
 ## Contribuidores
 
 João Víctor Rocon Maia, [jvrmaia](https://github.com/jvrmaia)
+Almir Mendes , [m3nd3s](https://github.com/m3nd3s)

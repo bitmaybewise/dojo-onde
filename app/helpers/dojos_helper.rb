@@ -4,4 +4,9 @@ module DojosHelper
       link_to("Desistir :(", quit_dojo_path(dojo), method: :put, class: "btn btn-danger btn-block") :
       link_to("Eu vou!", participate_dojo_path(dojo), method: :put, class: "btn btn-success btn-block")
   end
+
+  def gravatar_url(user, size=nil)
+    gravatar_id = Digest::MD5.hexdigest(user.email) if user
+    "https://www.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+  end
 end
