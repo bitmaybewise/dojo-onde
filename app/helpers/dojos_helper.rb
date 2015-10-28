@@ -6,7 +6,11 @@ module DojosHelper
   end
 
   def gravatar_url(user, size=nil)
-    gravatar_id = Digest::MD5.hexdigest(user.email) if user
-    "https://www.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+    if user.try(:email)
+      gravatar_id = Digest::MD5.hexdigest(user.email)
+      "https://www.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
+    else
+      image_url("blank-avatar.jpg")
+    end
   end
 end
