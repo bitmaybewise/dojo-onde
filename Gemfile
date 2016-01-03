@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.3.0'
 
-gem 'rails', '4.2.4'
+gem 'rails'
 gem 'rails-i18n'
 gem 'dynamic_form'
 gem 'jquery-rails'
