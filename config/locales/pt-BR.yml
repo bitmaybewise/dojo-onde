@@ -30,6 +30,27 @@ pt-BR:
           attributes:
             password:
               too_short: "é muito curta (mínimo: %{count} caracteres)"
+  home:
+    index:
+      next_coding_dojos: "Próximos coding dojos"
+      show_all: "Exibir todos"
+      without_dojos: "Que pena, não tem nenhum coding dojo para acontecer. :-("
+      about_title: "Sobre o site"
+      about_message: "Este site tem o intuíto de disseminar coding dojos. Se você gosta \
+                      de participar acompanhe o site, divulgue para seus amigos, cadastre \
+                      o seus próprios dojos e chame a galera. Vamos fazer mais dojos \
+                      acontecerem e mais pessoas participarem."
+      contact_html: "Gostaria de tirar dúvidas, enviar críticas ou sugestões? \
+                     Não se acanhe, <a href='mailto:hlmerscher@gmail.com?subject=Dojo' target='_blank'>entre em contato</a> \
+                     <i class='icon-envelope'></i>"
+      what_is_a_dojo_title: "Ainda não sabe o que é um coding dojo? Seus problemas acabaram ;)"
+      what_is_a_dojo_text: "Um Coding Dojo é um encontro onde um grupo de programadores se reúne para \
+                            trabalhar em conjunto em um desafio de programação. Eles estão lá para se divertir, \
+                            e, através de uma metodologia pragmática, melhorar suas habilidades de programação e \
+                            de trabalho em grupo."
+      what_is_a_dojo_link_html: "<a href='http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/' target='_blank'> \
+                                   http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/ \
+                                 </a>"
   dojos:
     participants:
       one: "1 pessoa marcou presença"
