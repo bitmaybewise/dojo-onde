@@ -30,6 +30,11 @@ pt-BR:
           attributes:
             password:
               too_short: "é muito curta (mínimo: %{count} caracteres)"
+  app:
+    name: "Dojo, onde?"
+    footer:
+      text_html: "Desenvolvido e mantido por <a href='http://github.com/hlmerscher' target='_blank'>@hlmerscher</a>. \
+                  Gostaria de contribuir? Fique a vontade e faça um fork no <a href='https://github.com/hlmerscher/dojo-onde' target='_blank'>Github</a>."
   home:
     index:
       next_coding_dojos: "Próximos coding dojos"

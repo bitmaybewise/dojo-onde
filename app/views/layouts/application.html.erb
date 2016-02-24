@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Dojo, onde?</title>
+  <title><%= t('app.name') %></title>
 
   <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
   <!--[if lt IE 9]>
@@ -22,7 +22,7 @@
     <div class="span6 pull-left">
       <header>
       <h1>
-        <%= link_to "Dojo, onde?", root_path %>
+        <%= link_to t('app.name'), root_path %>
         <a href="http://twitter.com/dojoonde" target="_blank">
           <%= image_tag "twitter.png" %>
         </a>
@@ -74,15 +74,12 @@
     <div class="span10">
       <footer>
         <hr />
-        Desenvolvido e mantido por <a href="http://github.com/hlmerscher" target="_blank">@hlmerscher</a>.
-        Gostaria de contribuir? Fique a vontade e faça um fork no <a href="https://github.com/hlmerscher/dojo-onde" target="_blank">Github</a>.
+        <%= t('app.footer.text_html') %>
       </footer>
     </div>
   </div>
 
-  <!-- javascripts -->
   <%= javascript_include_tag "application" %>
   <%= yield :javascript %>
-
 </body>
 </html>
