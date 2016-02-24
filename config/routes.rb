@@ -1,5 +1,5 @@
 Dojoonde::Application.routes.draw do
-  root :to => "home#index"
+  root to: "home#index"
   get "login"  => "sessions#new", :as => :login
   get "logout" => "sessions#destroy", :as => :logout
   get "/auth/:provider/callback" => "sessions#social"
@@ -12,9 +12,7 @@ Dojoonde::Application.routes.draw do
   resources :users
 
   resources :dojos do
-    collection do
-      get "aconteceram" => :happened, as: :happened
-    end
+    get "aconteceram" => :happened, as: :happened, on: :collection
 
     member do
       put "participar" => :participate, as: :participate

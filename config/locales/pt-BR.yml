@@ -32,6 +32,17 @@ pt-BR:
               too_short: "é muito curta (mínimo: %{count} caracteres)"
   app:
     name: "Dojo, onde?"
+    header:
+      welcome_message_html: "Bem vindo %{username_link}"
+      logout: "Sair"
+      login: "Acesse"
+      signup: "Registre-se"
+      login_or_signup_html: "%{login_link} ou %{signup_link}"
+      menu:
+        index: "Home"
+        new_dojo: "Novo"
+        next_dojos: "Próximos"
+        happened_dojos: "Já aconteceram"
     footer:
       text_html: "Desenvolvido e mantido por <a href='http://github.com/hlmerscher' target='_blank'>@hlmerscher</a>. \
                   Gostaria de contribuir? Fique a vontade e faça um fork no <a href='https://github.com/hlmerscher/dojo-onde' target='_blank'>Github</a>."

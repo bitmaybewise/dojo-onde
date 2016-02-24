@@ -32,14 +32,13 @@
 
     <div id="welcome" class="span3 pull-right">
       <% if current_user %>
-        Bem vindo <%= link_to current_user.name, edit_user_path(current_user) %>
+        <%= t('app.header.welcome_message_html', username_link: link_to(current_user.name, edit_user_path(current_user))) %>
         <i class="icon-user"></i>
         <br />
-        <%= link_to "Sair", logout_path %>
+        <%= link_to t('app.header.logout'), logout_path %>
       <% else %>
-        <%= link_to "Acesse", login_path %>
-        ou
-        <%= link_to "Registre-se", signup_path %>
+        <%= t('app.header.login_or_signup_html', login_link: link_to(t('app.header.login'), login_path),
+                                                 signup_link: link_to(t('app.header.signup'), signup_path)) %>
       <% end %>
     </div>
   </div>
@@ -48,10 +47,10 @@
     <div class="navbar-inner">
       <nav>
         <ul class="nav">
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Novo', new_dojo_path %></li>
-          <li><%= link_to 'Próximos', dojos_path %></li>
-          <li><%= link_to 'Já aconteceram', '/dojos/aconteceram' %></li>
+          <li><%= link_to t('app.header.menu.index'), root_path %></li>
+          <li><%= link_to t('app.header.menu.new_dojo'), new_dojo_path %></li>
+          <li><%= link_to t('app.header.menu.next_dojos'), dojos_path %></li>
+          <li><%= link_to t('app.header.menu.happened_dojos'), happened_dojos_path %></li>
         </ul>
       </nav>
     </div>
