@@ -13,11 +13,11 @@ class User < ActiveRecord::Base
   validates_presence_of     :password_confirmation, if: ->(u) { u.password.present? }
 
   def self.login(email, password)
-    find_by_email(email).try(:authenticate, password)
+    find_by(email: email).try(:authenticate, password)
   end
 
   def providers_by_authentications
-    authentications.map { |auth| auth.provider }
+    authentications.map(&:provider)
   end
 
   def participate?(dojo)

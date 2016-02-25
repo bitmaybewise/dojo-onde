@@ -64,6 +64,7 @@ pt-BR:
       new: "Novo"
       details: "Detalhes"
       share: "Compartilhar"
+      access: "Acessar"
   home:
     index:
       next_coding_dojos: "Próximos coding dojos"
@@ -109,6 +110,9 @@ pt-BR:
     form:
       challenge_placeholder: "URL ou breve descrição do desafio/problema proposto"
   sessions:
+    new:
+      title: "Login"
+      social_auth_title: "Conecte-se também através das redes sociais"
     social:
       failure: "Erro durante autenticação!"
   helpers:
