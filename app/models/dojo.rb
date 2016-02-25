@@ -13,12 +13,7 @@ class Dojo < ActiveRecord::Base
   before_create :add_creator_of_the_dojo_as_a_participant
 
   def to_s
-    public_str = "#{day.strftime("%d-%m-%Y %H:%M\h")} - #{local}"
-    if self.private?
-      "[PRIVADO] #{public_str}"
-    else
-      public_str
-    end
+    I18n.t("dojos.to_s.private_#{self.private?}", day_formatted: I18n.l(day), local: local)
   end
 
   def include_participant!(participant)
@@ -31,7 +26,7 @@ class Dojo < ActiveRecord::Base
 
   private
   def day_cannot_be_in_the_past
-    errors.add(:day, "anterior não é permitido") if day.present? && day < Date.today
+    errors.add(:day, :cannot_be_in_the_past) if day.present? && day < Date.today
   end
 
   def add_creator_of_the_dojo_as_a_participant
