@@ -1,9 +1,9 @@
 <% if user_providers.include?(provider) %>
   <a href="#<%= provider %>">
-  <%= image_tag "#{provider}.png" %> conectado
+    <%= image_tag "#{provider}.png" %> <%= t('social.connect.connected') %>
   </a>
 <% else %>
   <a href="/auth/<%= provider %>">
-    <%= image_tag "#{provider}.png" %> vincular
+    <%= image_tag "#{provider}.png" %> <%= t('social.connect.link') %>
   </a>
 <% end %>

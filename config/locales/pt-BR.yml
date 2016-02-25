@@ -115,6 +115,10 @@ pt-BR:
       social_auth_title: "Conecte-se também através das redes sociais"
     social:
       failure: "Erro durante autenticação!"
+  social:
+    connect:
+      connected: "conectado"
+      link: "vincular"
   helpers:
     dojos:
       participate_button:
