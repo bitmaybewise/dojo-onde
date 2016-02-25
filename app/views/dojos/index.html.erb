@@ -1,3 +1,3 @@
-<%= render "table", collection: @dojos, title: "Próximos dojos" %>
-<%= link_to "Novo", new_dojo_path, class: "btn btn-large btn-primary" %>
-<%= link_to "Voltar", root_path, class: "btn btn-large" %>
+<%= render "table", collection: @dojos, title: t('dojos.index.title') %>
+<%= link_to t('general.buttons.new'), new_dojo_path, class: "btn btn-large btn-primary" %>
+<%= link_to t('general.buttons.back'), root_path, class: "btn btn-large" %>

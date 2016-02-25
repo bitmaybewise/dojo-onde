@@ -5,8 +5,8 @@
 
   <thead>
     <tr>
-      <th>Dia e horário</th>
-      <th>Local</th>
+      <th><%= Dojo.human_attribute_name(:day) %></th>
+      <th><%= Dojo.human_attribute_name(:local) %></th>
       <th></th>
     </tr>
   </thead>
@@ -14,9 +14,9 @@
   <tbody>
     <% @dojos.each do |dojo| %>
       <tr>
-        <td><%= dojo.day.strftime("%d-%m-%Y %H:%M\h") %></td>
+        <td><%= l dojo.day %></td>
         <td><%= dojo.local %></td>
-        <td><%= link_to "Detalhes",dojo_path(dojo), class: "badge badge-info" %></td>
+        <td><%= link_to t('general.buttons.details'),dojo_path(dojo), class: "badge badge-info" %></td>
       </tr>
     <% end %>
   </tbody>

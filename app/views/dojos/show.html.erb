@@ -1,4 +1,4 @@
-<h2><%= @dojo %></h2>
+<h2><%= @dojo.to_s %></h2>
 
 <div class="row">
   <div class="span3">
@@ -6,7 +6,7 @@
     <div id="participants" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Participantes</h3>
+        <h3 id="myModalLabel"><%= Participant.model_name.human(count: 2) %></h3>
       </div>
       <div class="modal-body">
         <p>
@@ -21,14 +21,14 @@
     </div>
 
     <%= link_to '#participants', class: "btn btn-info btn-block", role: "button", "data-toggle" => "modal" do %>
-      <%= t('dojos.participants', count: @dojo.participants.size) %>
+      <%= t('dojos.show.participants', count: @dojo.participants.size) %>
     <% end %>
 
     <%= participate_button(current_user) %>
     <br/>
 
     <% unless @dojo.private? %>
-      <strong>Compartilhar</strong>
+      <strong><%= t('general.buttons.share') %></strong>
       <br/>
 
       <!-- Facebook -->
@@ -41,12 +41,12 @@
     <% end %>
 
     <p>
-      <strong>Quem cadastrou?</strong><br />
+      <strong><%= t('dojos.show.who_registered') %></strong><br />
       <%= @dojo.user.name %>
     </p>
 
     <p>
-      <strong>Outras informações:</strong><br />
+      <strong><%= t('dojos.show.informations') %>:</strong><br />
       <%= @dojo.info.gsub(/\n/,"<br />").html_safe %>
     </p>
   </div>
@@ -57,8 +57,7 @@
     </iframe>
     <p>
       <a href="<%= @dojo.gmaps_link.html_safe %>" target="_blank">
-        Caso não consiga visualizar o mapa acima, clique neste
-        link e veja diretamente no Google Maps.
+        <%= t('dojos.show.unavailable_google_map') %>
       </a>
     </p>
   </div>
@@ -86,7 +85,7 @@
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
-<%= link_to 'Voltar', dojos_path, class: "btn btn-large" %>
+<%= link_to t('general.buttons.back'), dojos_path, class: "btn btn-large" %>
 
 <%= content_for :javascript do %>
   <%= javascript_include_tag 'bootstrap.modal' %>

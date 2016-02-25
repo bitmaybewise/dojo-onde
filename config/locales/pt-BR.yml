@@ -1,11 +1,18 @@
 pt-BR:
   time:
     formats:
-      default: "%d/%m/%Y %H:%M"
+      default: "%d/%m/%Y %H:%Mh"
   activerecord:
     models:
-      user: "usuário"
-      retrospective: "retrospectiva"
+      user: 
+        one: "usuário"
+        other: "usuários"
+      retrospective: 
+        one: "retrospectiva"
+        other: "retrospectivas"
+      participant:
+        one: "participante"
+        other: "participantes"
     attributes:
       user:
         name: "Nome"
@@ -23,6 +30,9 @@ pt-BR:
         positive_points: "Pontos Positivos"
         improvement_points: "Pontos de Melhoria"
     errors:
+      template:
+        header: "Dados inválidos"
+        body: "Por favor, corrija os erros abaixo"
       messages:
         confirmation: "não confere"
       models:
@@ -46,6 +56,14 @@ pt-BR:
     footer:
       text_html: "Desenvolvido e mantido por <a href='http://github.com/hlmerscher' target='_blank'>@hlmerscher</a>. \
                   Gostaria de contribuir? Fique a vontade e faça um fork no <a href='https://github.com/hlmerscher/dojo-onde' target='_blank'>Github</a>."
+  general:
+    buttons:
+      save: "Salvar"
+      cancel: "Cancelar"
+      back: "Voltar"
+      new: "Novo"
+      details: "Detalhes"
+      share: "Compartilhar"
   home:
     index:
       next_coding_dojos: "Próximos coding dojos"
@@ -68,9 +86,30 @@ pt-BR:
                                    http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/ \
                                  </a>"
   dojos:
-    participants:
-      one: "1 pessoa marcou presença"
-      other: "%{count} pessoas marcaram presença"
+    show:
+      participants:
+        one: "1 pessoa marcou presença"
+        other: "%{count} pessoas marcaram presença"
+      who_registered: "Quem cadastrou?"
+      informations: "Outras informações"
+      unavailable_google_map: "Caso não consiga visualizar o mapa acima, clique neste \
+                               link e veja diretamente no Google Maps."
+    new:
+      title: "Novo dojo"
+    edit:
+      title: "Editar dojo"
+      copy: "Copiar"
+      new_retrospective: "Registrar retrospectiva"
+      edit_retrospective: "Editar retrospectiva"
+    index:
+      title: "Próximos dojos"
+    happened:
+      title: "Dojos que já aconteceram"
   sessions:
     social:
       failure: "Erro durante autenticação!"
+  helpers:
+    dojos:
+      participate_button:
+        participate_yes: "Eu vou!"
+        participate_no: "Desistir :("
