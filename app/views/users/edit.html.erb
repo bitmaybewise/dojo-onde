@@ -1,7 +1,6 @@
 <div class="row">
-
   <div class="span4">
-    <h2>Meus dados</h2>
+    <h2><%= t('users.edit.data') %></h2>
 
     <%= form_for @user do |f| %>
       <%= f.label :name, class: "control-label" %>
@@ -13,16 +12,16 @@
       <%= errors_for @user.errors[:email] %>
 
       <p class="controls">
-      <%= link_to "Trocar senha", password_path, class: "label" %>
+      <%= link_to t('users.edit.change_password'), password_path, class: "label" %>
       </p>
 
-      <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
-      <%= link_to "Cancelar", root_path, class: "btn btn-inverse btn-large" %>
+      <%= f.submit t('general.buttons.save'), class: "btn btn-primary btn-large" %>
+      <%= link_to t('general.buttons.cancel'), root_path, class: "btn btn-inverse btn-large" %>
     <% end %>
   </div>
 
   <div class="span5">
-    <h2>Meus perfis</h2>
+    <h2><%= t('users.edit.profiles') %></h2>
 
     <ul id="providers" class="nav nav-tabs nav-stacked">
       <li id="twitter">
@@ -41,14 +40,15 @@
 
 <div class="row">
   <div class="span10">
-    <h2>Meus dojos</h2>
+    <h2><%= t('users.edit.dojos') %></h2>
+
     <% if @user.dojos.any? %>
       <table class="table table-condensed">
         <thead>
           <tr>
-            <th>Dia e horário</th>
-            <th>Local</th>
-            <th>Tipo</th>
+            <th><%= Dojo.human_attribute_name(:day) %></th>
+            <th><%= Dojo.human_attribute_name(:local) %></th>
+            <th><%= Dojo.human_attribute_name(:private) %></th>
             <th></th>
           </tr>
         </thead>
@@ -58,12 +58,12 @@
             <tr>
               <td><%= l dojo.day %></td>
               <td><%= dojo.local %></td>
-              <td><%= dojo.private? ? "privado" : "público" %></td>
+              <td><%= t("dojos.private_#{dojo.private?}") %></td>
               <td>
-                <%= link_to "Exibir", dojo_path(dojo), class:"label label-info" %>
-                <%= link_to "Editar", edit_dojo_path(dojo), class:"label" %>
-                <%= link_to "Excluir", dojo_path(dojo), method: :delete,
-                      data: { confirm: "Deseja realmente excluir?" }, 
+                <%= link_to t('general.buttons.show'), dojo_path(dojo), class:"label label-info" %>
+                <%= link_to t('general.buttons.edit'), edit_dojo_path(dojo), class:"label" %>
+                <%= link_to t('general.buttons.delete'), dojo_path(dojo), method: :delete,
+                      data: { confirm: t('general.confirmations.delete') }, 
                       class: "label label-important" %>
               </td>
             </tr>
@@ -72,9 +72,9 @@
       </table>
 
     <% else %>
-      <p class="well">Você não tem dojos cadastrados :-(</p>
+      <p class="well"><%= t('users.edit.without_dojos') %></p>
     <% end %>
 
-    <%= link_to "Novo dojo", new_dojo_path, class: "btn btn-primary" %>
+    <%= link_to t('users.edit.new_dojo'), new_dojo_path, class: "btn btn-primary" %>
   </div>
 </div>

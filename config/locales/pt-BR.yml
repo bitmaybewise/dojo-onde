@@ -65,6 +65,11 @@ pt-BR:
       details: "Detalhes"
       share: "Compartilhar"
       access: "Acessar"
+      show: "Exibir"
+      edit: "Editar"
+      delete: "Excluir"
+    confirmations:
+      delete: "Deseja realmente excluir?"
   home:
     index:
       next_coding_dojos: "Próximos coding dojos"
@@ -87,6 +92,8 @@ pt-BR:
                                    http://pet.inf.ufsc.br/dojo/o-que-eh-dojo/ \
                                  </a>"
   dojos:
+    private_true: "privado"
+    private_false: "público"
     show:
       participants:
         one: "1 pessoa marcou presença"
@@ -119,6 +126,14 @@ pt-BR:
     connect:
       connected: "conectado"
       link: "vincular"
+  users:
+    edit:
+      data: "Meus dados"
+      profiles: "Meus perfis"
+      dojos: "Meus dojos"
+      change_password: "Trocar senha"
+      without_dojos: "Você não tem dojos cadastrados :-("
+      new_dojo: "Novo dojo"
   helpers:
     dojos:
       participate_button:
