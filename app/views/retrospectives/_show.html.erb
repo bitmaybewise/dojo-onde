@@ -1,15 +1,15 @@
-<h3>Retrospectiva</h3>
+<h3><%= Retrospective.model_name.human %></h3>
 
 <div class="row">
   <p class="span10">
-    <strong>Desafio:</strong>
+    <strong><%= Retrospective.human_attribute_name(:challenge) %>:</strong>
     <%= link_to retrospective.challenge, retrospective.challenge, target: '_blank' %>
   </p>
 </div>
 
 <div class="row">
   <div class="span5">
-    <strong class="label label-success span4">Pontos Positivos</strong>
+    <strong class="label label-success span4"><%= Retrospective.human_attribute_name(:positive_points) %></strong>
 
     <p class="span4">
       <%= retrospective.positive_points.gsub(/\n/,"<br/>").html_safe %>
@@ -17,7 +17,7 @@
   </div>
 
   <div class="span5">
-    <strong class="label label-important span4">Pontos de Melhoria</strong>
+    <strong class="label label-important span4"><%= Retrospective.human_attribute_name(:improvement_points) %></strong>
 
     <p class="span4">
       <%= retrospective.improvement_points.gsub(/\n/,"<br/>").html_safe %>

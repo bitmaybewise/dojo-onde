@@ -1,10 +1,10 @@
-<h2>Retrospectiva: <%= @dojo %></h2>
+<h2><%= Retrospective.model_name.human %>: <%= @dojo %></h2>
 
 <%= form_for [@dojo, @retrospective] do |f| %>
   <div class="control-group span8 offset1">
     <%= f.label :challenge %>
     <%= f.text_field :challenge, class: "span7", 
-        placeholder: "URL ou breve descrição do desafio/problema proposto" %>
+        placeholder: t('retrospectives.form.challenge_placeholder') %>
   </div>
 
   <div class="span3 offset1">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="span8 offset1">
-    <%= f.submit "Salvar", class: "btn btn-primary btn-large" %>
-    <%= link_to "Cancelar", root_path, class: "btn btn-inverse btn-large" %>
+    <%= f.submit t('general.buttons.save'), class: "btn btn-primary btn-large" %>
+    <%= link_to t('general.buttons.cancel'), root_path, class: "btn btn-inverse btn-large" %>
   </div>
 <% end %>

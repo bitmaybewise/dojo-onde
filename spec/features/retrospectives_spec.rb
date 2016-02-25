@@ -5,7 +5,7 @@ feature "record of retrospectives" do
 
   scenario "should be displayed" do
     visit dojo_path(retro.dojo)
-    expect(page).to have_content "Retrospectiva"
+    expect(page).to have_content "retrospectiva"
     expect(page).to have_content "Desafio"
     expect(page).to have_content retro.challenge
     expect(page).to have_content "Pontos Positivos"

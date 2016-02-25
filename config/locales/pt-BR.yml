@@ -105,6 +105,9 @@ pt-BR:
       title: "Próximos dojos"
     happened:
       title: "Dojos que já aconteceram"
+  retrospectives:
+    form:
+      challenge_placeholder: "URL ou breve descrição do desafio/problema proposto"
   sessions:
     social:
       failure: "Erro durante autenticação!"
