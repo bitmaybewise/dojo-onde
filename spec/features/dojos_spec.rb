@@ -38,6 +38,7 @@ feature "dojo" do
 
   context "authenticated" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:dojo) { FactoryGirl.build(:dojo, user: user) }
     background { login user }
 
     scenario "should be inserted" do
@@ -46,6 +47,7 @@ feature "dojo" do
     end
 
     scenario "should be edited" do
+      dojo.save
       other = "Casa da mãe Joana"
       visit edit_dojo_path(dojo)
       fill_in  "Local", with: other
@@ -60,12 +62,14 @@ feature "dojo" do
     end
 
     scenario "should cancel edition" do
+      dojo.save
       visit edit_dojo_path(dojo)
       click_on "Cancelar"
       expect(current_path).to eql(root_path)
     end
 
     scenario "should create copied" do
+      dojo.save
       visit edit_dojo_path(dojo)
       click_on "Copiar"
       expect(find "#dojo_day").to have_content ""
