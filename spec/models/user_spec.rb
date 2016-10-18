@@ -12,7 +12,7 @@ describe User, type: :model do
     it "should login successfully" do
       new_user = FactoryGirl.create(:user)
       user = User.login(new_user.email, new_user.password)
-      expect(user).not_to be_nil 
+      expect(user).not_to be_nil
     end
   end
 
@@ -43,6 +43,22 @@ describe User, type: :model do
     it "should false when user not participate of the dojo" do
       dojo = FactoryGirl.create(:dojo)
       expect(user.participate?(dojo)).to be_falsey
+    end
+  end
+
+  describe "can_manage?" do
+    it "cannot manage when is not the owner" do
+      user = FactoryGirl.create(:user)
+      dojo = FactoryGirl.create(:dojo)
+
+      expect(user.can_manage?(dojo.id)).to be_falsey
+    end
+
+    it "can manage when is the owner" do
+      user = FactoryGirl.create(:user)
+      dojo = FactoryGirl.create(:dojo, user: user)
+
+      expect(user.can_manage?(dojo.id)).to be_truthy
     end
   end
 end
