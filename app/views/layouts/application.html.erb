@@ -61,8 +61,8 @@
 
       <% if flash[:notice] %>
         <p class="alert alert-info"><%= notice %></p>
-      <% elsif flash[:alert] %>
-        <p class="alert alert-error"><%= alert %></p>
+      <% elsif flash[:alert] || flash[:error] %>
+        <p class="alert alert-error"><%= alert || flash[:error] %></p>
       <% end %>
 
       <%= yield %>
