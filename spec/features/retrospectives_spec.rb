@@ -29,9 +29,9 @@ feature "record of retrospectives" do
   context "with user logged" do
     let(:user) { FactoryGirl.create(:user) }
     background { login user }
-    
+
     scenario "should be created" do
-      dojo  = FactoryGirl.create(:dojo)
+      dojo  = FactoryGirl.create(:dojo, user: user)
       retro = FactoryGirl.build(:retrospective)
 
       visit edit_dojo_path(dojo)
@@ -44,6 +44,7 @@ feature "record of retrospectives" do
     end
 
     scenario "should be edited" do
+      retro.dojo.update(user: user)
       visit edit_dojo_path(retro.dojo)
       click_on "Editar retrospectiva"
       fill_in  "Pontos Positivos",   with: "Aprendizado"
