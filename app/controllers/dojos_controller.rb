@@ -1,8 +1,7 @@
 class DojosController < ApplicationController
-  before_filter :require_login, only: [:new, :create, :edit, :update,
-                                       :destroy, :participate]
-  before_action :set_dojo, only: [:edit, :show, :update, :participate, 
-                                  :quit, :copied, :destroy]
+  before_filter :require_login, only: [:new, :create, :edit, :update, :destroy, :participate]
+  before_action :set_dojo, only: [:edit, :show, :update, :participate, :quit, :copied, :destroy]
+  before_action :check_ownership, only: [:edit, :update, :destroy]
 
   def new
     @dojo = Dojo.new
@@ -20,13 +19,9 @@ class DojosController < ApplicationController
   end
 
   def copied
-    @dojo = Dojo.new(local: @dojo.local, 
-                     info: @dojo.info, 
-                     gmaps_link: @dojo.gmaps_link)
+    @dojo = Dojo.new(local: @dojo.local, info: @dojo.info, gmaps_link: @dojo.gmaps_link)
     render :new
   end
-
-  def show; end
 
   def index
     @dojos = Dojo.not_happened.publishable
@@ -36,12 +31,10 @@ class DojosController < ApplicationController
     @dojos = Dojo.happened
   end
 
-  def edit; end
-
   def update
     if @dojo.update(dojo_params)
       redirect_to @dojo, notice: 'Dojo alterado com sucesso.'
-    else 
+    else
       render :edit
     end
   end
@@ -68,5 +61,12 @@ class DojosController < ApplicationController
 
   def set_dojo
     @dojo = Dojo.includes(:user).find(params[:id])
+  end
+
+  def check_ownership
+    unless current_user.can_manage?(@dojo.id)
+      flash[:error] = 'Somente o dono pode editar!'
+      redirect_to @dojo
+    end
   end
 end

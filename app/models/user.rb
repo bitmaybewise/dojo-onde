@@ -25,4 +25,8 @@ class User < ActiveRecord::Base
     dojo.participants.each { |participant| present = true if participant.user == self }
     present
   end
+
+  def can_manage?(dojo_id)
+    dojo_ids.include?(dojo_id)
+  end
 end

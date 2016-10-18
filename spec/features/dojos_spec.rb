@@ -38,6 +38,7 @@ feature "dojo" do
 
   context "authenticated" do
     let(:user) { FactoryGirl.create(:user) }
+    let(:dojo) { FactoryGirl.build(:dojo) }
     background { login user }
 
     scenario "should be inserted" do
@@ -46,6 +47,7 @@ feature "dojo" do
     end
 
     scenario "should be edited" do
+      dojo = Dojo.last
       other = "Casa da mãe Joana"
       visit edit_dojo_path(dojo)
       fill_in  "Local", with: other
