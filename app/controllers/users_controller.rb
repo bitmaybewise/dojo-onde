@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, only: [:edit, :update]
+  before_action :require_login, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def password
-    @user = current_user 
+    @user = current_user
   end
 
   def change_password

@@ -3,16 +3,16 @@ require 'spec_helper'
 describe SessionsController, type: :controller do
   describe 'GET social' do
     before do
-      request.env['omniauth.auth'] = { uid: 123, 
-                                       provider: 'twitter', 
-                                       info: { email: 'fulano@detal.com' } 
+      request.env['omniauth.auth'] = { uid: 123,
+                                       provider: 'twitter',
+                                       info: { email: 'fulano@detal.com' }
                                      }
     end
 
     context 'unauthenticated' do
       context 'when user not found' do
         it 'creates an authorization along with user and authenticate' do
-          get :social, provider: 'twitter'
+          get :social, params: { provider: 'twitter' }
 
           user = User.last
           expect(response).to redirect_to edit_user_path(user)
@@ -26,7 +26,7 @@ describe SessionsController, type: :controller do
         it 'creates an authorization and authenticate' do
           user = FactoryGirl.create(:user, email: 'fulano@detal.com')
 
-          get :social, provider: 'twitter'
+          get :social, params: { provider: 'twitter' }
 
           expect(response).to redirect_to edit_user_path(user)
           expect(User.count).to eq 1
@@ -41,19 +41,19 @@ describe SessionsController, type: :controller do
       let(:credentials) { { user_id: user.id } }
 
       it 'creates authorization when does not exist' do
-        get :social, { provider: 'twitter' }, credentials
+        get :social, params: { provider: 'twitter' }, session: credentials
 
         expect(response).to redirect_to edit_user_path(user)
-        expect(user.authentications.size).to eq 1 
+        expect(user.authentications.size).to eq 1
       end
 
       it 'does not create authorization when exists' do
         user.authentications.create(uid: 123, provider: 'twitter')
-        
-        get :social, { provider: 'twitter' }, credentials
+
+        get :social, params: { provider: 'twitter' }, session: credentials
 
         expect(response).to redirect_to edit_user_path(user)
-        expect(user.authentications.size).to eq 1 
+        expect(user.authentications.size).to eq 1
       end
     end
   end

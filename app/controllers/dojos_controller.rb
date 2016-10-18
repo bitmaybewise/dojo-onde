@@ -1,5 +1,5 @@
 class DojosController < ApplicationController
-  before_filter :require_login, only: [:new, :create, :edit, :update, :destroy, :participate]
+  before_action :require_login, only: [:new, :create, :edit, :update, :destroy, :participate]
   before_action :set_dojo, only: [:edit, :show, :update, :participate, :quit, :copied, :destroy]
   before_action :check_ownership, only: [:edit, :update, :destroy]
 
@@ -51,7 +51,7 @@ class DojosController < ApplicationController
 
   def destroy
     @dojo.destroy
-    redirect_to :back, notice: "Dojo excluído com sucesso."
+    redirect_to dojos_path, notice: "Dojo excluído com sucesso."
   end
 
   private

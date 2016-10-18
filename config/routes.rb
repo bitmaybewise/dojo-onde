@@ -1,4 +1,4 @@
-Dojoonde::Application.routes.draw do
+Rails.application.routes.draw do
   root to: "home#index"
   get "login"  => "sessions#new", :as => :login
   get "logout" => "sessions#destroy", :as => :logout

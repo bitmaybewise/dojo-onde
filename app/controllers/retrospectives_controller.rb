@@ -1,6 +1,6 @@
 class RetrospectivesController < ApplicationController
-  before_filter :require_login
-  before_filter :find_dojo
+  before_action :require_login
+  before_action :find_dojo
 
   def new
     @retrospective = @dojo.build_retrospective
