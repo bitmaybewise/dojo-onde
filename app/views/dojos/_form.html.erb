@@ -28,6 +28,11 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :participant_limit, class: "control-label" %>
+    <p class="controls"><%= f.text_field :participant_limit, class: "input-xxlarge" %></p>
+  </div>
+
+  <div class="control-group">
     <%= f.label :private, class: "control-label" %>
     <p class="controls"><%= f.check_box :private %></p>
   </div>

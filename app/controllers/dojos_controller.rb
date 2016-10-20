@@ -40,8 +40,14 @@ class DojosController < ApplicationController
   end
 
   def participate
-    @dojo.include_participant!(current_user)
-    redirect_to @dojo, notice: "Incluído na lista de participantes ;)"
+    begin
+      @dojo.include_participant!(current_user)
+      flash[:notice] = "Incluído na lista de participantes ;)"
+    rescue Dojoonde::ParticipantLimitError
+      flash[:alert] = t('helpers.dojos.participate_button.participate_reached_limit')
+    end
+
+    redirect_to @dojo
   end
 
   def quit
@@ -56,7 +62,7 @@ class DojosController < ApplicationController
 
   private
   def dojo_params
-    params.require(:dojo).permit(:day, :local, :gmaps_link, :info, :private)
+    params.require(:dojo).permit(:day, :local, :gmaps_link, :info, :private, :participant_limit)
   end
 
   def set_dojo

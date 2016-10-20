@@ -21,9 +21,7 @@ class User < ActiveRecord::Base
   end
 
   def participate?(dojo)
-    present = false
-    dojo.participants.each { |participant| present = true if participant.user == self }
-    present
+    dojo.participants.find_by(user_id: id).present?
   end
 
   def can_manage?(dojo_id)

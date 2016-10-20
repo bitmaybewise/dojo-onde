@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140718003544) do
+ActiveRecord::Schema.define(version: 20161018121147) do
 
-  create_table "authentications", force: true do |t|
+  create_table "authentications", force: :cascade do |t|
     t.string   "uid"
     t.string   "provider"
     t.integer  "user_id"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140718003544) do
   add_index "authentications", ["uid", "provider"], name: "index_authentications_on_uid_and_provider"
   add_index "authentications", ["user_id"], name: "index_authentications_on_user_id"
 
-  create_table "dojos", force: true do |t|
+  create_table "dojos", force: :cascade do |t|
     t.datetime "day"
     t.string   "local"
     t.text     "info"
@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 20140718003544) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "private",    default: false
+    t.boolean  "private",           default: false
+    t.integer  "participant_limit", default: 0
   end
 
-  create_table "participants", force: true do |t|
+  create_table "participants", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "dojo_id"
     t.datetime "created_at"
@@ -45,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140718003544) do
   add_index "participants", ["dojo_id"], name: "index_participants_on_dojo_id"
   add_index "participants", ["user_id"], name: "index_participants_on_user_id"
 
-  create_table "retrospectives", force: true do |t|
+  create_table "retrospectives", force: :cascade do |t|
     t.string   "challenge"
     t.text     "positive_points"
     t.text     "improvement_points"
@@ -56,7 +57,7 @@ ActiveRecord::Schema.define(version: 20140718003544) do
 
   add_index "retrospectives", ["dojo_id"], name: "index_retrospectives_on_dojo_id"
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"

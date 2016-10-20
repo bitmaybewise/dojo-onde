@@ -61,6 +61,7 @@ feature "participate of the dojo" do
 
     scenario "should participate of the dojo" do
       click_on "Eu vou!"
+      allow(user).to receive(:participate?).and_return(false)
       expect(current_path).to eq dojo_path(dojo)
       expect(page).to have_content "Desistir :("
       expect(page).to have_content "Incluído na lista de participantes ;)"

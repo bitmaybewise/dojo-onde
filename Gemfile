@@ -24,6 +24,8 @@ group :development, :test do
   gem 'foreman'
   gem 'byebug'
   gem 'factory_girl_rails', '~> 4.0'
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :test do
