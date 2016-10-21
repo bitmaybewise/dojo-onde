@@ -58,4 +58,26 @@ describe DojosController, type: :controller do
       end
     end
   end
+
+  describe 'PUT participate' do
+    context 'when is not already a participant' do
+      it do
+        dojo = FactoryGirl.create(:dojo)
+        put :participate, params: { id: dojo }, session: credentials
+        expect(response).to redirect_to dojo_path(dojo)
+        expect(flash[:alert]).to be_nil
+      end
+    end
+
+    context 'when dojo has reached the limit of participants' do
+      it do
+        dojo = FactoryGirl.create(:dojo)
+        allow_any_instance_of(Dojo).to receive(:reached_limit?).and_return(true)
+
+        put :participate, params: { id: dojo }, session: credentials
+        expect(response).to redirect_to dojo_path(dojo)
+        expect(flash[:alert]).to eq I18n.t('helpers.dojos.participate_button.participate_reached_limit')
+      end
+    end
+  end
 end

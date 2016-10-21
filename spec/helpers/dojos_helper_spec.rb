@@ -11,9 +11,9 @@ describe DojosHelper, type: :helper do
     end
 
     it "displays participate button when user is not a participant" do
-      other = FactoryGirl.create(:user)
+      other_user = FactoryGirl.create(:user)
       correct_button = link_to("Eu vou!", participate_dojo_path(dojo), method: :put, class: "btn btn-success btn-block")
-      result = participate_button(other, dojo)
+      result = participate_button(other_user, dojo)
       expect(result).to eq(correct_button)
     end
 
@@ -21,6 +21,16 @@ describe DojosHelper, type: :helper do
       correct_button = link_to("Desistir :(", quit_dojo_path(dojo), method: :put, class: "btn btn-danger btn-block")
       result = participate_button(dojo.user, dojo)
       expect(result).to eq(correct_button)
+    end
+
+    it "displays participant limit message error" do
+      user = FactoryGirl.create(:user)
+      allow(dojo).to receive(:reached_limit?).and_return(true)
+      allow(user).to receive(:participate?).and_return(false)
+
+      message = content_tag(:div, t('helpers.dojos.participate_button.participate_reached_limit'), class: "well")
+      result = participate_button(user, dojo)
+      expect(result).to eq(message)
     end
   end
 

@@ -4,10 +4,10 @@ pt-BR:
       default: "%d/%m/%Y %H:%Mh"
   activerecord:
     models:
-      user: 
+      user:
         one: "usuário"
         other: "usuários"
-      retrospective: 
+      retrospective:
         one: "retrospectiva"
         other: "retrospectivas"
       participant:
@@ -25,6 +25,7 @@ pt-BR:
         gmaps_link: "Link do Google Maps"
         info: "Outras Informações"
         private: "Privado?"
+        participant_limit: "Limite de participantes"
       retrospective:
         challenge: "Desafio"
         positive_points: "Pontos Positivos"
@@ -145,3 +146,4 @@ pt-BR:
       participate_button:
         participate_yes: "Eu vou!"
         participate_no: "Desistir :("
+        participate_reached_limit: "Limite de participação atingido! Mas não perca a esperança, talvez alguém desista. Volte mais tarde e tente novamente."
