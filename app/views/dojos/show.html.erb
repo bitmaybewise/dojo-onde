@@ -25,7 +25,7 @@
     <% end %>
 
     <%= participate_button(current_user) %>
-    <br/>
+    <%= link_to("Editar Dojo", edit_dojo_path(@dojo, back_to: dojo_path(@dojo)), class: 'btn btn-warning btn-block') if @dojo.belongs_to?(current_user) %>
 
     <% unless @dojo.private? %>
       <strong><%= t('general.buttons.share') %></strong>
