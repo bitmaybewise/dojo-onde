@@ -152,4 +152,19 @@ describe Dojo do
       it { expect(dojo.to_s).to eq "[PRIVADO] #{day_formatted} - bla" }
     end
   end
+
+  describe "#belongs_to?" do
+    context "when user is dojo's owner" do
+      it do
+        expect(dojo.belongs_to?(dojo.user)).to be true
+      end
+    end
+
+    context "when user isn't dojo's owner" do
+      it do
+        other_user = FactoryGirl.create(:user, name: "Other guy", email: 'other_email-123@gmail.com')
+        expect(dojo.belongs_to?(other_user)).to be false
+      end
+    end
+  end
 end

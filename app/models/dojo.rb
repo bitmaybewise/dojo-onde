@@ -43,6 +43,10 @@ class Dojo < ActiveRecord::Base
     participants.find_by(user_id: participant).present?
   end
 
+  def belongs_to?(_user)
+    user == _user
+  end
+
   private
   def day_cannot_be_in_the_past
     errors.add(:day, :cannot_be_in_the_past) if day.present? && day < Date.today
