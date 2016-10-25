@@ -167,4 +167,13 @@ describe Dojo do
       end
     end
   end
+
+  describe "#to_param" do
+    context "When the dojo_path(dojo) route is called" do
+      it "Returns a friendly url with the dojo id plus the local" do
+        dojo = FactoryGirl.create(:dojo, id: 1989, local: "Los Angeles")
+        expect(dojo.to_param).to eq("1989-los-angeles")
+      end
+    end
+  end
 end
