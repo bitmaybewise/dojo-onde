@@ -13,6 +13,10 @@ class Dojo < ActiveRecord::Base
 
   before_create :add_creator_of_the_dojo_as_a_participant
 
+  def to_param
+    [id, local.parameterize].join("-")
+  end
+
   def to_s
     I18n.t("dojos.to_s.private_#{self.private?}", day_formatted: I18n.l(day), local: local)
   end
