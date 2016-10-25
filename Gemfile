@@ -10,6 +10,7 @@ gem 'bcrypt'
 gem 'omniauth-twitter'
 gem 'omniauth-github'
 gem 'omniauth-facebook'
+gem "omniauth-google-oauth2"
 gem 'thin'
 gem 'coveralls', require: false
 
