@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      redirect_to new_sessions_path, alert: "Dados inválidos!"
+      redirect_to new_sessions_path, alert: t('sessions.create.success')
     end
   end
 

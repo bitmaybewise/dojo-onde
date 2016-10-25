@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      redirect_to edit_user_path(@user), notice: "Usuário alterado com sucesso."
+      redirect_to edit_user_path(@user), notice: t('users.update.success')
     else
       render :edit
     end
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   def change_password
     @user = current_user
     if @user.update(user_params)
-      redirect_to edit_user_path(@user), notice: "Senha alterada com sucesso!"
+      redirect_to edit_user_path(@user), notice: t('users.change_password.success')
     else
       render :password
     end
