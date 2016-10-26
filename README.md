@@ -49,11 +49,10 @@ Para usar com Heroku basta executar o seguinte.
 Achou um bug, tem ideia de uma funcionalidade super bacana que gostaria de ver no site ou simplesmente quer acompanhar e comentar a respeito?
 Visite nossa [issue list](https://github.com/hlmerscher/dojo-onde/issues?state=open).
 
-## Criador e mantenedor
-
-Hercules Lemke Merscher, [hlmerscher](https://github.com/hlmerscher/)
-
 ## Contribuidores
 
-* João Víctor Rocon Maia, [jvrmaia](https://github.com/jvrmaia)
-* Almir Mendes, [m3nd3s](https://github.com/m3nd3s)
+Veja no link abaixo a lista das pessoas que dedicaram seu precioso tempo para colaborar neste projeto:
+
+[Lista de contribuidores](https://github.com/hlmerscher/dojo-onde/graphs/contributors)
+
+Muito obrigado!
