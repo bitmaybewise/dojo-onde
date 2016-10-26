@@ -25,6 +25,8 @@ Para utilizar o recurso de login com redes sociais defina as seguintes variávei
     GITHUB_SECRET
     FACEBOOK_KEY
     FACEBOOK_SECRET
+    GOOGLE_CLIENT_ID
+    GOOGLE_CLIENT_SECRET
 
 Depois destes passos é só executar.
 
@@ -42,7 +44,7 @@ Ao executar o comando acima exibirá no console uma nova chave de segurança. De
 
 Para usar com Heroku basta executar o seguinte.
 
-    $ heroku config:set SECRET_TOKEN="chave_gerada_aqui"
+    $ heroku config:set SECRET_TOKEN="chave_gerada_aqui" -a myapp
 
 ## Funcionalidades novas, bug's, etc.
 
