@@ -9,7 +9,7 @@ class RetrospectivesController < ApplicationController
   def create
     @retrospective = @dojo.build_retrospective(retrospective_params)
     if @retrospective.save
-      flash[:notice] = "Retrospectiva registrada."
+      flash[:notice] = t('retrospectives.create.success')
       redirect_to @dojo
     else
       render :new
@@ -22,7 +22,7 @@ class RetrospectivesController < ApplicationController
 
   def update
     if @dojo.retrospective.update(retrospective_params)
-      flash[:notice] = "Retrospectiva atualizada."
+      flash[:notice] = t('retrospectives.update.success')
       redirect_to @dojo
     else
       render :edit

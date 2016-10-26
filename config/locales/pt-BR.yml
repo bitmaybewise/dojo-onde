@@ -111,22 +111,41 @@ pt-BR:
                                link e veja diretamente no Google Maps."
     new:
       title: "Novo dojo"
+    create:
+      success: "Dojo cadastrado com sucesso."
     edit:
       title: "Editar dojo"
       copy: "Copiar"
       new_retrospective: "Registrar retrospectiva"
       edit_retrospective: "Editar retrospectiva"
+    update:
+      success: "Dojo alterado com sucesso."
+    participate:
+      success: "Incluído na lista de participantes ;)"
     index:
       title: "Próximos dojos"
     happened:
       title: "Dojos que já aconteceram"
+    quit:
+      success: "Que pena que desistiu :("
+    destroy:
+      success: "Dojo excluído com sucesso."
+    check_ownership:
+      edit:
+        not_allowed: "Somente o dono pode editar!"
   retrospectives:
     form:
       challenge_placeholder: "URL ou breve descrição do desafio/problema proposto"
+    create:
+      success: "Retrospectiva registrada."
+    update:
+      success: "Retrospectiva atualizada."
   sessions:
     new:
       title: "Login"
       social_auth_title: "Conecte-se também através das redes sociais"
+    create:
+      success: "Dados inválidos!"
     social:
       failure: "Erro durante autenticação!"
   social:
@@ -141,6 +160,10 @@ pt-BR:
       change_password: "Trocar senha"
       without_dojos: "Você não tem dojos cadastrados :-("
       new_dojo: "Novo dojo"
+    update:
+      success: "Usuário alterado com sucesso."
+    change_password:
+      success: "Senha alterada com sucesso!"
   helpers:
     dojos:
       participate_button:
